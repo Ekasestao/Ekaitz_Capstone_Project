@@ -9,7 +9,6 @@ CREATE TABLE users (
   PRIMARY KEY (users_id),
   UNIQUE KEY users_id_UNIQUE (users_id)
 );
-
 CREATE TABLE products (
   products_id int NOT NULL AUTO_INCREMENT,
   products_name varchar(30) NOT NULL UNIQUE,
