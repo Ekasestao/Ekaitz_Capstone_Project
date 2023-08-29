@@ -6,7 +6,7 @@ from flask_marshmallow import Marshmallow
 app = Flask(__name__)
 app.config[
     "SQLALCHEMY_DATABASE_URI"
-] = "mysql+pymysql://Ekasestao:Ekaitz1000!@Ekasestao.mysql.pythonanywhere-services.com/Ekasestao$capstoneproject"
+] = "mysql+pymysql://root:Ekaitz22765332r,?@localhost/capstoneproject"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
@@ -138,3 +138,7 @@ def delete_user(user_id):
     db.session.commit()
 
     return user_schema.jsonify(user)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
