@@ -1,1 +1,1 @@
-<Ekaitz's Capstone Project>
+Ekaitz's Capstone Project
