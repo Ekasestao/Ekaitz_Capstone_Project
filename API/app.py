@@ -80,7 +80,7 @@ products_schema = ProductSchema(many=True)
 
 @app.route("/")
 def index():
-    return jsonify({"message": "Hello to  Ekaitz's API"})
+    return jsonify({"message": "Welcome to Ekaitz's API"})
 
 
 @app.route("/users", methods=["POST"])
@@ -108,12 +108,17 @@ def get_users():
 @app.route("/users/<int:user_id>", methods=["GET"])
 def get_user(user_id):
     user = User.query.get(user_id)
+    if not user:
+        return jsonify({"message": "Usuario no encontrado"})
+
     return user_schema.jsonify(user)
 
 
 @app.route("/users/<int:user_id>", methods=["PUT"])
 def update_user(user_id):
     user = User.query.get(user_id)
+    if not user:
+        return jsonify({"message": "Usuario no encontrado"})
 
     username = request.json["users_username"]
     email = request.json["users_email"]
@@ -134,9 +139,11 @@ def update_user(user_id):
 @app.route("/users/<int:user_id>", methods=["DELETE"])
 def delete_user(user_id):
     user = User.query.get(user_id)
+    if not user:
+        return jsonify({"message": "Usuario no encontrado"})
+
     db.session.delete(user)
     db.session.commit()
-
     return user_schema.jsonify(user)
 
 
