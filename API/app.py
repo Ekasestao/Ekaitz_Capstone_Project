@@ -54,7 +54,7 @@ users_schema = UserSchema(many=True)
 class Product(db.Model):
     __tablename__ = "products"
     products_id = db.Column(db.Integer, nullable=False, primary_key=True, unique=True)
-    products_name = db.Column(db.String(30), nullable=False)
+    products_name = db.Column(db.String(30), nullable=False, unique=True)
     products_description = db.Column(db.String(100), nullable=False)
     products_price = db.Column(db.Float, nullable=False)
 
