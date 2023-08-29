@@ -136,6 +136,22 @@ def update_user(user_id):
     return user_schema.jsonify(user)
 
 
+@app.route("/users/<int:user_id>", methods=["PATCH"])
+def patch_user(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"message": "Usuario no encontrado"})
+
+    data = request.json
+
+    for attribute, value in data.items():
+        if hasattr(user, attribute):
+            setattr(user, attribute, value)
+
+    db.session.commit()
+    return user_schema.jsonify(user)
+
+
 @app.route("/users/<int:user_id>", methods=["DELETE"])
 def delete_user(user_id):
     user = User.query.get(user_id)
