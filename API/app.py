@@ -127,3 +127,12 @@ def update_user(user_id):
 
     db.session.commit()
     return user_schema.jsonify(user)
+
+
+@app.route("/users/<int:user_id>", methods=["DELETE"])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    db.session.delete(user)
+    db.session.commit()
+
+    return user_schema.jsonify(user)
