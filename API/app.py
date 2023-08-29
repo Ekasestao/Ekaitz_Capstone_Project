@@ -22,6 +22,7 @@ class User(db.Model):
     users_password = db.Column(db.String(50), nullable=False)
     users_name = db.Column(db.String(30), nullable=False)
     users_lastname = db.Column(db.String(30), nullable=False)
+    users_admin = db.Column(db.Boolean, nullable=False, default=0)
 
     def __init__(
         self, users_username, users_email, users_password, users_name, users_lastname
@@ -42,6 +43,7 @@ class UserSchema(ma.Schema):
             "users_password",
             "users_name",
             "users_lastname",
+            "users_admin",
         )
 
 
