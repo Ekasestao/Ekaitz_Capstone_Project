@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import home from "../../Images/home.jpg";
+import home2 from "../../Images/home2.jpg";
+
 class Home extends Component {
   constructor() {
     super();
@@ -8,8 +11,8 @@ class Home extends Component {
   render() {
     return (
       <div className="home-wrapper">
-        <span>Homepage</span>
-        <img src="" alt="Home" />
+        <img src={home} alt="Home" />
+        <img src={home2} alt="Home2" />
       </div>
     );
   }
