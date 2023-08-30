@@ -6,7 +6,12 @@ class Home extends Component {
   }
 
   render() {
-    return <div className="home-wrapper">Homepage</div>;
+    return (
+      <div className="home-wrapper">
+        <span>Homepage</span>
+        <img src="" alt="Home" />
+      </div>
+    );
   }
 }
 
