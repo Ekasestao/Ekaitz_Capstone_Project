@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 
 class Navbar extends Component {
   constructor(props) {
@@ -14,22 +15,40 @@ class Navbar extends Component {
           </div>
 
           <div className="nav-right-side">
-            <div className="nav-login">Iniciar Sesión</div>
+            <div className="nav-login">
+              <a href="#">Iniciar Sesión</a>
+            </div>
 
-            <div className="nav-cart">i Carro (0)</div>
+            <div className="nav-cart">
+              <a href="#">
+                <span>
+                  <FaShoppingCart style={{ fontSize: "0.9em" }} />
+                </span>
+                Carro
+                <span>({this.props.itemsQty})</span>
+              </a>
+            </div>
           </div>
         </div>
         <div className="nav-content-wrapper">
           <div className="nav-logo">
-            <h1>Ekaitz's eCommerce</h1>
+            <a href="#">
+              <h1>Ekaitz's eCommerce</h1>
+            </a>
           </div>
 
           <div className="nav-links-wrapper">
-            <div className="nav-link">Home</div>
+            <div className="nav-link">
+              <a href="#">Home</a>
+            </div>
 
-            <div className="nav-link">Productos</div>
+            <div className="nav-link">
+              <a href="#">Productos</a>
+            </div>
 
-            <div className="nav-link">Blog</div>
+            <div className="nav-link">
+              <a href="#">Blog</a>
+            </div>
 
             <div className="nav-link">
               <a href="#">Sobre Nosotros</a>

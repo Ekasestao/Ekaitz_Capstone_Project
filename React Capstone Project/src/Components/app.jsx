@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Home from "./Pages/home";
 import Navbar from "./Navigation/navbar";
+import Footer from "./Footer/footer";
 
 class App extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class App extends Component {
     this.state = {
       username: "",
       users: [],
+      itemsQty: 1,
     };
 
     this.connectApi = this.connectApi.bind(this);
@@ -67,15 +69,14 @@ class App extends Component {
 
   componentDidMount() {
     this.connectApi();
-    this.getUsers();
-    this.getUser();
   }
 
   render() {
     return (
       <div className="app-wrapper">
-        <Navbar username={this.state.username} />
+        <Navbar username={this.state.username} itemsQty={this.state.itemsQty} />
         <Home />
+        <Footer />
       </div>
     );
   }
