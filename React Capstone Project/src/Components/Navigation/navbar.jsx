@@ -8,16 +8,34 @@ class Navbar extends Component {
   render() {
     return (
       <div className="nav-wrapper">
-        <div className="nav-left-side">
-          <h1>Ee</h1>
-          <div className="links-wrapper">
-            <div className="link">Home</div>
-            <div className="link">Productos</div>
-            <div className="link">Blogs</div>
-            <div className="link">Sobre Nosotros</div>
+        <div className="nav-top-wrapper">
+          <div className="nav-left-side">
+            <input type="text" placeholder={"Buscar..."} />
+          </div>
+
+          <div className="nav-right-side">
+            <div className="nav-login">Iniciar Sesión</div>
+
+            <div className="nav-cart">i Carro (0)</div>
           </div>
         </div>
-        <div className="nav-right-side">Icono Carro {this.props.username}</div>
+        <div className="nav-content-wrapper">
+          <div className="nav-logo">
+            <h1>Ekaitz's eCommerce</h1>
+          </div>
+
+          <div className="nav-links-wrapper">
+            <div className="nav-link">Home</div>
+
+            <div className="nav-link">Productos</div>
+
+            <div className="nav-link">Blog</div>
+
+            <div className="nav-link">
+              <a href="#">Sobre Nosotros</a>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
