@@ -25,7 +25,7 @@ class Auth extends Component {
   handleSubmit(event) {
     axios
       .post(
-        "http://ekasestao.pythonanywhere.com/sessions",
+        "http://ekasestao.pythonanywhere.com/sessions/login",
         {
           user: {
             loginCredential: this.state.loginCredential,
