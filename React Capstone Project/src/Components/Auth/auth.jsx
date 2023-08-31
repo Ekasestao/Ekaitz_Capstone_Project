@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 
 class Auth extends Component {
@@ -6,8 +7,8 @@ class Auth extends Component {
     super(props);
 
     this.state = {
-      loginCredential: "",
-      password: "",
+      loginCredential: "Ekasestao",
+      password: "123456789",
       errorText: "",
     };
 
@@ -24,12 +25,23 @@ class Auth extends Component {
 
   handleSubmit(event) {
     axios
-      .post(
-        `http://ekasestao.pythonanywhere.com/login/${this.state.loginCredential}`
-      )
+      .post(`http://ekasestao.pythonanywhere.com/login`, {
+        login_credential: this.state.loginCredential,
+        password: this.state.password,
+      })
       .then((response) => {
+        console.log(response.data);
         if (response.data.status == 200) {
-        } else {
+          console.log("Logeado");
+        }
+        if (response.data.status == 400) {
+          console.log("Contraseña incorrecta");
+        }
+        if (response.data.status == 404) {
+          console.log("No existe el usuario");
+        }
+        if (response.data.status == 500) {
+          console.log("Ha ocurrido un error");
         }
       })
       .catch(() => {
@@ -37,9 +49,10 @@ class Auth extends Component {
           errorText: "Ha ocurrido un error",
         });
       });
-
     event.preventDefault();
   }
+
+  componentDidMount() {}
 
   render() {
     return (
