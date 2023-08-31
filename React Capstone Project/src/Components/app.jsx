@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
 import Home from "./Pages/home";
+import Productos from "./Pages/productos";
+import Blog from "./Pages/blog";
+import AboutUs from "./Pages/about-us";
+import NoMatch from "./Pages/no-match";
 import Navbar from "./Navigation/navbar";
 import Footer from "./Footer/footer";
 
@@ -12,7 +17,7 @@ class App extends Component {
     this.state = {
       username: "",
       users: [],
-      itemsQty: 1,
+      cartItemsQty: 0,
     };
 
     this.connectApi = this.connectApi.bind(this);
@@ -74,9 +79,22 @@ class App extends Component {
   render() {
     return (
       <div className="app-wrapper">
-        <Navbar username={this.state.username} itemsQty={this.state.itemsQty} />
-        <Home />
-        <Footer />
+        <Router>
+          <Navbar
+            username={this.state.username}
+            cartItemsQty={this.state.cartItemsQty}
+          />
+
+          <Routes>
+            <Route exact="true" path="/" element={<Home />} />
+            <Route path="/productos" element={<Productos />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
+
+          <Footer />
+        </Router>
       </div>
     );
   }
