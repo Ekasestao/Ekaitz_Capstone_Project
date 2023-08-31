@@ -25,16 +25,13 @@ class Auth extends Component {
   handleSubmit(event) {
     axios
       .post(
-        "http://ekasestao.pythonanywhere.com/sessions/login",
-        {
-          user: {
-            loginCredential: this.state.loginCredential,
-            password: this.state.password,
-          },
-        },
-        { withCredentials: true }
+        `http://ekasestao.pythonanywhere.com/login/${this.state.loginCredential}`
       )
-      .then((response) => {})
+      .then((response) => {
+        if (response.data.status == 200) {
+        } else {
+        }
+      })
       .catch(() => {
         this.setState({
           errorText: "Ha ocurrido un error",

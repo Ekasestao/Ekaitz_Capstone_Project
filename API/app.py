@@ -101,6 +101,7 @@ def create_user():
 @app.route("/users", methods=["GET"])
 def get_users():
     all_users = User.query.all()
+
     result = users_schema.dump(all_users)
     return jsonify(result)
 
@@ -163,5 +164,50 @@ def delete_user(user_id):
     return user_schema.jsonify(user)
 
 
+@app.route("/login", methods=["POST"])
+def login():
+    login_credential = request.json["login_credential"]
+    password = request.json["password"]
+
+    all_user = User.query.all()
+
+    for user in all_user:
+        user_username = user.users_username
+        user_email = user.users_email
+        user_password = user.users_password
+
+        if login_credential == user_username or login_credential == user_email:
+            if password == user_password:
+                return jsonify({"status": 200})
+
+            elif password != user_password:
+                return jsonify({"status": 400})
+
+        elif login_credential != user_username and login_credential != user_email:
+            return jsonify({"status": 404})
+        else:
+            return jsonify({"status": 500})
+
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+""" if (user_username == login_credential or user_email == login_credential) and (
+            user_password == password
+        ):
+            return jsonify({"status": "Logged"})
+
+        elif (
+            user_username == login_credential or user_email == login_credential
+        ) and user_password != password:
+            return jsonify({"status": "Contraseña incorrecta"})
+
+        elif user_username != login_credential and user_email != login_credential:
+            return jsonify(
+                {
+                    "status": "No se ha encontrado una cuenta con esos credenciales, registrese"
+                }
+            )
+        else:
+            return jsonify({"status": "Ha ocurrido un problema"})
+"""
