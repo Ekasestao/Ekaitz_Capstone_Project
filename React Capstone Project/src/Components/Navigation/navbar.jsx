@@ -22,17 +22,19 @@ const Navbar = (props) => {
 
         <div className="nav-right-side">
           <div className="nav-login">
-            <a href="#">Iniciar Sesión</a>
+            <NavLink to="/auth">
+              <span>Iniciar Sesión</span>
+            </NavLink>
           </div>
 
           <div className="nav-cart">
-            <a href="#">
+            <NavLink to="/carro">
               <span className="nav-cart-icon">
                 <FaShoppingCart style={{ fontSize: "0.9em" }} />
               </span>
               Carro
               <span className="nav-cart-items">({props.cartItemsQty})</span>
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>

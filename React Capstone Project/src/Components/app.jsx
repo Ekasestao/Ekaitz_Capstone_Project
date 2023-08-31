@@ -6,6 +6,9 @@ import Home from "./Pages/home";
 import Productos from "./Pages/productos";
 import Blog from "./Pages/blog";
 import AboutUs from "./Pages/about-us";
+import Carro from "./Pages/carro";
+import Auth from "./Auth/auth";
+import Register from "./Auth/register";
 import NoMatch from "./Pages/no-match";
 import Navbar from "./Navigation/navbar";
 import Footer from "./Footer/footer";
@@ -90,6 +93,9 @@ class App extends Component {
             <Route path="/productos" element={<Productos />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/carro" element={<Carro />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/register" element={<Register />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
 
