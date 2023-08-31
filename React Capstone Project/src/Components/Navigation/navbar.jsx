@@ -27,11 +27,11 @@ const Navbar = (props) => {
 
           <div className="nav-cart">
             <a href="#">
-              <span>
+              <span className="nav-cart-icon">
                 <FaShoppingCart style={{ fontSize: "0.9em" }} />
               </span>
               Carro
-              <span>({props.cartItemsQty})</span>
+              <span className="nav-cart-items">({props.cartItemsQty})</span>
             </a>
           </div>
         </div>

@@ -1,6 +1,6 @@
 .footer-wrapper {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   justify-content: center;
   align-items: center;
   height: 105px;
@@ -39,8 +39,8 @@
       height: 100%;
 
       .footer-link {
-        margin: 15px;
         font-size: 1.5em;
+        margin-right: 20px;
         a {
           text-decoration: none;
           color: #bebebe;
@@ -53,14 +53,15 @@
   }
 
   .footer-right-side {
+    width: 100%;
     .footer-copyright {
       display: grid;
       grid-template-rows: 0.2fr 1fr;
       gap: 5px;
-      padding-right: 55px;
+      margin-right: 65px;
 
       span {
-        font-size: 0.75em;
+        font-size: 0.65em;
       }
     }
   }

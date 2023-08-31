@@ -59,12 +59,16 @@
           display: flex;
           width: 80%;
           justify-content: space-evenly;
-          align-content: center;
           text-decoration: none;
           color: #bebebe;
           transition: 0.2s all ease-in-out;
 
           @include hover();
+
+          .nav-cart-icon {
+            margin-top: 1px;
+            font-size: 1.1em;
+          }
         }
       }
     }
