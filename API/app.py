@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 app = Flask(__name__)
@@ -19,7 +20,7 @@ class User(db.Model):
     users_id = db.Column(db.Integer, nullable=False, primary_key=True, unique=True)
     users_username = db.Column(db.String(30), nullable=False, unique=True)
     users_email = db.Column(db.String(40), nullable=False, unique=True)
-    users_password = db.Column(db.String(50), nullable=False)
+    users_password = db.Column(db.String(102), nullable=False)
     users_name = db.Column(db.String(30), nullable=False)
     users_lastname = db.Column(db.String(30), nullable=False)
     users_admin = db.Column(db.Boolean, nullable=False, default=0)
@@ -32,6 +33,10 @@ class User(db.Model):
         self.users_password = users_password
         self.users_name = users_name
         self.users_lastname = users_lastname
+
+    @classmethod
+    def check_password(self, hashed_password, password):
+        return check_password_hash(hashed_password, password)
 
 
 class UserSchema(ma.Schema):
@@ -80,7 +85,9 @@ products_schema = ProductSchema(many=True)
 
 @app.route("/")
 def index():
-    return jsonify({"message": "Welcome to Ekaitz's API"})
+    response = jsonify({"message": "Welcome to Ekaitz's API"})
+
+    return response
 
 
 @app.route("/users", methods=["POST"])
@@ -94,16 +101,19 @@ def create_user():
     new_user = User(username, email, password, name, lastname)
     db.session.add(new_user)
     db.session.commit()
+    response = user_schema.jsonify(new_user)
 
-    return user_schema.jsonify(new_user)
+    return response
 
 
 @app.route("/users", methods=["GET"])
 def get_users():
     all_users = User.query.all()
 
-    result = users_schema.dump(all_users)
-    return jsonify(result)
+    result = {"users": users_schema.dump(all_users)}
+    response = jsonify(result)
+
+    return response
 
 
 @app.route("/users/<int:user_id>", methods=["GET"])
@@ -112,7 +122,9 @@ def get_user(user_id):
     if not user:
         return jsonify({"message": "Usuario no encontrado"})
 
-    return user_schema.jsonify(user)
+    response = user_schema.jsonify(user)
+
+    return response
 
 
 @app.route("/users/<int:user_id>", methods=["PUT"])
@@ -134,14 +146,18 @@ def update_user(user_id):
     user.users_lastname = lastname
 
     db.session.commit()
-    return user_schema.jsonify(user)
+    response = user_schema.jsonify(user)
+
+    return response
 
 
 @app.route("/users/<int:user_id>", methods=["PATCH"])
 def patch_user(user_id):
     user = User.query.get(user_id)
     if not user:
-        return jsonify({"message": "Usuario no encontrado"})
+        response = jsonify({"message": "Usuario no encontrado"})
+
+        return response
 
     data = request.json
 
@@ -150,7 +166,9 @@ def patch_user(user_id):
             setattr(user, attribute, value)
 
     db.session.commit()
-    return user_schema.jsonify(user)
+    response = user_schema.jsonify(user)
+
+    return response
 
 
 @app.route("/users/<int:user_id>", methods=["DELETE"])
@@ -161,7 +179,9 @@ def delete_user(user_id):
 
     db.session.delete(user)
     db.session.commit()
-    return user_schema.jsonify(user)
+    response = user_schema.jsonify(user)
+
+    return response
 
 
 @app.route("/login", methods=["POST"])
@@ -178,36 +198,27 @@ def login():
 
         if login_credential == user_username or login_credential == user_email:
             if password == user_password:
-                return jsonify({"status": 200})
+                response = jsonify({"status": 200})
+
+                return response
 
             elif password != user_password:
-                return jsonify({"status": 400})
+                response = jsonify({"status": 400})
+
+                return response
 
         elif login_credential != user_username and login_credential != user_email:
-            return jsonify({"status": 404})
+            response = jsonify({"status": 404})
+
+            return response
+
         else:
-            return jsonify({"status": 500})
+            response = jsonify({"status": 500})
+
+            return response
 
 
 if __name__ == "__main__":
     app.run(debug=True)
 
-""" if (user_username == login_credential or user_email == login_credential) and (
-            user_password == password
-        ):
-            return jsonify({"status": "Logged"})
-
-        elif (
-            user_username == login_credential or user_email == login_credential
-        ) and user_password != password:
-            return jsonify({"status": "Contraseña incorrecta"})
-
-        elif user_username != login_credential and user_email != login_credential:
-            return jsonify(
-                {
-                    "status": "No se ha encontrado una cuenta con esos credenciales, registrese"
-                }
-            )
-        else:
-            return jsonify({"status": "Ha ocurrido un problema"})
-"""
+"pbkdf2:sha256:260000$KrNTgrm26frsvn1u$c47f2bb5a909f74e03366bf2968bb262226121a4240a01ee67ab145513752653"

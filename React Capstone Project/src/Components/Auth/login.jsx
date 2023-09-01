@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 
-class Auth extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loginCredential: "Ekasestao",
-      password: "123456789",
+      loginCredential: "",
+      password: "",
       errorText: "",
     };
 
@@ -25,30 +25,49 @@ class Auth extends Component {
 
   handleSubmit(event) {
     axios
-      .post(`http://ekasestao.pythonanywhere.com/login`, {
+      .post("http://ekasestao.pythonanywhere.com/login", {
         login_credential: this.state.loginCredential,
         password: this.state.password,
       })
       .then((response) => {
         console.log(response.data);
         if (response.data.status == 200) {
-          console.log("Logeado");
+          this.props.handleSuccessfulAuth();
         }
         if (response.data.status == 400) {
-          console.log("Contraseña incorrecta");
+          this.setState({
+            loginCredential: "",
+            password: "",
+            errorText: "La contraseña es incorrecta",
+          });
+          this.props.handleUnsuccessfulAuth();
         }
         if (response.data.status == 404) {
-          console.log("No existe el usuario");
+          this.setState({
+            loginCredential: "",
+            password: "",
+            errorText: "El usuario no existe, por favor registrese",
+          });
+          this.props.handleUnsuccessfulAuth();
         }
         if (response.data.status == 500) {
-          console.log("Ha ocurrido un error");
+          this.setState({
+            loginCredential: "",
+            password: "",
+            errorText: "Ha ocurrido un error, por favor vuelva a intentarlo",
+          });
+          this.props.handleUnsuccessfulAuth();
         }
       })
       .catch(() => {
         this.setState({
+          loginCredential: "",
+          password: "",
           errorText: "Ha ocurrido un error",
         });
+        this.props.handleUnsuccessfulAuth();
       });
+
     event.preventDefault();
   }
 
@@ -66,7 +85,7 @@ class Auth extends Component {
             <input
               type="text"
               name="loginCredential"
-              placeholder="Su usuario o email"
+              placeholder="Usuario o email"
               value={this.state.loginCredential}
               onChange={this.handleChange}
             />
@@ -76,7 +95,7 @@ class Auth extends Component {
             <input
               type="password"
               name="password"
-              placeholder="Su contraseña"
+              placeholder="Contraseña"
               value={this.state.password}
               onChange={this.handleChange}
             />
@@ -97,4 +116,4 @@ class Auth extends Component {
   }
 }
 
-export default Auth;
+export default Login;

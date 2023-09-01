@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
+import Navbar from "./Navigation/navbar";
 import Home from "./Pages/home";
 import Productos from "./Pages/productos";
 import Blog from "./Pages/blog";
 import AboutUs from "./Pages/about-us";
 import Carro from "./Pages/carro";
-import Auth from "./Auth/auth";
+import Auth from "./Pages/auth";
 import Register from "./Auth/register";
 import NoMatch from "./Pages/no-match";
-import Navbar from "./Navigation/navbar";
 import Footer from "./Footer/footer";
 
 class App extends Component {
@@ -19,13 +19,34 @@ class App extends Component {
 
     this.state = {
       username: "",
-      users: [],
+      cartItems: [],
       cartItemsQty: 0,
+      loggedInStatus: "NOT_LOGGED_IN",
     };
 
+    this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
+    this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
+    this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
     this.connectApi = this.connectApi.bind(this);
-    this.getUsers = this.getUsers.bind(this);
     this.createUser = this.createUser.bind(this);
+  }
+
+  handleSuccessfulLogin() {
+    this.setState({
+      loggedInStatus: "LOGGED_IN",
+    });
+  }
+
+  handleUnsuccessfulLogin() {
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN",
+    });
+  }
+
+  handleSuccessfulLogout() {
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN",
+    });
   }
 
   connectApi() {
@@ -36,33 +57,6 @@ class App extends Component {
       })
       .catch((error) => {
         console.log("Connecting API Error", error);
-      });
-  }
-
-  getUsers() {
-    axios
-      .get("http://ekasestao.pythonanywhere.com/users")
-      .then((response) => {
-        this.setState({
-          users: response.data.users,
-        });
-      })
-      .catch((error) => {
-        console.log("Getting Users Error", error);
-      });
-  }
-
-  getUser(users_id = 1) {
-    axios
-      .get(`http://ekasestao.pythonanywhere.com/users/${users_id}`)
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          username: response.data.users_username,
-        });
-      })
-      .catch((error) => {
-        console.log("Getting User Error", error);
       });
   }
 
@@ -84,17 +78,27 @@ class App extends Component {
       <div className="app-wrapper">
         <Router>
           <Navbar
+            loggedInStatus={this.state.loggedInStatus}
+            handleSuccessfulLogout={this.handleSuccessfulLogout}
             username={this.state.username}
             cartItemsQty={this.state.cartItemsQty}
           />
 
           <Routes>
             <Route exact="true" path="/" element={<Home />} />
+            <Route
+              path="/auth"
+              element={
+                <Auth
+                  handleSuccessfulLogin={this.handleSuccessfulLogin}
+                  handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+                />
+              }
+            />
+            <Route path="/about-us" element={<AboutUs />} />
             <Route path="/productos" element={<Productos />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/about-us" element={<AboutUs />} />
             <Route path="/carro" element={<Carro />} />
-            <Route path="/auth" element={<Auth />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
