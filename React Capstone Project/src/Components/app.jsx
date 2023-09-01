@@ -26,6 +26,7 @@ class App extends Component {
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
     this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
     this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
+    this.authorizedPages = this.authorizedPages.bind(this);
     this.connectApi = this.connectApi.bind(this);
     this.createUser = this.createUser.bind(this);
   }
@@ -72,6 +73,13 @@ class App extends Component {
     this.connectApi();
   }
 
+  authorizedPages() {
+    return [
+      <Route key="login" path="/login" element={<Auth />} />,
+      <Route key="register" path="register" element={<Register />} />,
+    ];
+  }
+
   render() {
     return (
       <div className="app-wrapper">
@@ -86,9 +94,18 @@ class App extends Component {
           <Routes>
             <Route exact="true" path="/" element={<Home />} />
             <Route
-              path="/auth"
+              path="/login"
               element={
                 <Auth
+                  handleSuccessfulLogin={this.handleSuccessfulLogin}
+                  handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+                />
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <Register
                   handleSuccessfulLogin={this.handleSuccessfulLogin}
                   handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
                 />
@@ -98,7 +115,6 @@ class App extends Component {
             <Route path="/productos" element={<Productos />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/carro" element={<Carro />} />
-            <Route path="/register" element={<Register />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
 

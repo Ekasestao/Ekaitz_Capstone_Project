@@ -35,7 +35,7 @@ const Navbar = (props) => {
             </div>
           ) : (
             <div className="nav-login">
-              <NavLink to="/auth">
+              <NavLink to="/login">
                 <span>Iniciar Sesión</span>
               </NavLink>
             </div>

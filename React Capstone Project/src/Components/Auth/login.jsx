@@ -78,12 +78,12 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login-wrapper">
         <h1>LOGIN</h1>
 
         <div>{this.state.errorText}</div>
 
-        <form onSubmit={this.handleSubmit} className="auth-form-wrapper">
+        <form onSubmit={this.handleSubmit} className="login-form-wrapper">
           <div className="form-group">
             <input
               type="text"
@@ -105,13 +105,13 @@ class Login extends Component {
           </div>
 
           <button className="btn" type="submit">
-            Login
+            Iniciar Sesión
           </button>
         </form>
 
         <div className="go-register">
           <span>
-            No tiene una cuenta?<NavLink to="/register">Regístrese</NavLink>
+            No tiene una cuenta?<NavLink to="/register">Regístrarse</NavLink>
           </span>
         </div>
       </div>
@@ -120,5 +120,3 @@ class Login extends Component {
 }
 
 export default Login;
-
-("pbkdf2:sha256:260000$KrNTgrm26frsvn1u$c47f2bb5a909f74e03366bf2968bb262226121a4240a01ee67ab145513752653");

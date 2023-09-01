@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 import Login from "../Auth/login";
+import Register from "../Auth/register";
+
 import navigateHook from "../Navigation/navigate";
 
 class Auth extends Component {
@@ -22,9 +24,13 @@ class Auth extends Component {
 
   render() {
     return (
-      <div>
-        <div className="auth-content-wrapper">
+      <div className="content-wrapper">
+        <div className="auth-wrapper">
           <Login
+            handleSuccessfulAuth={this.handleSuccessfulAuth}
+            handleUnsuccessfulAuth={this.handleUnsuccessfulAuth}
+          />
+          <Register
             handleSuccessfulAuth={this.handleSuccessfulAuth}
             handleUnsuccessfulAuth={this.handleUnsuccessfulAuth}
           />
