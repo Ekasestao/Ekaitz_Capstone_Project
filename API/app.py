@@ -197,12 +197,12 @@ def login():
         user_password = user.users_password
 
         if login_credential == user_username or login_credential == user_email:
-            if password == user_password:
-                response = jsonify({"status": 200})
+            if User.check_password(user_password, password) == True:
+                response = user_schema.jsonify(user)
 
                 return response
 
-            elif password != user_password:
+            elif User.check_password(user_password, password) == False:
                 response = jsonify({"status": 400})
 
                 return response
@@ -220,5 +220,3 @@ def login():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-"pbkdf2:sha256:260000$KrNTgrm26frsvn1u$c47f2bb5a909f74e03366bf2968bb262226121a4240a01ee67ab145513752653"

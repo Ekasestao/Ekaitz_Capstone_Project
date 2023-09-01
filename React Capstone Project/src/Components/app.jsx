@@ -18,7 +18,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      username: "",
       cartItems: [],
       cartItemsQty: 0,
       loggedInStatus: "NOT_LOGGED_IN",

@@ -30,8 +30,11 @@ class Login extends Component {
         password: this.state.password,
       })
       .then((response) => {
-        console.log(response.data);
-        if (response.data.status == 200) {
+        if (
+          response.data.users_username == this.state.loginCredential ||
+          response.data.users_email == this.state.loginCredential
+        ) {
+          console.log(response);
           this.props.handleSuccessfulAuth();
         }
         if (response.data.status == 400) {
@@ -117,3 +120,5 @@ class Login extends Component {
 }
 
 export default Login;
+
+("pbkdf2:sha256:260000$KrNTgrm26frsvn1u$c47f2bb5a909f74e03366bf2968bb262226121a4240a01ee67ab145513752653");

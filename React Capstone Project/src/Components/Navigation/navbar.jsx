@@ -1,5 +1,5 @@
 import React from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 import navigateHook from "./navigate";
@@ -13,6 +13,11 @@ const Navbar = (props) => {
     );
   };
 
+  const handleSignOut = () => {
+    props.navigate("/");
+    props.handleSuccessfulLogout();
+  };
+
   return (
     <div className="nav-wrapper">
       <div className="nav-top-wrapper">
@@ -21,11 +26,20 @@ const Navbar = (props) => {
         </div>
 
         <div className="nav-right-side">
-          <div className="nav-login">
-            <NavLink to="/auth">
-              <span>Iniciar Sesión</span>
-            </NavLink>
-          </div>
+          {props.loggedInStatus === "LOGGED_IN" ? (
+            <div className="logged-in">
+              <div>Ekasestao</div>
+              <a onClick={handleSignOut}>
+                <FaSignOutAlt />
+              </a>
+            </div>
+          ) : (
+            <div className="nav-login">
+              <NavLink to="/auth">
+                <span>Iniciar Sesión</span>
+              </NavLink>
+            </div>
+          )}
 
           <div className="nav-cart">
             <NavLink to="/carro">
@@ -59,4 +73,4 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+export default navigateHook(Navbar);
