@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -111,7 +110,8 @@ class Login extends Component {
 
         <div className="go-register">
           <span>
-            No tiene una cuenta?<NavLink to="/register">Regístrarse</NavLink>
+            No tiene una cuenta?
+            <a onClick={this.props.goRegister}>Regístrarse</a>
           </span>
         </div>
       </div>

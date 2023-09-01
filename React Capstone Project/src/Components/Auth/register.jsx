@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Register extends Component {
   constructor(props) {
@@ -128,7 +128,8 @@ class Register extends Component {
 
           <div className="go-login">
             <span>
-              Ya tiene una cuenta?<NavLink to="/login">Iniciar Sesión</NavLink>
+              Ya tiene una cuenta?
+              <a onClick={this.props.goLogin}>Iniciar Sesión</a>
             </span>
           </div>
         </div>
