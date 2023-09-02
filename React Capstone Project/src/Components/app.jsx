@@ -21,6 +21,7 @@ class App extends Component {
       cartItems: [],
       cartItemsQty: 0,
       loggedInStatus: "NOT_LOGGED_IN",
+      loggedUser: {},
     };
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
@@ -31,9 +32,10 @@ class App extends Component {
     this.createUser = this.createUser.bind(this);
   }
 
-  handleSuccessfulLogin() {
+  handleSuccessfulLogin(user) {
     this.setState({
       loggedInStatus: "LOGGED_IN",
+      loggedUser: user,
     });
   }
 
@@ -46,6 +48,7 @@ class App extends Component {
   handleSuccessfulLogout() {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
+      loggedUser: {},
     });
   }
 
@@ -75,7 +78,7 @@ class App extends Component {
 
   authorizedPages() {
     return [
-      <Route key="login" path="/login" element={<Auth />} />,
+      <Route key="login" path="/login" element={<Login />} />,
       <Route key="register" path="register" element={<Register />} />,
     ];
   }
@@ -87,8 +90,8 @@ class App extends Component {
           <Navbar
             loggedInStatus={this.state.loggedInStatus}
             handleSuccessfulLogout={this.handleSuccessfulLogout}
-            username={this.state.username}
             cartItemsQty={this.state.cartItemsQty}
+            username={this.state.loggedUser.users_username}
           />
 
           <Routes>
@@ -99,15 +102,17 @@ class App extends Component {
                 <Auth
                   handleSuccessfulLogin={this.handleSuccessfulLogin}
                   handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+                  setUser={this.setUser}
                 />
               }
             />
             <Route
               path="/register"
               element={
-                <Register
+                <Auth
                   handleSuccessfulLogin={this.handleSuccessfulLogin}
                   handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+                  loggedUser={this.setUser}
                 />
               }
             />

@@ -28,7 +28,7 @@ const Navbar = (props) => {
         <div className="nav-right-side">
           {props.loggedInStatus === "LOGGED_IN" ? (
             <div className="logged-in">
-              <div>Ekasestao</div>
+              <div>{props.username}</div>
               <a onClick={handleSignOut}>
                 <FaSignOutAlt />
               </a>

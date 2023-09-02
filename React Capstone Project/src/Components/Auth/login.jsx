@@ -33,8 +33,8 @@ class Login extends Component {
           response.data.users_username == this.state.loginCredential ||
           response.data.users_email == this.state.loginCredential
         ) {
-          console.log(response);
-          this.props.handleSuccessfulAuth();
+          console.log(response.data);
+          this.props.handleSuccessfulAuth(response.data);
         }
         if (response.data.status == 400) {
           this.setState({

@@ -37,8 +37,8 @@ class Register extends Component {
         users_password: this.state.password,
       })
       .then((response) => {
-        console.log(response);
-        this.props.handleSuccessfulAuth();
+        console.log(response.data);
+        this.props.handleSuccessfulAuth(response.data);
       })
       .catch(() => {
         this.setState({
@@ -48,7 +48,7 @@ class Register extends Component {
           username: "",
           password: "",
           samePassword: "",
-          samePasswords: "La contraseña no coincide",
+          samePasswords: "",
           errorText: "Ha ocurrido un error",
         });
       });
