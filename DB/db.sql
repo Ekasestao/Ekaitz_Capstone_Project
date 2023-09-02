@@ -17,3 +17,14 @@ CREATE TABLE products (
   PRIMARY KEY (products_id),
   UNIQUE KEY products_id_UNIQUE (products_id)
 );
+CREATE TABLE sessions (
+  sessions_id int NOT NULL AUTO_INCREMENT,
+  sessions_username varchar(30) NOT NULL UNIQUE,
+  sessions_email varchar(40) NOT NULL UNIQUE,
+  sessions_password varchar(50) NOT NULL,
+  sessions_name varchar(30) NOT NULL,
+  sessions_lastname varchar(30) NOT NULL,
+  sessions_admin boolean NOT NULL DEFAULT 0,
+  PRIMARY KEY (sessions_id),
+  UNIQUE KEY sessions_id_UNIQUE (sessions_id)
+);

@@ -83,6 +83,48 @@ product_schema = ProductSchema()
 products_schema = ProductSchema(many=True)
 
 
+class Session(db.Model):
+    __tablename__ = "sessions"
+    sessions_id = db.Column(db.Integer, nullable=False, primary_key=True, unique=True)
+    sessions_username = db.Column(db.String(30), nullable=False, unique=True)
+    sessions_email = db.Column(db.String(40), nullable=False, unique=True)
+    sessions_password = db.Column(db.String(102), nullable=False)
+    sessions_name = db.Column(db.String(30), nullable=False)
+    sessions_lastname = db.Column(db.String(30), nullable=False)
+    sessions_admin = db.Column(db.Boolean, nullable=False, default=0)
+
+    def __init__(
+        self,
+        sessions_username,
+        sessions_email,
+        sessions_password,
+        sessions_name,
+        sessions_lastname,
+    ):
+        self.sessions_username = sessions_username
+        self.sessions_email = sessions_email
+        self.sessions_password = sessions_password
+        self.sessions_name = sessions_name
+        self.sessions_lastname = sessions_lastname
+
+
+class SessionSchema(ma.Schema):
+    class Meta:
+        fields = (
+            "sessions_id",
+            "sessions_username",
+            "sessions_email",
+            "sessions_password",
+            "sessions_name",
+            "sessions_lastname",
+            "sessions_admin",
+        )
+
+
+session_schema = SessionSchema()
+sessions_schema = SessionSchema(many=True)
+
+
 @app.route("/")
 def index():
     response = jsonify({"message": "Welcome to Ekaitz's API"})
@@ -216,6 +258,36 @@ def login():
             response = jsonify({"status": 500})
 
             return response
+
+
+@app.route("/sessions", methods=["POST"])
+def login_session():
+    id = request.json["sessions_id"]
+    admin = request.json["sessions_admin"]
+    username = request.json["sessions_username"]
+    email = request.json["sessions_email"]
+    password = request.json["sessions_password"]
+    name = request.json["sessions_name"]
+    lastname = request.json["sessions_lastname"]
+    new_session = Session(id, admin, username, email, password, name, lastname)
+    db.session.add(new_session)
+    db.session.commit()
+    response = session_schema.jsonify(new_session)
+
+    return response
+
+
+@app.route("sessions/<int:session_id>", methods=["DELETE"])
+def logout_session(session_id):
+    session = Session.query.get(session_id)
+    if not session:
+        return jsonify({"message": "No ha iniciado sesión"})
+
+    db.session.delete(session)
+    db.session.commit()
+    response = session.jsonify(session)
+
+    return response
 
 
 if __name__ == "__main__":
