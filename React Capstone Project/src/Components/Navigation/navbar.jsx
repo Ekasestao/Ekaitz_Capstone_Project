@@ -3,6 +3,7 @@ import { FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 import navigateHook from "./navigate";
+import axios from "axios";
 
 const Navbar = (props) => {
   const dynamicLink = (route, linkText) => {
@@ -11,11 +12,6 @@ const Navbar = (props) => {
         <NavLink to={route}>{linkText}</NavLink>
       </div>
     );
-  };
-
-  const handleSignOut = () => {
-    props.navigate("/");
-    props.handleSuccessfulLogout();
   };
 
   return (
@@ -29,7 +25,7 @@ const Navbar = (props) => {
           {props.loggedInStatus === "LOGGED_IN" ? (
             <div className="logged-in">
               <div>{props.username}</div>
-              <a onClick={handleSignOut}>
+              <a>
                 <FaSignOutAlt />
               </a>
             </div>

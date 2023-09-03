@@ -91,7 +91,7 @@ class Session(db.Model):
     sessions_password = db.Column(db.String(102), nullable=False)
     sessions_name = db.Column(db.String(30), nullable=False)
     sessions_lastname = db.Column(db.String(30), nullable=False)
-    sessions_admin = db.Column(db.Boolean, nullable=False, default=0)
+    sessions_admin = db.Column(db.Boolean, nullable=False)
 
     def __init__(
         self,
@@ -100,12 +100,14 @@ class Session(db.Model):
         sessions_password,
         sessions_name,
         sessions_lastname,
+        sessions_admin,
     ):
         self.sessions_username = sessions_username
         self.sessions_email = sessions_email
         self.sessions_password = sessions_password
         self.sessions_name = sessions_name
         self.sessions_lastname = sessions_lastname
+        self.sessions_admin = sessions_admin
 
 
 class SessionSchema(ma.Schema):
@@ -262,14 +264,14 @@ def login():
 
 @app.route("/sessions", methods=["POST"])
 def login_session():
-    id = request.json["sessions_id"]
-    admin = request.json["sessions_admin"]
     username = request.json["sessions_username"]
     email = request.json["sessions_email"]
     password = request.json["sessions_password"]
     name = request.json["sessions_name"]
     lastname = request.json["sessions_lastname"]
-    new_session = Session(id, admin, username, email, password, name, lastname)
+    admin = request.json["sessions_admin"]
+    new_session = Session(username, email, password, name, lastname, admin)
+
     db.session.add(new_session)
     db.session.commit()
     response = session_schema.jsonify(new_session)
@@ -277,17 +279,34 @@ def login_session():
     return response
 
 
-@app.route("sessions/<int:session_id>", methods=["DELETE"])
-def logout_session(session_id):
-    session = Session.query.get(session_id)
-    if not session:
-        return jsonify({"message": "No ha iniciado sesión"})
+@app.route("/sessions/<string:username>", methods=["GET"])
+def logged_in(username):
+    all_sessions = Session.query.all()
 
-    db.session.delete(session)
-    db.session.commit()
-    response = session.jsonify(session)
+    if len(all_sessions) > 0:
+        for session in all_sessions:
+            if username in session:
+                return jsonify({"logged_in": True})
+            else:
+                return jsonify({"logged_in": False})
+    else:
+        return jsonify({"logged_in": False})
 
-    return response
+
+@app.route("/sessions/<string:username>", methods=["DELETE"])
+def logout_session(username):
+    all_sessions = Session.query.all()
+
+    if len(all_sessions) > 0:
+        for session in all_sessions:
+            user_username = session.sessions_username
+            if username == user_username:
+                db.session.delete(session)
+                db.session.commit()
+
+                return jsonify({"status": 200})
+    else:
+        return jsonify({"status": 404})
 
 
 if __name__ == "__main__":

@@ -22,6 +22,7 @@ class App extends Component {
       cartItemsQty: 0,
       loggedInStatus: "NOT_LOGGED_IN",
       loggedUser: {},
+      username: "",
     };
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
@@ -30,18 +31,42 @@ class App extends Component {
     this.authorizedPages = this.authorizedPages.bind(this);
     this.connectApi = this.connectApi.bind(this);
     this.createUser = this.createUser.bind(this);
+    this.checkLoginStatus = this.checkLoginStatus.bind(this);
+    this.sessionPost = this.sessionPost.bind(this);
+  }
+
+  sessionPost(user) {
+    axios
+      .post("http://ekasestao.pythonanywhere.com/sessions", {
+        sessions_admin: user.users_admin,
+        sessions_username: user.users_username,
+        sessions_email: user.users_email,
+        sessions_password: user.users_password,
+        sessions_name: user.users_name,
+        sessions_lastname: user.users_lastname,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log("Session Post Error", error);
+      });
   }
 
   handleSuccessfulLogin(user) {
     this.setState({
       loggedInStatus: "LOGGED_IN",
       loggedUser: user,
+      username: user.users_username,
     });
+    this.sessionPost(user);
   }
 
   handleUnsuccessfulLogin() {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
+      loggedUser: {},
+      username: "",
     });
   }
 
@@ -49,6 +74,7 @@ class App extends Component {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
       loggedUser: {},
+      username: "",
     });
   }
 
@@ -72,8 +98,36 @@ class App extends Component {
       });
   }
 
+  async checkLoginStatus(username) {
+    try {
+      const response = await axios.get(
+        `http://ekasestao.pythonanywhere.com/sessions/${{ username }}`
+      );
+      const loggedIn = response.data.logged_in;
+      const loggedInStatus = this.state.loggedInStatus;
+
+      {
+        console.log(loggedIn);
+        loggedIn && loggedInStatus === "LOGGED_IN"
+          ? loggedIn
+          : loggedIn && loggedInStatus === "NOT_LOGGED_IN"
+          ? this.setState({
+              loggedInStatus: "LOGGED_IN",
+            })
+          : !loggedIn && loggedInStatus === "LOGGED_IN"
+          ? this.setState({
+              loggedInStatus: "NOT_LOGGED_IN",
+            })
+          : null;
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
+  }
+
   componentDidMount() {
     this.connectApi();
+    this.checkLoginStatus(this.state.loggedUser.users_username);
   }
 
   authorizedPages() {
