@@ -1,11 +1,14 @@
 .home-content-wrapper {
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100%;
   width: 100%;
 
   img {
-    height: inherit;
-    width: inherit;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    object-fit: cover;
   }
 }
