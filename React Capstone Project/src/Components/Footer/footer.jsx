@@ -5,7 +5,9 @@ const Footer = () => {
   const dynamicLink = (route, linkText) => {
     return (
       <div className="footer-link">
-        <NavLink to={route}>{linkText}</NavLink>
+        <NavLink to={route} className="footer-link">
+          {linkText}
+        </NavLink>
       </div>
     );
   };
@@ -20,13 +22,16 @@ const Footer = () => {
         </div>
 
         <div className="footer-links-wrapper">
-          {dynamicLink("/", "Home")}
-
-          {dynamicLink("/productos", "Productos")}
-
-          {dynamicLink("/blog", "Blog")}
-
-          {dynamicLink("/about-us", "Sobre Nosotros")}
+          <div className="footer-links-wrapper">{dynamicLink("/", "Home")}</div>
+          <div className="footer-links-wrapper">
+            {dynamicLink("/productos", "Productos")}
+          </div>
+          <div className="footer-links-wrapper">
+            {dynamicLink("/blog", "Blog")}
+          </div>
+          <div className="footer-links-wrapper">
+            {dynamicLink("/about-us", "Sobre Nosotros")}
+          </div>
         </div>
       </div>
       <div className="footer-right-side">

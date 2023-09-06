@@ -1,5 +1,4 @@
 .app-wrapper {
   display: grid;
-  height: min(100vh);
-  width: minmax(calc(100vw - 1px), 100vw);
+  grid-template-columns: 1fr;
 }

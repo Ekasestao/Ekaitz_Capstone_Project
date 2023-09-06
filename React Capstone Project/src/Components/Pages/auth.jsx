@@ -49,14 +49,12 @@ class Auth extends Component {
               handleSuccessfulAuth={this.handleSuccessfulAuth}
               handleUnsuccessfulAuth={this.handleUnsuccessfulAuth}
               goRegister={this.goRegister}
-              loggedUser={this.loggedUser}
             />
           ) : this.state.loginOrRegister === "register" ? (
             <Register
               handleSuccessfulAuth={this.handleSuccessfulAuth}
               handleUnsuccessfulAuth={this.handleUnsuccessfulAuth}
               goLogin={this.goLogin}
-              loggedUser={this.loggedUser}
             />
           ) : null}
         </div>

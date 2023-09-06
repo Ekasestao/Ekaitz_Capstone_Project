@@ -1,17 +1,34 @@
 import React from "react";
 import { FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 import navigateHook from "./navigate";
-import axios from "axios";
 
 const Navbar = (props) => {
   const dynamicLink = (route, linkText) => {
     return (
       <div className="nav-link">
-        <NavLink to={route}>{linkText}</NavLink>
+        <NavLink to={route} className="nav-link">
+          {linkText}
+        </NavLink>
       </div>
     );
+  };
+
+  const handleSignOut = () => {
+    axios
+      .get("http://ekasestao.pythonanywhere.com/logout")
+      .then((response) => {
+        if (response.data.status === 200) {
+          props.navigate("/");
+          props.handleSuccessfulLogout(response.data.user);
+        }
+        return response.data;
+      })
+      .catch((error) => {
+        console.log("Error signing out", error);
+      });
   };
 
   return (
@@ -25,17 +42,17 @@ const Navbar = (props) => {
           {props.loggedInStatus === "LOGGED_IN" ? (
             <div className="logged-in">
               <div>{props.username}</div>
-              <a>
+              <a onClick={handleSignOut}>
                 <FaSignOutAlt />
               </a>
             </div>
-          ) : (
+          ) : props.loggedInStatus === "NOT_LOGGED_IN" ? (
             <div className="nav-login">
-              <NavLink to="/login">
+              <NavLink to="/auth">
                 <span>Iniciar Sesión</span>
               </NavLink>
             </div>
-          )}
+          ) : null}
 
           <div className="nav-cart">
             <NavLink to="/carro">
@@ -56,13 +73,18 @@ const Navbar = (props) => {
         </div>
 
         <div className="nav-links-wrapper">
-          {dynamicLink("/", "Home")}
+          <div className="nav-links-wrapper">{dynamicLink("/", "Home")}</div>
 
-          {dynamicLink("/productos", "Productos")}
+          <div className="nav-links-wrapper">
+            {dynamicLink("/productos", "Productos")}
+          </div>
+          <div className="nav-links-wrapper">
+            {dynamicLink("/blog", "Blog")}
+          </div>
 
-          {dynamicLink("/blog", "Blog")}
-
-          {dynamicLink("/about-us", "Sobre Nosotros")}
+          <div className="nav-links-wrapper">
+            {dynamicLink("/about-us", "Sobre Nosotros")}
+          </div>
         </div>
       </div>
     </div>

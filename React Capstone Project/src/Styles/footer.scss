@@ -34,20 +34,18 @@
 
     .footer-links-wrapper {
       display: flex;
+      margin-right: 20px;
       justify-content: center;
-      align-self: center;
-      height: 100%;
+      align-items: center;
+      font-size: 1.2em;
+      text-transform: uppercase;
 
       .footer-link {
-        font-size: 1.5em;
-        margin-right: 20px;
-        a {
-          text-decoration: none;
-          color: #bebebe;
-          transition: 0.2s all ease-in-out;
+        transition: 0.4s all ease-in-out;
+        text-decoration: none;
+        color: #bebebe;
 
-          @include hover();
-        }
+        @include hover();
       }
     }
   }

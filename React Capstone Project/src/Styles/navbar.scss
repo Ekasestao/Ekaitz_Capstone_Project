@@ -36,6 +36,23 @@
       font-size: 0.8em;
       text-transform: uppercase;
 
+      .logged-in {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+          margin-top: 5px;
+          margin-left: 5px;
+          text-decoration: none;
+          color: #bebebe;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
       .nav-login {
         display: flex;
         justify-content: center;
@@ -97,18 +114,22 @@
 
     .nav-links-wrapper {
       display: flex;
-      padding: 0 25%;
-      justify-content: space-evenly;
+      margin-right: 20px;
+      justify-content: center;
       align-items: center;
-      .nav-link {
-        a {
-          font-size: 1.6em;
-          text-decoration: none;
-          color: #bebebe;
-          transition: 0.2s all ease-in-out;
+      font-size: 1.2em;
+      text-transform: uppercase;
 
-          @include hover();
-        }
+      .nav-link {
+        transition: 0.4s all ease-in-out;
+        text-decoration: none;
+        color: #bebebe;
+
+        @include hover();
+      }
+
+      .active {
+        color: #cea235;
       }
     }
   }

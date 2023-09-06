@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Register extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: "",
-      lastname: "",
-      email: "",
       username: "",
+      email: "",
       password: "",
       samePassword: "",
-      samePasswords: "La contraseña no coincide",
+      samePasswords: "Las contraseñas no coinciden",
+      name: "",
+      lastname: "",
       errorText: "",
     };
 
@@ -29,16 +29,29 @@ class Register extends Component {
 
   handleSubmit(event) {
     axios
-      .post("http://ekasestao.pythonanywhere.com/users", {
-        users_name: this.state.name,
-        users_lastname: this.state.lastname,
-        users_email: this.state.email,
-        users_username: this.state.username,
-        users_password: this.state.password,
-      })
+      .post(
+        "https://ekasestao.pythonanywhere.com/register",
+        {
+          username: this.state.username,
+          email: this.state.email,
+          password: this.state.password,
+          same_password: this.state.samePassword,
+          name: this.state.name,
+          lastname: this.state.lastname,
+        },
+        { withCredentials: true }
+      )
       .then((response) => {
-        console.log(response.data);
-        this.props.handleSuccessfulAuth(response.data);
+        if (response.data.status === 200) {
+          console.log(response.data);
+          this.props.handleSuccessfulAuth(response.data.user);
+        }
+        if (response.data.status === 400)
+          this.setState({
+            password: "",
+            samePassword: "",
+            errorText: "Las contraseñas no coinciden",
+          });
       })
       .catch(() => {
         this.setState({
@@ -48,11 +61,9 @@ class Register extends Component {
           username: "",
           password: "",
           samePassword: "",
-          samePasswords: "",
           errorText: "Ha ocurrido un error",
         });
       });
-
     event.preventDefault();
   }
 
@@ -81,6 +92,16 @@ class Register extends Component {
                 name="lastname"
                 placeholder="Apellido"
                 value={this.state.lastname}
+                onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="text"
+                name="username"
+                placeholder="Usuario"
+                value={this.state.username}
                 onChange={this.handleChange}
               />
             </div>

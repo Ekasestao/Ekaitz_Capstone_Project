@@ -24,27 +24,26 @@ class Login extends Component {
 
   handleSubmit(event) {
     axios
-      .post("http://ekasestao.pythonanywhere.com/login", {
-        login_credential: this.state.loginCredential,
-        password: this.state.password,
-      })
+      .post(
+        "http://ekasestao.pythonanywhere.com/login",
+        {
+          login_credential: this.state.loginCredential,
+          password: this.state.password,
+        },
+        { withCredentials: true }
+      )
       .then((response) => {
-        if (
-          response.data.users_username == this.state.loginCredential ||
-          response.data.users_email == this.state.loginCredential
-        ) {
-          console.log(response.data);
-          this.props.handleSuccessfulAuth(response.data);
+        if (response.data.status === 200) {
+          this.props.handleSuccessfulAuth(response.data.user);
         }
-        if (response.data.status == 400) {
+        if (response.data.status === 400) {
           this.setState({
-            loginCredential: "",
             password: "",
             errorText: "La contraseña es incorrecta",
           });
           this.props.handleUnsuccessfulAuth();
         }
-        if (response.data.status == 404) {
+        if (response.data.status === 404) {
           this.setState({
             loginCredential: "",
             password: "",
@@ -52,7 +51,7 @@ class Login extends Component {
           });
           this.props.handleUnsuccessfulAuth();
         }
-        if (response.data.status == 500) {
+        if (response.data.status === 500) {
           this.setState({
             loginCredential: "",
             password: "",
@@ -65,7 +64,7 @@ class Login extends Component {
         this.setState({
           loginCredential: "",
           password: "",
-          errorText: "Ha ocurrido un error",
+          errorText: "Ha ocurrido un error, por favor vuelva a intentarlo",
         });
         this.props.handleUnsuccessfulAuth();
       });
@@ -79,8 +78,6 @@ class Login extends Component {
     return (
       <div className="login-wrapper">
         <h1>LOGIN</h1>
-
-        <div>{this.state.errorText}</div>
 
         <form onSubmit={this.handleSubmit} className="login-form-wrapper">
           <div className="form-group">
@@ -107,6 +104,8 @@ class Login extends Component {
             Iniciar Sesión
           </button>
         </form>
+
+        <div>{this.state.errorText}</div>
 
         <div className="go-register">
           <span>
