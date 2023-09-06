@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from werkzeug.security import check_password_hash, generate_password_hash
+from secretKey import secret_key
 
 
 app = Flask(__name__)
@@ -277,5 +278,5 @@ def logged_in(username):
         return jsonify({"logged_in": False, "user": {}}) """
 
 if __name__ == "__main__":
-    app.secret_key = "d5e88ga54a68df4h4kd4hjh4d4thd"
+    app.secret_key = secret_key
     app.run(debug=True)
