@@ -195,73 +195,49 @@ def logout():
     return jsonify({"status": 200, "user": {"logged_in": False}})
 
 
-"""  @app.route("/users/<int:user_id>", methods=["GET"])
-def get_user(user_id):
-    user = User.query.get(user_id)
-    if not user:
-        return jsonify({"message": "Usuario no encontrado"})
+@app.route("/products", methods=["GET", "POST"])
+def products():
+    if request.method == "GET":
+        all_products = Product.query.all()
 
-    response = user_schema.jsonify(user)
+        return products_schema.jsonify(all_products)
 
-    return response
+    if request.method == "POST":
+        name = request.json["products_name"]
+        description = request.json["products_description"]
+        price = request.json["products_price"]
 
+        new_product = Product(name, description, price)
+        db.session.add(new_product)
+        db.session.commit()
 
-@app.route("/users/<int:user_id>", methods=["PUT"])
-def update_user(user_id):
-    user = User.query.get(user_id)
-    if not user:
-        return jsonify({"message": "Usuario no encontrado"})
-
-    username = request.json["users_username"]
-    email = request.json["users_email"]
-    password = request.json["users_password"]
-    name = request.json["users_name"]
-    lastname = request.json["users_lastname"]
-
-    user.users_username = username
-    user.users_email = email
-    user.users_password = password
-    user.users_name = name
-    user.users_lastname = lastname
-
-    db.session.commit()
-    response = user_schema.jsonify(user)
-
-    return response
+        return product_schema.jsonify(new_product)
 
 
-@app.route("/users/<int:user_id>", methods=["PATCH"])
-def patch_user(user_id):
-    user = User.query.get(user_id)
-    if not user:
-        response = jsonify({"message": "Usuario no encontrado"})
+@app.route("/products/<int:product_id>", methods=["PATCH", "DELETE"])
+def alter_product(product_id):
+    if request.method == "PATCH":
+        product = Product.query.get(product_id)
 
-        return response
+        if not product:
+            return jsonify({"status": 404})
 
-    data = request.json
+        data = request.json
 
-    for attribute, value in data.items():
-        if hasattr(user, attribute):
-            setattr(user, attribute, value)
+        for attribute, value in data.items():
+            if hasattr(product, attribute):
+                setattr(product, attribute, value)
 
-    db.session.commit()
-    response = user_schema.jsonify(user)
+        db.session.commit()
+        return product_schema.jsonify(product)
 
-    return response
+    if request.method == "DELETE":
+        product = Product.query.get(product_id)
 
+        db.session.delete(product)
+        db.session.commit()
 
-@app.route("/users/<int:user_id>", methods=["DELETE"])
-def delete_user(user_id):
-    user = User.query.get(user_id)
-    if not user:
-        return jsonify({"message": "Usuario no encontrado"})
-
-    db.session.delete(user)
-    db.session.commit()
-    response = user_schema.jsonify(user)
-
-    return response
-"""
+        return product_schema.jsonify(product)
 
 
 if __name__ == "__main__":
