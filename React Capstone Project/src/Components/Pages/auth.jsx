@@ -20,14 +20,16 @@ class Auth extends Component {
   }
 
   goRegister() {
+    localStorage.setItem("loginRegister", JSON.stringify("register"));
     this.setState({
-      loginOrRegister: "register",
+      loginOrRegister: JSON.parse(localStorage.getItem("loginRegister")),
     });
   }
 
   goLogin() {
+    localStorage.setItem("loginRegister", JSON.stringify("login"));
     this.setState({
-      loginOrRegister: "login",
+      loginOrRegister: JSON.parse(localStorage.getItem("loginRegister")),
     });
   }
 
@@ -38,6 +40,19 @@ class Auth extends Component {
 
   handleUnsuccessfulAuth() {
     this.props.handleUnsuccessfulLogin();
+  }
+
+  componentDidMount() {
+    this.setState({
+      loginOrRegister: JSON.parse(localStorage.getItem("loginRegister")),
+    });
+  }
+
+  componentWillUnmount() {
+    localStorage.setItem("loginRegister", JSON.stringify("login"));
+    this.setState({
+      loginOrRegister: JSON.parse(localStorage.getItem("loginRegister")),
+    });
   }
 
   render() {

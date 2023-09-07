@@ -43,7 +43,6 @@ class Register extends Component {
       )
       .then((response) => {
         if (response.data.status === 200) {
-          console.log(response.data);
           this.props.handleSuccessfulAuth(response.data.user);
         }
         if (response.data.status === 400)
@@ -51,6 +50,39 @@ class Register extends Component {
             password: "",
             samePassword: "",
             errorText: "Las contraseñas no coinciden",
+          });
+        if (response.data.status === 401) {
+          this.setState({
+            errorText: "Introduzca una contraseña válida",
+          });
+        }
+        if (response.data.status === 402) {
+          this.setState({
+            email: "",
+            password: "",
+            samePassword: "",
+            errorText: "El email ya está registrado",
+          });
+        }
+        if (response.data.status === 403) {
+          this.setState({
+            username: "",
+            password: "",
+            samePassword: "",
+            errorText: "El usuario ya está registrado",
+          });
+        }
+        if (response.data.status === 405)
+          this.setState({
+            password: "",
+            samePassword: "",
+            errorText: "Introduzca un nombre de usuario válido",
+          });
+        if (response.data.status === 406)
+          this.setState({
+            password: "",
+            samePassword: "",
+            errorText: "Introduzca un email válido",
           });
       })
       .catch(() => {

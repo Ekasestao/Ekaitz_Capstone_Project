@@ -7,6 +7,7 @@ import Home from "./Pages/home";
 import Productos from "./Pages/productos";
 import Blog from "./Pages/blog";
 import AboutUs from "./Pages/about-us";
+import ProductManager from "./Pages/product-manager";
 import Carro from "./Pages/carro";
 import Auth from "./Pages/auth";
 import NoMatch from "./Pages/no-match";
@@ -26,7 +27,8 @@ class App extends Component {
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
     this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
     this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
-    this.authorizedPages = this.authorizedPages.bind(this);
+    this.notLoggedPages = this.notLoggedPages.bind(this);
+    this.adminPages = this.adminPages.bind(this);
     this.connectApi = this.connectApi.bind(this);
     this.checkLoginStatus = this.checkLoginStatus.bind(this);
   }
@@ -78,11 +80,9 @@ class App extends Component {
       : !loggedIn && loggedInStatus === "LOGGED_IN"
       ? this.setState({
           loggedInStatus: "NOT_LOGGED_IN",
+          loggedUser: {},
         })
       : null;
-
-    {
-    }
   }
 
   componentDidMount() {
@@ -90,8 +90,33 @@ class App extends Component {
     this.checkLoginStatus();
   }
 
-  authorizedPages() {
-    return [<Route key="auth" path="/auth" element={<Auth />} />];
+  notLoggedPages() {
+    return [
+      <Route
+        key="auth"
+        path="/auth"
+        element={
+          <Auth
+            handleSuccessfulLogin={this.handleSuccessfulLogin}
+            handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+          />
+        }
+      />,
+    ];
+  }
+
+  adminPages() {
+    return [
+      <Route
+        key="product-manager"
+        path="/product-manager"
+        element={
+          <ProductManager
+            admin={JSON.parse(localStorage.getItem("user")).admin}
+          />
+        }
+      />,
+    ];
   }
 
   render() {
@@ -107,18 +132,13 @@ class App extends Component {
 
           <Routes>
             <Route exact="true" path="/" element={<Home />} />
-            <Route
-              path="/auth"
-              element={
-                <Auth
-                  handleSuccessfulLogin={this.handleSuccessfulLogin}
-                  handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
-                />
-              }
-            />
-            <Route path="/about-us" element={<AboutUs />} />
+            {this.state.loggedInStatus === "NOT_LOGGED_IN"
+              ? this.notLoggedPages()
+              : null}
             <Route path="/productos" element={<Productos />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            {this.state.loggedUser.admin ? this.adminPages() : null}
             <Route path="/carro" element={<Carro />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>

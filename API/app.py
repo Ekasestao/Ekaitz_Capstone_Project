@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -95,15 +95,58 @@ def create_user():
     username = request.json["username"]
     email = request.json["email"]
     password = request.json["password"]
-    hashed_pw = generate_password_hash(password, method="sha256")
+    same_password = request.json["same_password"]
     name = request.json["name"]
     lastname = request.json["lastname"]
-    new_user = User(username, email, hashed_pw, name, lastname)
 
-    db.session.add(new_user)
-    db.session.commit()
+    if username != "":
+        if email != "":
+            user_username = User.query.filter(User.users_username == username).first()
+            if not user_username:
+                user_email = User.query.filter(User.users_email == email).first()
+                if not user_email:
+                    if password != "":
+                        if password == same_password:
+                            hashed_pw = generate_password_hash(
+                                password, method="sha256"
+                            )
+                            new_user = User(username, email, hashed_pw, name, lastname)
+                            db.session.add(new_user)
+                            db.session.commit()
 
-    return user_schema.jsonify(new_user)
+                            user = User.query.filter(
+                                User.users_username == username
+                            ).first()
+                            id = user.users_id
+                            admin = user.users_admin
+
+                            return jsonify(
+                                {
+                                    "status": 200,
+                                    "user": {
+                                        "id": id,
+                                        "username": username,
+                                        "email": email,
+                                        "password": hashed_pw,
+                                        "name": name,
+                                        "lastname": lastname,
+                                        "admin": admin,
+                                        "logged_in": True,
+                                    },
+                                }
+                            )
+
+                        return jsonify({"status": 400})
+
+                    return jsonify({"status": 401})
+
+                return jsonify({"status": 402})
+
+            return jsonify({"status": 403})
+
+        return jsonify({"status": 405})
+
+    return jsonify({"status": 406})
 
 
 @app.route("/login", methods=["POST"])
@@ -117,77 +160,39 @@ def login():
     ).first()
 
     if user:
+        user_id = user.users_id
+        user_username = user.users_username
+        user_email = user.users_email
         user_password = user.users_password
-        if User.check_password(user_password, password) == True:
-            session["username"] = user.users_username
-            session["email"] = user.users_email
-            session["password"] = user.users_password
-            session["name"] = user.users_name
-            session["lastname"] = user.users_lastname
-            session["admin"] = user.users_admin
+        user_name = user.users_name
+        user_lastname = user.users_lastname
+        user_admin = user.users_admin
 
-            return {"status": 200}
+        if User.check_password(user_password, password) == True:
+            return jsonify(
+                {
+                    "status": 200,
+                    "user": {
+                        "id": user_id,
+                        "username": user_username,
+                        "email": user_email,
+                        "password": user_password,
+                        "name": user_name,
+                        "lastname": user_lastname,
+                        "admin": user_admin,
+                        "logged_in": True,
+                    },
+                }
+            )
 
         return jsonify({"status": 400})
 
     return jsonify({"status": 404})
 
 
-@app.route("/logged_in")
-def logged_in():
-    if "username" in session:
-        return jsonify(
-            {
-                "logged_in": True,
-                "user": {
-                    "username": session["username"],
-                    "email": session["email"],
-                    "password": session["password"],
-                    "name": session["name"],
-                    "lastname": session["lastname"],
-                    "admin": session["admin"],
-                },
-            }
-        )
-    return jsonify({"logged_in": False})
-
-
 @app.route("/logout")
 def logout():
-    session.pop("username", None)
-    session.pop("email", None)
-    session.pop("password", None)
-    session.pop("name", None)
-    session.pop("lastname", None)
-    session.pop("admin", None)
-
-    return jsonify({"logged_in": False, "status": 200})
-
-
-@app.route("/user", methods=["GET"])
-def get_user():
-    login_credential = request.json["login_credential"]
-    user = User.query.filter(
-        (User.users_username == login_credential)
-        | (User.users_email == login_credential)
-    ).first()
-
-    if user:
-        result = {"user": user_schema.dump(user)}
-
-        return jsonify(result)
-
-    return jsonify({"message": "El usuario '{}' no existe".format(login_credential)})
-
-
-@app.route("/users", methods=["GET"])
-def get_users():
-    user = User.query.all()
-
-    result = {"users": users_schema.dump(user)}
-    response = jsonify(result)
-
-    return response
+    return jsonify({"status": 200, "user": {"logged_in": False}})
 
 
 """  @app.route("/users/<int:user_id>", methods=["GET"])
@@ -258,24 +263,6 @@ def delete_user(user_id):
     return response
 """
 
-
-""" @app.route("/sessions/", methods=["GET"])
-def not_logged():
-    return jsonify({"logged_in": False, "user": {}})
-
-
-@app.route("/sessions/<string:username>", methods=["GET"])
-def logged_in(username):
-    all_sessions = Session.query.all()
-
-    if len(all_sessions) > 0:
-        for session in all_sessions:
-            if username == session.sessions_username:
-                return jsonify({"logged_in": True, "user": session})
-
-        return jsonify({"logged_in": False, "user": {}})
-    else:
-        return jsonify({"logged_in": False, "user": {}}) """
 
 if __name__ == "__main__":
     app.secret_key = secret_key

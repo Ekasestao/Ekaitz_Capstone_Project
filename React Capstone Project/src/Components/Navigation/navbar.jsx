@@ -73,18 +73,24 @@ const Navbar = (props) => {
         </div>
 
         <div className="nav-links-wrapper">
-          <div className="nav-links-wrapper">{dynamicLink("/", "Home")}</div>
+          <div className="nav-links-wrapper">{dynamicLink("/", "home")}</div>
 
           <div className="nav-links-wrapper">
-            {dynamicLink("/productos", "Productos")}
+            {dynamicLink("/productos", "productos")}
           </div>
           <div className="nav-links-wrapper">
-            {dynamicLink("/blog", "Blog")}
+            {dynamicLink("/blog", "blog")}
           </div>
 
           <div className="nav-links-wrapper">
-            {dynamicLink("/about-us", "Sobre Nosotros")}
+            {dynamicLink("/about-us", "sobre nosotros")}
           </div>
+
+          {JSON.parse(localStorage.getItem("user")).admin ? (
+            <div className="nav-links-wrapper">
+              {dynamicLink("/product-manager", "product manager")}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

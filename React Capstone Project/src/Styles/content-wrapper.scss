@@ -1,3 +1,6 @@
 .content-wrapper {
-  height: min(calc(100vh - 289px));
+  flex: 1;
+  height: calc(100vh - 289px);
+  overflow: auto;
+  object-fit: cover;
 }

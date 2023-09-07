@@ -17,7 +17,7 @@
 
     .footer-logo {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
       justify-self: center;
       align-self: center;
 
@@ -35,10 +35,10 @@
 
     .footer-links-wrapper {
       display: flex;
-      margin-right: 20px;
+      margin: 0px 15px;
       justify-content: center;
       align-items: center;
-      font-size: 1.2em;
+      font-size: 1.1em;
       text-transform: uppercase;
 
       .footer-link {
