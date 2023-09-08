@@ -216,12 +216,12 @@ def products():
 
 @app.route("/products/<int:product_id>", methods=["PATCH", "DELETE"])
 def alter_product(product_id):
+    product = Product.query.get(product_id)
+
+    if not product:
+        return jsonify({"status": 404})
+
     if request.method == "PATCH":
-        product = Product.query.get(product_id)
-
-        if not product:
-            return jsonify({"status": 404})
-
         data = request.json
 
         for attribute, value in data.items():

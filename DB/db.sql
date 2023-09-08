@@ -12,19 +12,9 @@ CREATE TABLE users (
 CREATE TABLE products (
   products_id int NOT NULL AUTO_INCREMENT,
   products_name varchar(30) NOT NULL UNIQUE,
-  products_description varchar(100) NOT NULL,
+  products_description varchar(300) NOT NULL,
+  products_img varchar(300),
   products_price float NOT NULL,
   PRIMARY KEY (products_id),
   UNIQUE KEY products_id_UNIQUE (products_id)
-);
-CREATE TABLE sessions (
-  sessions_id int NOT NULL AUTO_INCREMENT,
-  sessions_username varchar(30) NOT NULL UNIQUE,
-  sessions_email varchar(40) NOT NULL UNIQUE,
-  sessions_password varchar(102) NOT NULL,
-  sessions_name varchar(30) NOT NULL,
-  sessions_lastname varchar(30) NOT NULL,
-  sessions_admin boolean NOT NULL,
-  PRIMARY KEY (sessions_id),
-  UNIQUE KEY sessions_id_UNIQUE (sessions_id)
 );

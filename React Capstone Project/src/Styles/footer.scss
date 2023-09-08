@@ -5,9 +5,9 @@
   align-items: center;
   height: 105px;
   width: 100%;
-  background-color: #131417;
-  color: #bebebe;
-  border-top: 2px solid #cea235;
+  background-color: $content-background;
+  color: $default;
+  border-top: 2px solid $gold;
 
   .footer-left-side {
     display: grid;
@@ -23,7 +23,7 @@
 
       a {
         text-decoration: none;
-        color: #cea235;
+        color: $gold;
         font-size: 0.8em;
 
         h1 {
@@ -44,7 +44,7 @@
       .footer-link {
         transition: 0.4s all ease-in-out;
         text-decoration: none;
-        color: #bebebe;
+        color: $default;
 
         @include hover();
       }

@@ -1,7 +1,7 @@
 import React from "react";
 
 function Carro() {
-  return <div>carro</div>;
+  return <div className="content-wrapper">carro</div>;
 }
 
 export default Carro;

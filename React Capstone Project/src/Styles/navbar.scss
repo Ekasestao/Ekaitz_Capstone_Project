@@ -4,13 +4,13 @@
   grid-template-rows: 0.3fr 1fr;
   height: 180px;
   width: 100%;
-  color: #bebebe;
-  border-bottom: 2px solid #cea235;
+  color: $default;
+  border-bottom: 2px solid $gold;
 
   .nav-top-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: #1e1f26;
+    background-color: $topnav-background;
 
     .nav-left-side {
       display: flex;
@@ -20,7 +20,7 @@
       input {
         height: 55%;
         width: 25%;
-        color: #bebebe;
+        color: $default;
         background-color: #252830;
         border: 0;
 
@@ -46,7 +46,8 @@
           margin-top: 5px;
           margin-left: 5px;
           text-decoration: none;
-          color: #bebebe;
+          color: $default;
+          transition: 0.2s all ease-in-out;
 
           @include hover();
         }
@@ -59,7 +60,7 @@
 
         a {
           text-decoration: none;
-          color: #bebebe;
+          color: $default;
           transition: 0.2s all ease-in-out;
 
           @include hover();
@@ -76,7 +77,7 @@
           width: 80%;
           justify-content: space-evenly;
           text-decoration: none;
-          color: #bebebe;
+          color: $default;
           transition: 0.2s all ease-in-out;
 
           @include hover();
@@ -93,7 +94,7 @@
   .nav-content-wrapper {
     display: grid;
     grid-template-rows: 1.4fr 1fr;
-    background-color: #131417;
+    background-color: $content-background;
 
     .nav-logo {
       display: block;
@@ -102,7 +103,7 @@
 
       a {
         text-decoration: none;
-        color: #cea235;
+        color: $gold;
 
         h1 {
           margin: 0;
@@ -128,7 +129,7 @@
       }
 
       .active {
-        color: #cea235;
+        color: $gold;
       }
     }
   }

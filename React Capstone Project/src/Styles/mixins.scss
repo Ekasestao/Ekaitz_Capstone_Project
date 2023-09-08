@@ -1,6 +1,6 @@
 @mixin hover {
   &:hover {
     cursor: pointer;
-    color: #cea235;
+    color: $gold;
   }
 }

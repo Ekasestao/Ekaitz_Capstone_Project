@@ -1,0 +1,10 @@
+{
+  "products_name": "HTML",
+  "products_description": "Curso de HTML completo, en el que aprenderás desde lo más básico, como crear un botón, hasta crear la estructura completa de tu propia página web.",
+  "products_price": 29.99,
+},
+{
+  "products_name": "CSS",
+  "products_description": "Curso de CSS donde aprenderás los elementos que componen este lenguaje y a crear estilos bien definidos para tu página web.",
+  "products_price": 24.99,
+}

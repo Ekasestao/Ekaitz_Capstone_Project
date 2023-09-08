@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import home from "../../Images/home.jpg";
-import home2 from "../../Images/home2.jpg";
+import home from "../../Images/Home/home.jpg";
+import home2 from "../../Images/Home/home2.jpg";
 
 class Home extends Component {
   constructor() {
