@@ -75,12 +75,13 @@ class ProductManager extends Component {
         }
       )
       .then((response) => {
+        response.data.products;
         this.setState({
           products: [...response.data.products],
         });
       })
       .catch((error) => {
-        console.log("Error getProducts", error);
+        console.log("getProducts ProductManager Error", error);
       });
   }
 

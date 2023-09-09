@@ -64,11 +64,22 @@ class Product(db.Model):
     products_name = db.Column(db.String(30), nullable=False, unique=True)
     products_description = db.Column(db.String(100), nullable=False)
     products_price = db.Column(db.Float, nullable=False)
+    products_img_name = db.Column(db.String(50), nullable=False)
+    products_img_data = db.Column(db.String(15000), nullable=False)
 
-    def __init__(self, products_name, products_description, products_price):
+    def __init__(
+        self,
+        products_name,
+        products_description,
+        products_price,
+        products_img_name,
+        products_img_data,
+    ):
         self.products_name = products_name
         self.products_description = products_description
         self.products_price = products_price
+        self.products_img_name = products_img_name
+        self.products_img_data = products_img_data
 
 
 class ProductSchema(ma.Schema):
@@ -78,6 +89,8 @@ class ProductSchema(ma.Schema):
             "products_name",
             "products_description",
             "products_price",
+            "products_img_name",
+            "products_img_data",
         )
 
 
@@ -206,8 +219,13 @@ def products():
         name = request.json["products_name"]
         description = request.json["products_description"]
         price = request.json["products_price"]
+        img = request.json["products_img"]
 
-        new_product = Product(name, description, price)
+        img_upload = img["upload"]
+        img_name = img_upload["filename"]
+        img_data = img["dataURL"]
+
+        new_product = Product(name, description, price, img_name, img_data)
         db.session.add(new_product)
         db.session.commit()
 

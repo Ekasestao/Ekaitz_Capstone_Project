@@ -6,7 +6,7 @@ function ProductList(props) {
     return (
       <div key={product.products_id} className="product-thumb">
         <div className="product-thumb-img">
-          <img src={product.thumb_img} />
+          <img src={product.products_img_url} />
         </div>
 
         <div className="text-content">
