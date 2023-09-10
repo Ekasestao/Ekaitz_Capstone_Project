@@ -5,11 +5,6 @@
   }
 }
 
-@mixin base-grid {
-  display: grid;
-  gap: 20px;
-}
-
 @mixin base-btn {
   cursor: pointer;
   height: 42px;

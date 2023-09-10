@@ -1,18 +1,23 @@
 .product-form-wrapper {
   display: grid;
-  gap: 20px;
+  gap: 30px;
   grid-template-columns: 1fr;
-  padding: 50px;
+  padding: 60px;
 
-  @include input-element();
-  input {
-    margin-bottom: 0px;
-  }
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus {
-    -webkit-text-fill-color: $default;
-    -webkit-box-shadow: 0 0 0px 1000px $topnav-background inset;
+  .input-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    @include input-element();
+    input {
+      margin-bottom: 0px;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+      -webkit-text-fill-color: $default;
+      -webkit-box-shadow: 0 0 0px 1000px $topnav-background inset;
+    }
   }
 
   .image-uploader {

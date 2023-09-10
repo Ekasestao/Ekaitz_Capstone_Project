@@ -136,21 +136,23 @@ class ProductForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="product-form-wrapper">
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          value={this.state.name}
-          onChange={this.handleChange}
-        />
+        <div className="input-wrapper">
+          <input
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
 
-        <input
-          type="text"
-          name="price"
-          placeholder="Precio"
-          value={this.state.price}
-          onChange={this.handleChange}
-        />
+          <input
+            type="text"
+            name="price"
+            placeholder="Precio"
+            value={this.state.price}
+            onChange={this.handleChange}
+          />
+        </div>
 
         <textarea
           type="text"
