@@ -1,0 +1,9 @@
+.product-manager-wrapper {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  height: 100%;
+
+  .right-column {
+    background-color: #181818;
+  }
+}

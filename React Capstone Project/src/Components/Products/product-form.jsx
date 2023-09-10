@@ -139,7 +139,7 @@ class ProductForm extends Component {
         <input
           type="text"
           name="name"
-          placeholder="Nombre Producto"
+          placeholder="Nombre"
           value={this.state.name}
           onChange={this.handleChange}
         />
@@ -181,11 +181,9 @@ class ProductForm extends Component {
           )}
         </div>
 
-        <div>
-          <button className="btn" type="submit">
-            Guardar
-          </button>
-        </div>
+        <button className="btn" type="submit">
+          Guardar
+        </button>
       </form>
     );
   }

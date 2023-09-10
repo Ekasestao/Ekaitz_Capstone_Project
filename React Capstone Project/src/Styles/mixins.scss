@@ -4,3 +4,55 @@
     color: $gold;
   }
 }
+
+@mixin base-grid {
+  display: grid;
+  gap: 20px;
+}
+
+@mixin base-btn {
+  cursor: pointer;
+  height: 42px;
+  width: 120px;
+  font-size: 1em;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+  background-color: $gold;
+  color: #000;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: $dark-gold;
+  }
+}
+
+@mixin input-element {
+  input {
+    color: $default;
+    padding: 10px;
+    width: 100%;
+    border: 0px;
+    border-bottom: 1px solid $gold;
+    background-color: $topnav-background;
+    transition: 0.2s all ease-in-out;
+    font-size: 1.1em;
+    margin-bottom: 21px;
+
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid $dark-gold;
+    }
+  }
+}
+
+@mixin actions-icons {
+  cursor: pointer;
+  color: $offwhite;
+  font-size: 1.5em;
+  transition: 0.2s ease-in-out;
+}

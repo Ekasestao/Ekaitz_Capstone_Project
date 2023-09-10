@@ -4,12 +4,12 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 function ProductList(props) {
   const productList = props.data.map((product) => {
     return (
-      <div key={product.products_id} className="product-thumb">
-        <div className="product-thumb-img">
+      <div key={product.products_id} className="product">
+        <div className="product-img">
           <img src={product.products_img_url} />
         </div>
 
-        <div className="text-content">
+        <div className="product-text">
           <div className="title">{product.products_name}</div>
 
           <div className="actions">
