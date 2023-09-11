@@ -11,10 +11,13 @@ class ProductForm extends Component {
     super();
 
     this.state = {
+      id: "",
       name: "",
       description: "",
       price: "",
       img: "",
+      img_url:
+        "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.jpg?alt=media&token=b7158599-45eb-4284-aa94-bd1ea9188723",
       editMode: false,
       apiUrl: "http://ekasestao.pythonanywhere.com/products",
       apiAction: "post",
@@ -32,10 +35,14 @@ class ProductForm extends Component {
 
   deleteImage() {
     axios
-      .delete("", { withCredentials: true })
+      .delete(
+        `http://ekasestao.pythonanywhere.com/products/img/${this.state.id}`,
+        { withCredentials: true }
+      )
       .then(() => {
         this.setState({
           img: "",
+          img_url: "",
         });
       })
       .catch((error) => {
@@ -45,19 +52,27 @@ class ProductForm extends Component {
 
   componentDidUpdate() {
     if (Object.keys(this.props.productToEdit).length > 0) {
-      const { id, name, description, price, img } = this.props.productToEdit;
+      const {
+        products_id,
+        products_name,
+        products_description,
+        products_price,
+        products_img_url,
+      } = this.props.productToEdit;
 
       this.props.clearProductToEdit();
 
       this.setState({
-        id: id,
-        name: name || "",
-        description: description || "",
-        price: price || "",
+        id: products_id,
+        name: products_name || "",
+        description: products_description || "",
+        price: products_price || "",
         editMode: true,
-        apiUrl: `http://ekasestao.pythonanywhere.com/products/${id}`,
+        apiUrl: `http://ekasestao.pythonanywhere.com/products/${products_id}`,
         apiAction: "patch",
-        img: img || "",
+        img_url:
+          products_img_url ||
+          "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.jpg?alt=media&token=b7158599-45eb-4284-aa94-bd1ea9188723",
       });
     }
   }
@@ -92,7 +107,15 @@ class ProductForm extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     try {
-      const result = await uploadFile(this.state.img);
+      let img_url = this.state.img_url;
+
+      if (this.state.img != "") {
+        const result = await uploadFile(this.state.img);
+        img_url = result;
+      } else if (this.state.img_url == "") {
+        img_url =
+          "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.jpg?alt=media&token=b7158599-45eb-4284-aa94-bd1ea9188723";
+      }
 
       await axios({
         method: this.state.apiAction,
@@ -101,7 +124,7 @@ class ProductForm extends Component {
           products_name: this.state.name,
           products_description: this.state.description,
           products_price: this.state.price,
-          products_img_url: result,
+          products_img_url: img_url,
         },
         withCredentials: true,
       })
@@ -113,11 +136,13 @@ class ProductForm extends Component {
           }
 
           this.setState({
+            id: "",
             name: "",
             description: "",
             price: "",
             img: "",
-            img_url: "",
+            img_url:
+              "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.jpg?alt=media&token=b7158599-45eb-4284-aa94-bd1ea9188723",
             editMode: false,
             apiUrl: "http://ekasestao.pythonanywhere.com/products",
             apiAction: "post",
@@ -163,12 +188,12 @@ class ProductForm extends Component {
         />
 
         <div className="image-uploader">
-          {this.state.img && this.state.editMode ? (
+          {this.state.img_url && this.state.editMode ? (
             <div className="product-manager-image-wrapper">
-              <img src={this.state.img} />
+              <img src={this.state.img_url} />
 
               <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("img")}>Eliminar Archivo</a>
+                <a onClick={() => this.deleteImage()}>Eliminar Archivo</a>
               </div>
             </div>
           ) : (

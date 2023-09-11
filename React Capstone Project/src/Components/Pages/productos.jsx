@@ -16,7 +16,9 @@ class Productos extends Component {
 
   getProducts() {
     axios
-      .get("http://ekasestao.pythonanywhere.com/products")
+      .get(
+        "http://ekasestao.pythonanywhere.com/products?order_by=name&direction=asc"
+      )
       .then((response) => {
         this.setState({
           data: response.data.products,

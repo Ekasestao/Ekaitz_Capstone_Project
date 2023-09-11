@@ -1,10 +1,20 @@
 {
-  "products_name": "HTML",
-  "products_description": "Curso de HTML completo, en el que aprenderás desde lo más básico, como crear un botón, hasta crear la estructura completa de tu propia página web.",
-  "products_price": 29.99,
+  name: HTML
+  description: Curso de HTML completo, en el que aprenderás desde lo más básico, como crear un botón, hasta crear la estructura completa de tu propia página web.
+  price: 29.99
 },
 {
-  "products_name": "CSS",
-  "products_description": "Curso de CSS donde aprenderás los elementos que componen este lenguaje y a crear estilos bien definidos para tu página web.",
-  "products_price": 24.99,
+  name: CSS
+  description: Curso de CSS donde aprenderás los elementos que componen este lenguaje y a crear estilos bien definidos para tu página web.
+  price: 24.99
+},
+{
+  name: SASS
+  description: Curso de SASS en el que aprenderás paso por paso como escribir código y crear estilos perfectos para tu aplicación o página web.
+  price: 24.99
+},
+{
+  name: PYTHON
+  description: Curso de PYTHON avanzado con el cual podrás aplicar todo lo aprendido en aplicaciones web, desarrollo de software, ciencia de datos, machine learning y muchos más.
+  price: 49.99
 }

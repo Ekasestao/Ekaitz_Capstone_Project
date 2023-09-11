@@ -35,13 +35,16 @@ class ProductManager extends Component {
 
   handleDeleteClick(product) {
     axios
-      .delete(`http://ekasestao.pythonanywhere.com/products/${product.id}`, {
-        withCredentials: true,
-      })
+      .delete(
+        `http://ekasestao.pythonanywhere.com/products/${product.products_id}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((response) => {
         this.setState({
           products: this.state.products.filter((item) => {
-            return item.id !== product.id;
+            return item.products_id !== product.products_id;
           }),
         });
 
@@ -69,13 +72,12 @@ class ProductManager extends Component {
   getProducts() {
     axios
       .get(
-        "https://ekasestao.pythonanywhere.com/products?order_by=name&direction=asc",
+        "https://ekasestao.pythonanywhere.com/products?order_by=id&direction=desc",
         {
           withCredentials: true,
         }
       )
       .then((response) => {
-        response.data.products;
         this.setState({
           products: [...response.data.products],
         });

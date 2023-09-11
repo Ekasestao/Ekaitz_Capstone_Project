@@ -1,14 +1,42 @@
 .product-list-wrapper {
   .product {
+    padding: 25px;
+
     .product-img {
+      img {
+        aspect-ratio: 16/9;
+        width: 100%;
+        object-fit: fill;
+      }
     }
+
     .product-text {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
       .title {
+        color: $default;
+        font-size: 1.5em;
       }
       .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+
         .edit-icon {
+          @include actions-icons();
+
+          &:hover {
+            color: $gold;
+          }
         }
         .delete-icon {
+          @include actions-icons();
+
+          &:hover {
+            color: $delete;
+          }
         }
       }
     }
