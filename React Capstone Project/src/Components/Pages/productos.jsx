@@ -9,6 +9,8 @@ class Productos extends Component {
     super();
 
     this.state = {
+      totalCount: 0,
+      currentPage: 1,
       isLoading: false,
       data: [],
     };

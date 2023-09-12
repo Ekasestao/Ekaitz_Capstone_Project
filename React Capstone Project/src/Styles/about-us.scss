@@ -7,19 +7,20 @@
   p {
     width: 70%;
     font-size: 1.5em;
-    line-height: 1.7em;
+    line-height: 1.7;
 
     ul {
       margin-bottom: 45px;
 
       h3 {
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 5px;
       }
 
       li {
         margin-left: 50px;
         font-size: 0.9em;
+        list-style-type: "-  ";
       }
     }
   }
