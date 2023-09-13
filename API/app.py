@@ -212,20 +212,67 @@ def logout():
 def products():
     if request.method == "GET":
         all_products = Product.query.all()
+        order_by = request.args.get("order_by", "id")
+        direction = request.args.get("direction", "asc")
+        page = request.args.get("page", 1)
+        per_page = request.args.get("per_page", 10)
 
-        return products_schema.jsonify(all_products)
+        if len(all_products) > 0:
+            if order_by == "id":
+                if direction == "asc":
+                    all_products = Product.query.order_by(
+                        Product.products_id.asc()
+                    ).all()
+
+                    return jsonify({"products": products_schema.dump(all_products)})
+
+                if direction == "desc":
+                    all_products = Product.query.order_by(
+                        Product.products_id.desc()
+                    ).all()
+
+                    return jsonify({"products": products_schema.dump(all_products)})
+
+            if order_by == "name":
+                if direction == "asc":
+                    all_products = Product.query.order_by(Product.products_name.asc())
+                    all_products = all_products.paginate(page=page, per_page=per_page)
+                    total = User.query.count()
+
+                    return jsonify(
+                        {
+                            "total": total,
+                            "page": page,
+                            "per_page": per_page,
+                            "products": [
+                                {
+                                    "id": p.products_id,
+                                    "name": p.products_name,
+                                    "description": p.products_description,
+                                    "price": p.products_price,
+                                    "img_url": p.products_img_url,
+                                }
+                                for p in all_products.items
+                            ],
+                        }
+                    )
+
+                if direction == "desc":
+                    all_products = Product.query.order_by(
+                        Product.products_name.desc()
+                    ).all()
+
+                    return jsonify({"products": products_schema.dump(all_products)})
+
+        return jsonify({"products": []})
 
     if request.method == "POST":
         name = request.json["products_name"]
         description = request.json["products_description"]
         price = request.json["products_price"]
-        img = request.json["products_img"]
+        img_url = request.json["products_img_url"]
 
-        img_upload = img["upload"]
-        img_name = img_upload["filename"]
-        img_data = img["dataURL"]
-
-        new_product = Product(name, description, price, img_name, img_data)
+        new_product = Product(name, description, price, img_url)
         db.session.add(new_product)
         db.session.commit()
 
@@ -256,6 +303,24 @@ def alter_product(product_id):
         db.session.commit()
 
         return product_schema.jsonify(product)
+
+
+@app.route("/products/img/<int:product_id>", methods=["DELETE"])
+def delete_img(product_id):
+    product = Product.query.get(product_id)
+
+    if not product:
+        return jsonify({"status": 404})
+
+    product.products_img_url = "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.jpg?alt=media&token=b7158599-45eb-4284-aa94-bd1ea9188723"
+    db.session.commit()
+
+    return product_schema.jsonify(product)
+
+
+@app.route("/dropzone", methods=["GET", "POST"])
+def dropzone_img():
+    return jsonify({"status": 200})
 
 
 if __name__ == "__main__":

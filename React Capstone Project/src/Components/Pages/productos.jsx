@@ -9,33 +9,55 @@ class Productos extends Component {
     super();
 
     this.state = {
+      data: [],
       totalCount: 0,
       currentPage: 1,
-      isLoading: false,
-      data: [],
+      isLoading: true,
     };
+
+    this.getProducts = this.getProducts.bind(this);
+    this.onScroll = this.onScroll.bind(this);
+    window.addEventListener("scroll", this.onScroll, false);
+  }
+
+  onScroll() {
+    if (
+      this.state.isLoading ||
+      this.state.data.length === this.state.totalCount
+    ) {
+      return;
+    }
+
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+    ) {
+      this.getProducts();
+    }
   }
 
   getProducts() {
+    this.setState({
+      currentPage: this.state.currentPage + 1,
+    });
+
     axios
       .get(
-        "http://ekasestao.pythonanywhere.com/products?order_by=name&direction=asc"
+        `http://ekasestao.pythonanywhere.com/products?order_by=name&direction=asc&page=${this.state.currentPage}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((response) => {
         this.setState({
-          data: response.data.products,
+          data: this.state.data.concat(response.data.products),
+          totalCount: response.data.total,
+          isLoading: false,
         });
-        console.log(response);
       })
       .catch((error) => {
-        console.log("getProducts Productos Error", error);
+        console.log("getProducts Error", error);
       });
-  }
-
-  products() {
-    return this.state.data.map((product) => {
-      return <Producto key={product.products_id} product={product} />;
-    });
   }
 
   componentDidMount() {
@@ -43,16 +65,29 @@ class Productos extends Component {
   }
 
   render() {
-    if (this.state.isLoading) {
-      return (
-        <div className="content-wrapper">
-          <span>Cargando</span>
-          <FaSpinner className="loading-icon" />
-        </div>
-      );
-    }
+    const products = this.state.data.map((product) => {
+      return <Producto key={product.products_id} product={product} />;
+    });
 
-    return <div className="content-wrapper">{this.products()}</div>;
+    return (
+      <div className="content-wrapper">
+        <select name="order" id="order">
+          <option value="name asc">Name Asc</option>
+          <option value="name desc">Name Desc</option>
+          <option value="id asc">Id Asc</option>
+          <option value="id desc">Id Desc</option>
+        </select>
+
+        {products}
+
+        {this.state.isLoading ? (
+          <div className="content-loader">
+            <span>Cargando</span>
+            <FaSpinner className="loading-icon" />
+          </div>
+        ) : null}
+      </div>
+    );
   }
 }
 

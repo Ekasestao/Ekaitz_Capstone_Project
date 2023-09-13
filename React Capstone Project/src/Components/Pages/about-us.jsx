@@ -3,8 +3,8 @@ import React from "react";
 function AboutUs() {
   return (
     <div className="content-wrapper">
-      <div class="aboutus-content-wrapper">
-        <p>
+      <div className="aboutus-content-wrapper">
+        <span>
           <ul>
             <h3>
               En esta eCommerce he implementado muchas cosas aprendidas en el
@@ -31,7 +31,7 @@ function AboutUs() {
             <li>Crear una barra de navegación con sugerencias</li>
             <li>Poder completar transacciones</li>
           </ul>
-        </p>
+        </span>
       </div>
     </div>
   );
