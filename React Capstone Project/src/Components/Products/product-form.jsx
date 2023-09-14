@@ -17,7 +17,7 @@ class ProductForm extends Component {
       price: "",
       img: "",
       img_url:
-        "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.jpg?alt=media&token=b7158599-45eb-4284-aa94-bd1ea9188723",
+        "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.png?alt=media&token=0a408421-4e47-4d8b-8ab4-3b4ce112692f",
       editMode: false,
       apiUrl: "http://ekasestao.pythonanywhere.com/products",
       apiAction: "post",
@@ -72,7 +72,7 @@ class ProductForm extends Component {
         apiAction: "patch",
         img_url:
           products_img_url ||
-          "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.jpg?alt=media&token=b7158599-45eb-4284-aa94-bd1ea9188723",
+          "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.png?alt=media&token=0a408421-4e47-4d8b-8ab4-3b4ce112692f",
       });
     }
   }
@@ -114,7 +114,7 @@ class ProductForm extends Component {
         img_url = result;
       } else if (this.state.img_url == "") {
         img_url =
-          "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.jpg?alt=media&token=b7158599-45eb-4284-aa94-bd1ea9188723";
+          "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.png?alt=media&token=0a408421-4e47-4d8b-8ab4-3b4ce112692f";
       }
 
       await axios({
@@ -142,7 +142,7 @@ class ProductForm extends Component {
             price: "",
             img: "",
             img_url:
-              "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.jpg?alt=media&token=b7158599-45eb-4284-aa94-bd1ea9188723",
+              "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.png?alt=media&token=0a408421-4e47-4d8b-8ab4-3b4ce112692f",
             editMode: false,
             apiUrl: "http://ekasestao.pythonanywhere.com/products",
             apiAction: "post",

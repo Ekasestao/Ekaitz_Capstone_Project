@@ -72,8 +72,6 @@ class Login extends Component {
     event.preventDefault();
   }
 
-  componentDidMount() {}
-
   render() {
     return (
       <div className="login-wrapper">

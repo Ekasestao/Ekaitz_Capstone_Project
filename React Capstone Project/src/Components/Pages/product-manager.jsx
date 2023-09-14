@@ -71,15 +71,12 @@ class ProductManager extends Component {
 
   getProducts() {
     axios
-      .get(
-        "https://ekasestao.pythonanywhere.com/products?order_by=id&direction=desc",
-        {
-          withCredentials: true,
-        }
-      )
+      .get("https://ekasestao.pythonanywhere.com/products?direction=desc", {
+        withCredentials: true,
+      })
       .then((response) => {
         this.setState({
-          products: [...response.data.products],
+          products: [...response.data],
         });
       })
       .catch((error) => {

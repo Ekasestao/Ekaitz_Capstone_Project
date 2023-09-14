@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Navbar from "./Navigation/navbar";
 import Home from "./Pages/home";
-import Productos from "./Pages/productos";
+import Products from "./Pages/products";
 import Blog from "./Pages/blog";
 import AboutUs from "./Pages/about-us";
 import ProductManager from "./Pages/product-manager";
@@ -135,7 +135,7 @@ class App extends Component {
             {this.state.loggedInStatus === "NOT_LOGGED_IN"
               ? this.notLoggedPages()
               : null}
-            <Route path="/productos" element={<Productos />} />
+            <Route path="/productos" element={<Products />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/about-us" element={<AboutUs />} />
             {this.state.loggedUser.admin ? this.adminPages() : null}

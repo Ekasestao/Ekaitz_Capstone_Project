@@ -1,6 +1,6 @@
 import React from "react";
 
-function Producto(props) {
+function Product(props) {
   const {
     products_name,
     products_description,
@@ -8,13 +8,15 @@ function Producto(props) {
     products_img_url,
   } = props.product;
   return (
-    <div className="producto">
+    <div className="product">
       <div className="product-img">
         <img src={products_img_url} alt={products_name} />
       </div>
 
       <div className="product-text">
-        <div className="product-name">{products_name}</div>
+        <div className="product-name">
+          <h3>{products_name}</h3>
+        </div>
 
         <div className="product-description">{products_description}</div>
 
@@ -24,4 +26,4 @@ function Producto(props) {
   );
 }
 
-export default Producto;
+export default Product;
