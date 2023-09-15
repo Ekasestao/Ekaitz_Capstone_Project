@@ -16,15 +16,35 @@
       justify-content: center;
       align-items: center;
 
-      input {
-        height: 55%;
-        width: 25%;
-        color: $default;
-        background-color: #252830;
-        border: 0;
+      .search-bar {
+        display: flex;
+        align-items: center;
+        position: relative;
 
-        &:focus {
-          outline: none;
+        .search-icon {
+          display: flex;
+          position: absolute;
+          padding-left: 10px;
+          font-size: 0.9em;
+        }
+
+        input {
+          display: block;
+          height: 28px;
+          width: 250px;
+          color: $default;
+          background-color: #252830;
+          border: 1px solid $dark-gold;
+          border-radius: 2px;
+          padding-left: 33px;
+
+          &:focus {
+            outline: none;
+          }
+
+          &::placeholder {
+            color: $default;
+          }
         }
       }
     }

@@ -1,4 +1,5 @@
 import React from "react";
+import { FaShoppingCart } from "react-icons/fa";
 
 function Product(props) {
   const {
@@ -20,7 +21,15 @@ function Product(props) {
 
         <div className="product-description">{products_description}</div>
 
-        <div className="product-price">{products_price} €</div>
+        <div className="product-price-cart">
+          <div className="product-price">{products_price} €</div>
+
+          <div className="product-cart">
+            <a className="add-cart">
+              <FaShoppingCart /> Añadir al carro
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
+import { FaShoppingCart, FaSignOutAlt, FaSearch } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
@@ -35,7 +35,13 @@ const Navbar = (props) => {
     <div className="nav-wrapper">
       <div className="nav-top-wrapper">
         <div className="nav-left-side">
-          <input type="text" placeholder={"Buscar..."} />
+          <div className="search-bar">
+            <div className="search-icon">
+              <FaSearch />
+            </div>
+
+            <input type="text" placeholder="Buscar..." autoComplete="off" />
+          </div>
         </div>
 
         <div className="nav-right-side">

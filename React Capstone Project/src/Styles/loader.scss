@@ -1,14 +1,24 @@
-.loading-icon {
-  margin-right: 7px;
-  top: 2px;
-  animation: spin 1.5s infinite linear;
-}
+.content-loader {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 
-@keyframes spin {
-  from {
-    transform: scale(1) rotate(0deg);
-  }
-  to {
-    transform: scale(1) rotate(360deg);
+  span {
+    margin-top: 10px;
+
+    .loading-icon {
+      animation: spin 1.8s infinite linear;
+    }
+
+    @keyframes spin {
+      from {
+        transform: scale(1) rotate(0deg);
+      }
+      to {
+        transform: scale(1) rotate(360deg);
+      }
+    }
   }
 }

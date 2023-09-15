@@ -59,6 +59,7 @@ class Products extends Component {
   getProducts() {
     this.setState({
       currentPage: this.state.currentPage + 1,
+      isLoading: true,
     });
 
     axios
@@ -130,12 +131,10 @@ class Products extends Component {
 
           {this.state.isLoading ? (
             <div className="content-loader">
-              <span>Cargando</span>
-              <FaSpinner className="loading-icon" />
               <span>
-                <br />
-                Si tarda mucho, pruebe a refrescar la página.
+                Cargando <FaSpinner className="loading-icon" />
               </span>
+              <span>Si tarda mucho, pruebe a refrescar la página.</span>
             </div>
           ) : null}
         </div>

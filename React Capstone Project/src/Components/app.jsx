@@ -8,7 +8,7 @@ import Products from "./Pages/products";
 import Blog from "./Pages/blog";
 import AboutUs from "./Pages/about-us";
 import ProductManager from "./Pages/product-manager";
-import Carro from "./Pages/carro";
+import Carro from "./Pages/cart";
 import Auth from "./Pages/auth";
 import NoMatch from "./Pages/no-match";
 import Footer from "./Footer/footer";
@@ -135,7 +135,10 @@ class App extends Component {
             {this.state.loggedInStatus === "NOT_LOGGED_IN"
               ? this.notLoggedPages()
               : null}
-            <Route path="/productos" element={<Products />} />
+            <Route
+              path="/productos"
+              element={<Products addCart={this.addCart} />}
+            />
             <Route path="/blog" element={<Blog />} />
             <Route path="/about-us" element={<AboutUs />} />
             {this.state.loggedUser.admin ? this.adminPages() : null}
