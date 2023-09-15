@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Login from "../Auth/login";
 import Register from "../Auth/register";
 
-import navigateHook from "../Navigation/navigate";
+import navigateHook from "../Hooks/navigate";
 
 class Auth extends Component {
   constructor(props) {

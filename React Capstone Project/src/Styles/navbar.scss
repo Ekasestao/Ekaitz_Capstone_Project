@@ -13,37 +13,68 @@
 
     .nav-left-side {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
 
-      .search-bar {
-        display: flex;
-        align-items: center;
-        position: relative;
+      .search-wrapper {
+        width: 200px;
 
-        .search-icon {
+        .search-bar {
           display: flex;
-          position: absolute;
-          padding-left: 10px;
-          font-size: 0.9em;
-        }
+          align-items: center;
+          position: relative;
 
-        input {
-          display: block;
-          height: 28px;
-          width: 250px;
-          color: $default;
-          background-color: #252830;
-          border: 1px solid $dark-gold;
-          border-radius: 2px;
-          padding-left: 33px;
-
-          &:focus {
-            outline: none;
+          .search-icon {
+            display: flex;
+            position: absolute;
+            padding-left: 10px;
+            font-size: 0.9em;
           }
 
-          &::placeholder {
+          input {
+            display: block;
+            height: 28px;
+            width: 100%;
             color: $default;
+            background-color: #252830;
+            border: 0;
+            border-radius: 2px;
+            padding-left: 33px;
+
+            &:focus {
+              outline: none;
+            }
+
+            &::placeholder {
+              color: $default;
+            }
+          }
+        }
+
+        .search-results {
+          display: flex;
+          flex-direction: column;
+          width: inherit;
+          max-height: 140px;
+          background-color: $input-background;
+          border-radius: 5px;
+          margin-top: 4px;
+          position: absolute;
+          overflow: auto;
+
+          a {
+            text-decoration: none;
+            color: $default;
+
+            .result {
+              padding: 5px 20px;
+
+              &:hover {
+                background-color: $topnav-background;
+                cursor: pointer;
+              }
+            }
           }
         }
       }

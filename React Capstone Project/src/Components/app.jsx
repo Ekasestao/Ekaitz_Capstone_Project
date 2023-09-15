@@ -5,6 +5,7 @@ import axios from "axios";
 import Navbar from "./Navigation/navbar";
 import Home from "./Pages/home";
 import Products from "./Pages/products";
+import ProductDetail from "./Pages/product-detail";
 import Blog from "./Pages/blog";
 import AboutUs from "./Pages/about-us";
 import ProductManager from "./Pages/product-manager";
@@ -126,7 +127,7 @@ class App extends Component {
           <Navbar
             loggedInStatus={this.state.loggedInStatus}
             handleSuccessfulLogout={this.handleSuccessfulLogout}
-            cartItemsQty={this.state.cartItemsQty}
+            cartItemsQty={this.state.cartItems.length}
             username={this.state.loggedUser.username}
           />
 
@@ -139,6 +140,7 @@ class App extends Component {
               path="/productos"
               element={<Products addCart={this.addCart} />}
             />
+            <Route path="/products/:slug" element={<ProductDetail />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/about-us" element={<AboutUs />} />
             {this.state.loggedUser.admin ? this.adminPages() : null}

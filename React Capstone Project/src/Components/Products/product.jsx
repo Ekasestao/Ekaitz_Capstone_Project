@@ -1,8 +1,10 @@
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Product(props) {
   const {
+    products_id,
     products_name,
     products_description,
     products_price,
@@ -16,7 +18,9 @@ function Product(props) {
 
       <div className="product-text">
         <div className="product-name">
-          <h3>{products_name}</h3>
+          <Link to={`/products/${products_id}`}>
+            <h3>{products_name}</h3>
+          </Link>
         </div>
 
         <div className="product-description">{products_description}</div>
@@ -25,9 +29,9 @@ function Product(props) {
           <div className="product-price">{products_price} €</div>
 
           <div className="product-cart">
-            <a className="add-cart">
+            <Link className="add-cart">
               <FaShoppingCart /> Añadir al carro
-            </a>
+            </Link>
           </div>
         </div>
       </div>

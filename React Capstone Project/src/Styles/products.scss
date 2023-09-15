@@ -50,11 +50,15 @@
       font-size: 1.2em;
 
       .product-name {
-        h3 {
-          padding: 0px 0px 10px 0px;
-          margin: 0px;
-          color: $gold;
-          font-size: 2em;
+        a {
+          text-decoration: none;
+
+          h3 {
+            padding: 0px 0px 10px 0px;
+            margin: 0px;
+            color: $gold;
+            font-size: 2em;
+          }
         }
       }
       .product-description {
@@ -74,16 +78,22 @@
           align-items: center;
           font-size: 1.1em;
           padding-right: 150px;
-          color: $gold;
-
-          .add-cart {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            cursor: pointer;
-          }
         }
       }
     }
+  }
+}
+
+.add-cart {
+  text-decoration: none;
+  color: $gold;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  transition: 0.2s all ease-in-out;
+
+  &:hover {
+    color: $dark-gold;
+    cursor: pointer;
   }
 }

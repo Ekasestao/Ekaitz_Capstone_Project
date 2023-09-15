@@ -98,8 +98,8 @@ class Products extends Component {
   }
 
   render() {
-    const products = this.state.data.map((product, index) => {
-      return <Product key={index} product={product} />;
+    const products = this.state.data.map((product) => {
+      return <Product key={product.products_id} product={product} />;
     });
 
     return (
