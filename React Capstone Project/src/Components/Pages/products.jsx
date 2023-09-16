@@ -99,7 +99,13 @@ class Products extends Component {
 
   render() {
     const products = this.state.data.map((product) => {
-      return <Product key={product.products_id} product={product} />;
+      return (
+        <Product
+          key={product.products_id}
+          product={product}
+          addCart={this.props.addCart}
+        />
+      );
     });
 
     return (

@@ -10,6 +10,11 @@ function Product(props) {
     products_price,
     products_img_url,
   } = props.product;
+
+  const addToCart = () => {
+    props.addCart(props.product);
+  };
+
   return (
     <div className="product">
       <div className="product-img">
@@ -29,7 +34,7 @@ function Product(props) {
           <div className="product-price">{products_price} €</div>
 
           <div className="product-cart">
-            <Link className="add-cart">
+            <Link className="add-cart" onClick={addToCart}>
               <FaShoppingCart /> Añadir al carro
             </Link>
           </div>

@@ -46,10 +46,10 @@ class ProductDetail extends Component {
     return (
       <div className="content-wrapper">
         <div className="product-detail-wrapper">
-          <div className="product-name">{products_name}</div>
           <div className="product-img">
             <img src={products_img_url} alt={products_name} />
           </div>
+          <div className="product-name">{products_name}</div>
           <div className="product-description">{products_description}</div>
           <div className="product-price">{products_price}</div>
 

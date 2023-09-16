@@ -20,7 +20,6 @@ class App extends Component {
 
     this.state = {
       cartItems: [],
-      cartItemsQty: 0,
       loggedInStatus: "NOT_LOGGED_IN",
       loggedUser: {},
     };
@@ -32,6 +31,18 @@ class App extends Component {
     this.adminPages = this.adminPages.bind(this);
     this.connectApi = this.connectApi.bind(this);
     this.checkLoginStatus = this.checkLoginStatus.bind(this);
+    this.addCart = this.addCart.bind(this);
+  }
+
+  addCart(product) {
+    this.setState({
+      cartItems: this.state.cartItems.concat(product),
+    });
+    localStorage.setItem(
+      "cartItems",
+      JSON.stringify(this.state.cartItems.concat(product))
+    );
+    console.log(localStorage.getItem("cartItems"));
   }
 
   handleSuccessfulLogin(user) {
@@ -89,6 +100,8 @@ class App extends Component {
   componentDidMount() {
     this.connectApi();
     this.checkLoginStatus();
+    this.setState({ cartItems: JSON.parse(localStorage.getItem("cartItems")) });
+    console.log(JSON.parse(localStorage.getItem("cartItems")));
   }
 
   notLoggedPages() {
@@ -140,11 +153,17 @@ class App extends Component {
               path="/productos"
               element={<Products addCart={this.addCart} />}
             />
-            <Route path="/products/:slug" element={<ProductDetail />} />
+            <Route
+              path="/products/:slug"
+              element={<ProductDetail addCart={this.addCart} />}
+            />
             <Route path="/blog" element={<Blog />} />
             <Route path="/about-us" element={<AboutUs />} />
             {this.state.loggedUser.admin ? this.adminPages() : null}
-            <Route path="/carro" element={<Carro />} />
+            <Route
+              path="/carro"
+              element={<Carro cartItems={this.state.cartItems} />}
+            />
             <Route path="*" element={<NoMatch />} />
           </Routes>
 

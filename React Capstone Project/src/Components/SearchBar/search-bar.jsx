@@ -36,9 +36,9 @@ class SearchBar extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value.toLowerCase(),
     });
-    this.fetchData(event.target.value);
+    this.fetchData(event.target.value.toLowerCase());
   }
 
   render() {
@@ -53,7 +53,7 @@ class SearchBar extends Component {
           name="searchBar"
           placeholder="Buscar..."
           autoComplete="off"
-          value={this.state.input}
+          value={this.state.searchBar}
           onChange={this.handleChange}
         />
       </div>
