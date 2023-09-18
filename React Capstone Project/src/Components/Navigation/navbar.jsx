@@ -84,7 +84,7 @@ class Navbar extends Component {
                 </span>
                 Carro
                 <span className="nav-cart-items">
-                  ({this.props.cartItemsQty})
+                  ({this.props.cartItems.length})
                 </span>
               </NavLink>
             </div>

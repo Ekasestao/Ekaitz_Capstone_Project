@@ -78,22 +78,10 @@
           align-items: center;
           font-size: 1.1em;
           padding-right: 150px;
+
+          @include manage-cart();
         }
       }
     }
-  }
-}
-
-.add-cart {
-  text-decoration: none;
-  color: $gold;
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  transition: 0.2s all ease-in-out;
-
-  &:hover {
-    color: $dark-gold;
-    cursor: pointer;
   }
 }

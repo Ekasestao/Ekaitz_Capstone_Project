@@ -32,6 +32,20 @@ class App extends Component {
     this.connectApi = this.connectApi.bind(this);
     this.checkLoginStatus = this.checkLoginStatus.bind(this);
     this.addCart = this.addCart.bind(this);
+    this.deleteCart = this.deleteCart.bind(this);
+  }
+
+  deleteCart(product) {
+    const index = this.state.cartItems.findIndex(
+      (key) => key.products_name === product.products_name
+    );
+    if (index > -1) {
+      this.state.cartItems.splice(index, 1);
+      localStorage.setItem(
+        "cartItems",
+        JSON.stringify(this.state.cartItems.splice(index, 1))
+      );
+    }
   }
 
   addCart(product) {
@@ -42,7 +56,6 @@ class App extends Component {
       "cartItems",
       JSON.stringify(this.state.cartItems.concat(product))
     );
-    console.log(localStorage.getItem("cartItems"));
   }
 
   handleSuccessfulLogin(user) {
@@ -100,7 +113,9 @@ class App extends Component {
   componentDidMount() {
     this.connectApi();
     this.checkLoginStatus();
-    this.setState({ cartItems: JSON.parse(localStorage.getItem("cartItems")) });
+    this.setState({
+      cartItems: JSON.parse(localStorage.getItem("cartItems")),
+    });
     console.log(JSON.parse(localStorage.getItem("cartItems")));
   }
 
@@ -140,8 +155,8 @@ class App extends Component {
           <Navbar
             loggedInStatus={this.state.loggedInStatus}
             handleSuccessfulLogout={this.handleSuccessfulLogout}
-            cartItemsQty={this.state.cartItems.length}
             username={this.state.loggedUser.username}
+            cartItems={this.state.cartItems}
           />
 
           <Routes>
@@ -151,11 +166,23 @@ class App extends Component {
               : null}
             <Route
               path="/productos"
-              element={<Products addCart={this.addCart} />}
+              element={
+                <Products
+                  addCart={this.addCart}
+                  deleteCart={this.deleteCart}
+                  cartItems={this.state.cartItems}
+                />
+              }
             />
             <Route
               path="/products/:slug"
-              element={<ProductDetail addCart={this.addCart} />}
+              element={
+                <ProductDetail
+                  addCart={this.addCart}
+                  deleteCart={this.deleteCart}
+                  cartItems={this.state.cartItems}
+                />
+              }
             />
             <Route path="/blog" element={<Blog />} />
             <Route path="/about-us" element={<AboutUs />} />

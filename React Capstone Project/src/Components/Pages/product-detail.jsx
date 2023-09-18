@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
+import Product from "../Products/product";
 import slugIdHook from "../Hooks/slug-id";
 
 class ProductDetail extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       product: {},
+      isLoading: true,
     };
   }
 
@@ -43,21 +43,17 @@ class ProductDetail extends Component {
       products_price,
       products_img_url,
     } = this.state.product;
+
     return (
       <div className="content-wrapper">
-        <div className="product-detail-wrapper">
-          <div className="product-img">
-            <img src={products_img_url} alt={products_name} />
-          </div>
-          <div className="product-name">{products_name}</div>
-          <div className="product-description">{products_description}</div>
-          <div className="product-price">{products_price}</div>
-
-          <div className="product-cart">
-            <Link className="add-cart">
-              <FaShoppingCart /> Añadir al carro
-            </Link>
-          </div>
+        <div className="product-detail">
+          <Product
+            key={this.state.product.products_id}
+            product={this.state.product}
+            addCart={this.props.addCart}
+            deleteCart={this.props.deleteCart}
+            cartItems={this.props.cartItems}
+          />
         </div>
       </div>
     );

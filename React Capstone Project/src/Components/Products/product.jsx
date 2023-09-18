@@ -1,47 +1,51 @@
-import React from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-function Product(props) {
-  const {
-    products_id,
-    products_name,
-    products_description,
-    products_price,
-    products_img_url,
-  } = props.product;
+import Cart from "../Cart/cart";
 
-  const addToCart = () => {
-    props.addCart(props.product);
-  };
+class Product extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <div className="product">
-      <div className="product-img">
-        <img src={products_img_url} alt={products_name} />
-      </div>
+  render() {
+    const {
+      products_id,
+      products_name,
+      products_description,
+      products_price,
+      products_img_url,
+    } = this.props.product;
 
-      <div className="product-text">
-        <div className="product-name">
-          <Link to={`/products/${products_id}`}>
-            <h3>{products_name}</h3>
-          </Link>
+    return (
+      <div className="product">
+        <div className="product-img">
+          <img src={products_img_url} alt={products_name} />
         </div>
 
-        <div className="product-description">{products_description}</div>
-
-        <div className="product-price-cart">
-          <div className="product-price">{products_price} €</div>
-
-          <div className="product-cart">
-            <Link className="add-cart" onClick={addToCart}>
-              <FaShoppingCart /> Añadir al carro
+        <div className="product-text">
+          <div className="product-name">
+            <Link to={`/products/${products_id}`}>
+              <h3>{products_name}</h3>
             </Link>
+          </div>
+
+          <div className="product-description">{products_description}</div>
+
+          <div className="product-price-cart">
+            <div className="product-price">{products_price} €</div>
+
+            <Cart
+              product={this.props.product}
+              addCart={this.props.addCart}
+              deleteCart={this.props.deleteCart}
+              cartItems={this.props.cartItems}
+            />
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Product;

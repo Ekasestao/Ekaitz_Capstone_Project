@@ -104,6 +104,8 @@ class Products extends Component {
           key={product.products_id}
           product={product}
           addCart={this.props.addCart}
+          deleteCart={this.props.deleteCart}
+          cartItems={this.props.cartItems}
         />
       );
     });
