@@ -189,7 +189,13 @@ class App extends Component {
             {this.state.loggedUser.admin ? this.adminPages() : null}
             <Route
               path="/carro"
-              element={<Carro cartItems={this.state.cartItems} />}
+              element={
+                <Carro
+                  cartItems={this.state.cartItems}
+                  addCart={this.addCart}
+                  deleteCart={this.deleteCart}
+                />
+              }
             />
             <Route path="*" element={<NoMatch />} />
           </Routes>
