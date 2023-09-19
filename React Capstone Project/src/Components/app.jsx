@@ -36,21 +36,17 @@ class App extends Component {
   }
 
   deleteCart(product) {
-    try {
-      const index = this.state.cartItems.findIndex(
-        (item) => item.products_name === product.products_name
-      );
-      if (index > -1) {
-        const updatedCart = [...this.state.cartItems];
+    const index = this.state.cartItems.findIndex(
+      (item) => item.products_name === product.products_name
+    );
+    if (index > -1) {
+      const updatedCart = [...this.state.cartItems];
 
-        updatedCart.splice(index, 1);
+      updatedCart.splice(index, 1);
 
-        this.setState({ cartItems: updatedCart }, () => {
-          localStorage.setItem("cartItems", JSON.stringify(updatedCart));
-        });
-      }
-    } catch (error) {
-      console.log(error);
+      this.setState({ cartItems: updatedCart }, () => {
+        localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+      });
     }
   }
 
@@ -84,6 +80,8 @@ class App extends Component {
     localStorage.setItem("loggedInStatus", JSON.stringify(false));
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
+      loggedUser: {},
+      cartItems: [],
     });
     window.location.reload();
   }
@@ -129,6 +127,7 @@ class App extends Component {
       : this.setState({
           cartItems: [],
         });
+    console.log(localStorage);
   }
 
   notLoggedPages() {
