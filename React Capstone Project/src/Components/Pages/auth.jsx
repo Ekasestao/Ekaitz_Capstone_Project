@@ -36,6 +36,7 @@ class Auth extends Component {
   handleSuccessfulAuth(user) {
     this.props.handleSuccessfulLogin(user);
     this.props.navigate("/");
+    window.location.reload();
   }
 
   handleUnsuccessfulAuth() {

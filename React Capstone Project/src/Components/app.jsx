@@ -9,7 +9,7 @@ import ProductDetail from "./Pages/product-detail";
 import Blog from "./Pages/blog";
 import AboutUs from "./Pages/about-us";
 import ProductManager from "./Pages/product-manager";
-import Carro from "./Pages/cart";
+import Carro from "./Pages/carro";
 import Auth from "./Pages/auth";
 import NoMatch from "./Pages/no-match";
 import Footer from "./Footer/footer";
@@ -60,6 +60,7 @@ class App extends Component {
 
   handleSuccessfulLogin(user) {
     localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("loggedInStatus", JSON.stringify(true));
     this.setState({
       loggedInStatus: "LOGGED_IN",
       loggedUser: JSON.parse(localStorage.getItem("user")),
@@ -74,9 +75,11 @@ class App extends Component {
 
   handleSuccessfulLogout(user) {
     localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("loggedInStatus", JSON.stringify(false));
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
     });
+    window.location.reload();
   }
 
   connectApi() {
@@ -113,10 +116,13 @@ class App extends Component {
   componentDidMount() {
     this.connectApi();
     this.checkLoginStatus();
-    this.setState({
-      cartItems: JSON.parse(localStorage.getItem("cartItems")),
-    });
-    console.log(JSON.parse(localStorage.getItem("cartItems")));
+    JSON.parse(localStorage.getItem("loggedInStatus")) === true
+      ? this.setState({
+          cartItems: JSON.parse(localStorage.getItem("cartItems")),
+        })
+      : this.setState({
+          cartItems: [],
+        });
   }
 
   notLoggedPages() {
@@ -192,7 +198,6 @@ class App extends Component {
               element={
                 <Carro
                   cartItems={this.state.cartItems}
-                  addCart={this.addCart}
                   deleteCart={this.deleteCart}
                 />
               }

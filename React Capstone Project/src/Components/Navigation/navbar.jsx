@@ -42,6 +42,7 @@ class Navbar extends Component {
         if (response.data.status === 200) {
           this.props.navigate("/");
           this.props.handleSuccessfulLogout(response.data.user);
+          window.location.reload();
         }
         return response.data;
       })

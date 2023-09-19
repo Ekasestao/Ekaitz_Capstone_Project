@@ -1,0 +1,25 @@
+.cart-wrapper {
+  height: 100%;
+
+  .empty-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    span {
+      font-size: 1.8em;
+
+      a {
+        text-decoration: none;
+        color: $gold;
+        transition: 0.2s all ease-in-out;
+
+        &:hover {
+          color: $dark-gold;
+        }
+      }
+    }
+  }
+}

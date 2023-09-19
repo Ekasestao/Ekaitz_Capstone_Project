@@ -37,13 +37,6 @@ class ProductDetail extends Component {
   }
 
   render() {
-    const {
-      products_name,
-      products_description,
-      products_price,
-      products_img_url,
-    } = this.state.product;
-
     return (
       <div className="content-wrapper">
         <div className="product-detail">
