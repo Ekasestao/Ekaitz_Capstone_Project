@@ -36,15 +36,21 @@ class App extends Component {
   }
 
   deleteCart(product) {
-    const index = this.state.cartItems.findIndex(
-      (key) => key.products_name === product.products_name
-    );
-    if (index > -1) {
-      this.state.cartItems.splice(index, 1);
-      localStorage.setItem(
-        "cartItems",
-        JSON.stringify(this.state.cartItems.splice(index, 1))
+    try {
+      const index = this.state.cartItems.findIndex(
+        (item) => item.products_name === product.products_name
       );
+      if (index > -1) {
+        const updatedCart = [...this.state.cartItems];
+
+        updatedCart.splice(index, 1);
+
+        this.setState({ cartItems: updatedCart }, () => {
+          localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
