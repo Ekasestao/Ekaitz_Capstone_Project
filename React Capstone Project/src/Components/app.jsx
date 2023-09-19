@@ -45,7 +45,10 @@ class App extends Component {
       updatedCart.splice(index, 1);
 
       this.setState({ cartItems: updatedCart }, () => {
-        localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+        localStorage.setItem(
+          `userCart_${this.state.loggedUser.id}`,
+          JSON.stringify(updatedCart)
+        );
       });
     }
   }
@@ -55,17 +58,25 @@ class App extends Component {
       cartItems: this.state.cartItems.concat(product),
     });
     localStorage.setItem(
-      "cartItems",
+      `userCart_${this.state.loggedUser.id}`,
       JSON.stringify(this.state.cartItems.concat(product))
     );
   }
 
   handleSuccessfulLogin(user) {
+    let userCart = JSON.parse(localStorage.getItem(`userCart_${user.id}`));
+
+    if (!userCart) {
+      userCart = [];
+    }
+
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("loggedInStatus", JSON.stringify(true));
+    localStorage.setItem(`userCart_${user.id}`, JSON.stringify(userCart));
     this.setState({
       loggedInStatus: "LOGGED_IN",
       loggedUser: JSON.parse(localStorage.getItem("user")),
+      cartItems: userCart,
     });
   }
 
@@ -80,8 +91,6 @@ class App extends Component {
     localStorage.setItem("loggedInStatus", JSON.stringify(false));
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
-      loggedUser: {},
-      cartItems: [],
     });
     window.location.reload();
   }
@@ -120,13 +129,23 @@ class App extends Component {
   componentDidMount() {
     this.connectApi();
     this.checkLoginStatus();
-    JSON.parse(localStorage.getItem("loggedInStatus")) === true
-      ? this.setState({
-          cartItems: JSON.parse(localStorage.getItem("cartItems")),
-        })
-      : this.setState({
-          cartItems: [],
-        });
+    const loggedInStatus = JSON.parse(localStorage.getItem("loggedInStatus"));
+    const loggedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (loggedInStatus === true && loggedUser) {
+      const userCart = JSON.parse(
+        localStorage.getItem(`userCart_${loggedUser.id}`)
+      );
+      this.setState({
+        loggedInStatus: "LOGGED_IN",
+        loggedUser: loggedUser,
+        cartItems: userCart || [],
+      });
+    } else {
+      this.setState({
+        cartItems: [],
+      });
+    }
     console.log(localStorage);
   }
 
