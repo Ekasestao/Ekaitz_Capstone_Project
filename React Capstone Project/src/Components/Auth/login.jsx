@@ -55,7 +55,7 @@ class Login extends Component {
           this.setState({
             loginCredential: "",
             password: "",
-            errorText: "Ha ocurrido un error, por favor vuelva a intentarlo",
+            errorText: "Ha ocurrido un error, por favor inténtelo de nuevo",
           });
           this.props.handleUnsuccessfulAuth();
         }
@@ -64,7 +64,7 @@ class Login extends Component {
         this.setState({
           loginCredential: "",
           password: "",
-          errorText: "Ha ocurrido un error, por favor vuelva a intentarlo",
+          errorText: "Ha ocurrido un error, por favor inténtelo de nuevo",
         });
         this.props.handleUnsuccessfulAuth();
       });
@@ -75,7 +75,9 @@ class Login extends Component {
   render() {
     return (
       <div className="login-wrapper">
-        <h1>LOGIN</h1>
+        <h3>INICIAR SESIÓN</h3>
+
+        <div className="error-text">{this.state.errorText}</div>
 
         <form onSubmit={this.handleSubmit} className="login-form-wrapper">
           <div className="form-group">
@@ -103,12 +105,10 @@ class Login extends Component {
           </button>
         </form>
 
-        <div>{this.state.errorText}</div>
-
         <div className="go-register">
           <span>
             No tiene una cuenta?
-            <a onClick={this.props.goRegister}>Regístrarse</a>
+            <a onClick={this.props.goRegister}> Regístrese</a>
           </span>
         </div>
       </div>

@@ -42,6 +42,17 @@
       outline: none;
       border-bottom: 1px solid $dark-gold;
     }
+
+    &::placeholder {
+      color: $default;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-text-fill-color: $default;
+      -webkit-box-shadow: 0 0 0px 1000px $topnav-background inset;
+    }
   }
 }
 

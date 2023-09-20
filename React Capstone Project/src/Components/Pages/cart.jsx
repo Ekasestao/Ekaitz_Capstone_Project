@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Cart from "../Cart/cart";
+import ManageCart from "../Cart/manage-cart";
 
-function Carro(props) {
+function Cart(props) {
   const products = props.cartItems.map((product) => {
     return (
       <div className="product" key={product.products_id}>
@@ -12,7 +12,7 @@ function Carro(props) {
         </div>
         <div className="product-name">{product.products_name}</div>
         <div className="product-price">{product.products_price} €</div>
-        <Cart
+        <ManageCart
           product={product}
           deleteCart={props.deleteCart}
           cartItems={props.cartItems}
@@ -24,16 +24,25 @@ function Carro(props) {
   return (
     <div className="content-wrapper">
       <div className="cart-wrapper">
-        {products.length > 0 ? (
-          <div className="cart-products">
-            <button>Realizar pago</button>
-            {products}
-          </div>
+        {props.loggedInStatus === "LOGGED_IN" ? (
+          products.length > 0 ? (
+            <div className="cart-products">
+              <button>Realizar pago</button>
+              {products}
+            </div>
+          ) : (
+            <div className="empty-cart">
+              <span>
+                El carro esta vacío,{" "}
+                <Link to="/productos">añada un producto</Link>
+              </span>
+            </div>
+          )
         ) : (
-          <div className="empty-cart">
+          <div className="not-logged-cart">
             <span>
-              La cesta esta vacía,{" "}
-              <Link to="/productos">añada un producto</Link>
+              <Link to="/auth">Inicie sesión</Link> para añadir productos al
+              carro
             </span>
           </div>
         )}
@@ -42,4 +51,4 @@ function Carro(props) {
   );
 }
 
-export default Carro;
+export default Cart;

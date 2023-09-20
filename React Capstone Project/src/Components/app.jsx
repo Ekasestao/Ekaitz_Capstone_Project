@@ -9,7 +9,7 @@ import ProductDetail from "./Pages/product-detail";
 import Blog from "./Pages/blog";
 import AboutUs from "./Pages/about-us";
 import ProductManager from "./Pages/product-manager";
-import Carro from "./Pages/carro";
+import Cart from "./Pages/cart";
 import Auth from "./Pages/auth";
 import NoMatch from "./Pages/no-match";
 import Footer from "./Footer/footer";
@@ -201,6 +201,7 @@ class App extends Component {
                   addCart={this.addCart}
                   deleteCart={this.deleteCart}
                   cartItems={this.state.cartItems}
+                  loggedInStatus={this.state.loggedInStatus}
                 />
               }
             />
@@ -220,9 +221,10 @@ class App extends Component {
             <Route
               path="/carro"
               element={
-                <Carro
+                <Cart
                   cartItems={this.state.cartItems}
                   deleteCart={this.deleteCart}
+                  loggedInStatus={this.state.loggedInStatus}
                 />
               }
             />

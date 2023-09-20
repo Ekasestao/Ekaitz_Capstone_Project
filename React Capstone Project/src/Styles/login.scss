@@ -1,0 +1,17 @@
+.login-wrapper {
+  width: 30%;
+  .login-form-wrapper {
+    .form-group {
+      margin-top: 10px;
+      @include input-element();
+    }
+  }
+
+  .go-register {
+    margin-top: 20px;
+    a {
+      color: $gold;
+      cursor: pointer;
+    }
+  }
+}

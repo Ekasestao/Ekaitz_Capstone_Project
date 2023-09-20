@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-class Cart extends Component {
+class ManageCart extends Component {
   constructor(props) {
     super(props);
 
@@ -55,12 +55,18 @@ class Cart extends Component {
   render() {
     return (
       <div className="product-cart">
-        <Link className={`${this.state.className}`} onClick={this.manageCart}>
-          <FaShoppingCart /> {this.state.productInCart}
-        </Link>
+        {this.props.loggedInStatus === "LOGGED_IN" ? (
+          <Link className={`${this.state.className}`} onClick={this.manageCart}>
+            <FaShoppingCart /> {this.state.productInCart}
+          </Link>
+        ) : (
+          <Link to="/auth" className={`${this.state.className}`}>
+            <FaShoppingCart /> {this.state.productInCart}
+          </Link>
+        )}
       </div>
     );
   }
 }
 
-export default Cart;
+export default ManageCart;

@@ -1,0 +1,29 @@
+.register-wrapper {
+  width: 25%;
+
+  .register-form-wrapper {
+    .form-group {
+      @include input-element();
+
+      &:nth-child(6) {
+        margin-bottom: -5px;
+      }
+    }
+
+    .same-passwords {
+      color: $delete;
+      margin-bottom: 15px;
+    }
+
+    button {
+      margin: 0;
+    }
+  }
+  .go-login {
+    margin-top: 20px;
+    a {
+      color: $gold;
+      cursor: pointer;
+    }
+  }
+}

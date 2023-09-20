@@ -5,12 +5,13 @@
   height: 100%;
 
   span {
-    width: 70%;
+    width: 71%;
     font-size: 1.5em;
     line-height: 1.7;
 
     ul {
-      margin-bottom: 45px;
+      margin-bottom: 40px;
+      list-style: none;
 
       h3 {
         display: block;
@@ -20,7 +21,12 @@
       li {
         margin-left: 50px;
         font-size: 0.9em;
-        list-style-type: "-  ";
+
+        &::before {
+          font-size: 1.1em;
+          content: "- ";
+          color: $gold;
+        }
       }
     }
   }

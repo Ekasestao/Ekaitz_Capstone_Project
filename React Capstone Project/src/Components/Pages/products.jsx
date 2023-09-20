@@ -82,6 +82,7 @@ class Products extends Component {
       })
       .catch((error) => {
         console.log("getProducts Error", error);
+        window.location.reload();
       });
   }
 
@@ -106,6 +107,7 @@ class Products extends Component {
           addCart={this.props.addCart}
           deleteCart={this.props.deleteCart}
           cartItems={this.props.cartItems}
+          loggedInStatus={this.props.loggedInStatus}
         />
       );
     });

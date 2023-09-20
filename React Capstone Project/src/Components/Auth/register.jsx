@@ -69,7 +69,7 @@ class Register extends Component {
             username: "",
             password: "",
             samePassword: "",
-            errorText: "El usuario ya está registrado",
+            errorText: "El nombre de usuario ya está registrado",
           });
         }
         if (response.data.status === 405)
@@ -93,7 +93,7 @@ class Register extends Component {
           username: "",
           password: "",
           samePassword: "",
-          errorText: "Ha ocurrido un error",
+          errorText: "Ha ocurrido un error, por favor inténtelo de nuevo",
         });
       });
     event.preventDefault();
@@ -101,90 +101,88 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="content-wrapper">
-        <div className="register-wrapper">
-          <h1>Register</h1>
+      <div className="register-wrapper">
+        <h3>Registrarse</h3>
 
-          <div>{this.state.errorText}</div>
+        <div className="error-text">{this.state.errorText}</div>
 
-          <form onSubmit={this.handleSubmit} className="register-form-wrapper">
-            <div className="form-group">
-              <input
-                type="text"
-                name="name"
-                placeholder="Nombre"
-                value={this.state.name}
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <input
-                type="text"
-                name="lastname"
-                placeholder="Apellido"
-                value={this.state.lastname}
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <input
-                type="text"
-                name="username"
-                placeholder="Usuario"
-                value={this.state.username}
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <input
-                type="password"
-                name="password"
-                placeholder="Contraseña"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <input
-                type="password"
-                name="samePassword"
-                placeholder="Repetir contraseña"
-                value={this.state.samePassword}
-                onChange={this.handleChange}
-              />
-
-              <div className="same-passwords">
-                {this.state.password != this.state.samePassword
-                  ? this.state.samePasswords
-                  : null}
-              </div>
-            </div>
-
-            <button className="btn" type="submit">
-              Registrarse
-            </button>
-          </form>
-
-          <div className="go-login">
-            <span>
-              Ya tiene una cuenta?
-              <a onClick={this.props.goLogin}>Iniciar Sesión</a>
-            </span>
+        <form onSubmit={this.handleSubmit} className="register-form-wrapper">
+          <div className="form-group">
+            <input
+              type="text"
+              name="name"
+              placeholder="Nombre"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
           </div>
+
+          <div className="form-group">
+            <input
+              type="text"
+              name="lastname"
+              placeholder="Apellido"
+              value={this.state.lastname}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <input
+              type="text"
+              name="username"
+              placeholder="Usuario"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="Contraseña"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <input
+              type="password"
+              name="samePassword"
+              placeholder="Repetir contraseña"
+              value={this.state.samePassword}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div className="same-passwords">
+            {this.state.password != this.state.samePassword
+              ? this.state.samePasswords
+              : null}
+          </div>
+
+          <button className="btn" type="submit">
+            Registrarse
+          </button>
+        </form>
+
+        <div className="go-login">
+          <span>
+            Ya tiene una cuenta?
+            <a onClick={this.props.goLogin}> Inicie Sesión</a>
+          </span>
         </div>
       </div>
     );

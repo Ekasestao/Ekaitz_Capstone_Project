@@ -18,8 +18,7 @@ function AboutUs() {
             <li>Crear un apartado "Blog" en el que se podrán subir posts</li>
             <li>
               Crear un apartado "Product Manager" donde, si eres usuario admin,
-              podrás crear productos, editarlos y eliminarlos de la base de
-              datos
+              podrás crear, editar y eliminar productos de la base de datos
             </li>
           </ul>
 
