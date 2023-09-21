@@ -146,7 +146,6 @@ class App extends Component {
         cartItems: [],
       });
     }
-    console.log(localStorage);
   }
 
   notLoggedPages() {
@@ -212,6 +211,7 @@ class App extends Component {
                   addCart={this.addCart}
                   deleteCart={this.deleteCart}
                   cartItems={this.state.cartItems}
+                  loggedInStatus={this.state.loggedInStatus}
                 />
               }
             />

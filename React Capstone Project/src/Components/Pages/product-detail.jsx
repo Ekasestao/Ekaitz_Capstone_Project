@@ -40,13 +40,16 @@ class ProductDetail extends Component {
     return (
       <div className="content-wrapper">
         <div className="product-detail">
-          <Product
-            key={this.state.product.products_id}
-            product={this.state.product}
-            addCart={this.props.addCart}
-            deleteCart={this.props.deleteCart}
-            cartItems={this.props.cartItems}
-          />
+          <div className="product-wrapper">
+            <Product
+              key={this.state.product.products_id}
+              product={this.state.product}
+              addCart={this.props.addCart}
+              deleteCart={this.props.deleteCart}
+              cartItems={this.props.cartItems}
+              loggedInStatus={this.props.loggedInStatus}
+            />
+          </div>
         </div>
       </div>
     );
