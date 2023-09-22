@@ -146,6 +146,8 @@ class App extends Component {
         cartItems: [],
       });
     }
+
+    console.log(localStorage);
   }
 
   notLoggedPages() {

@@ -168,6 +168,7 @@ class ProductForm extends Component {
             placeholder="Nombre"
             value={this.state.name}
             onChange={this.handleChange}
+            maxLength="30"
           />
 
           <input
@@ -176,6 +177,9 @@ class ProductForm extends Component {
             placeholder="Precio"
             value={this.state.price}
             onChange={this.handleChange}
+            maxLength="10"
+            inputMode="numeric"
+            pattern="[0-9]*"
           />
         </div>
 
@@ -185,6 +189,7 @@ class ProductForm extends Component {
           placeholder="Descripción"
           value={this.state.description}
           onChange={this.handleChange}
+          maxLength="300"
         />
 
         <div className="image-uploader">

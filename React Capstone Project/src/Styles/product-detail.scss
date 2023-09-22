@@ -11,16 +11,17 @@
     .product {
       display: flex;
       gap: 70px;
-      border: 4px solid $gold;
+      border: 3px solid $gold;
       border-radius: 5px;
       background-color: $topnav-background;
 
       .product-img {
         height: 350px;
-        border-right: 4px solid $gold;
+        border-right: 5px solid $gold;
 
         img {
           @include product-img();
+          border-radius: 2px;
           height: inherit;
         }
       }

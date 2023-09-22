@@ -5,6 +5,7 @@
     .product-img {
       img {
         @include product-img();
+        border-radius: 5px;
       }
     }
 

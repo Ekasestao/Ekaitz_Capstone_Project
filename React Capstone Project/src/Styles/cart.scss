@@ -19,17 +19,18 @@
         display: flex;
         gap: 70px;
         margin-bottom: 50px;
-        border: 4px solid $gold;
+        border: 3px solid $gold;
         border-radius: 5px;
         padding-right: 100px;
         background-color: $topnav-background;
 
         .product-img {
           height: 180px;
-          border-right: 4px solid $gold;
+          border-right: 5px solid $gold;
 
           img {
             @include product-img();
+            border-radius: 2px;
             height: inherit;
           }
         }
@@ -45,6 +46,11 @@
               display: inline-block;
               text-decoration: none;
               color: $gold;
+              transition: 0.2s all ease-in-out;
+
+              &:hover {
+                color: $dark-gold;
+              }
 
               h3 {
                 margin: 0;

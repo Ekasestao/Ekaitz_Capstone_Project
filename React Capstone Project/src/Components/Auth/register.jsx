@@ -114,6 +114,7 @@ class Register extends Component {
               placeholder="Nombre"
               value={this.state.name}
               onChange={this.handleChange}
+              maxLength="30"
             />
           </div>
 
@@ -124,6 +125,7 @@ class Register extends Component {
               placeholder="Apellido"
               value={this.state.lastname}
               onChange={this.handleChange}
+              maxLength="30"
             />
           </div>
 
@@ -131,9 +133,10 @@ class Register extends Component {
             <input
               type="text"
               name="username"
-              placeholder="Usuario"
+              placeholder="Nombre de Usuario"
               value={this.state.username}
               onChange={this.handleChange}
+              maxLength="30"
             />
           </div>
 
@@ -144,6 +147,7 @@ class Register extends Component {
               placeholder="Email"
               value={this.state.email}
               onChange={this.handleChange}
+              maxLength="60"
             />
           </div>
 
@@ -154,6 +158,7 @@ class Register extends Component {
               placeholder="Contraseña"
               value={this.state.password}
               onChange={this.handleChange}
+              maxLength="100"
             />
           </div>
 
@@ -164,6 +169,7 @@ class Register extends Component {
               placeholder="Repetir contraseña"
               value={this.state.samePassword}
               onChange={this.handleChange}
+              maxLength="100"
             />
           </div>
 

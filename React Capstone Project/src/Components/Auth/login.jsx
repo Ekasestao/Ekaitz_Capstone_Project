@@ -87,6 +87,7 @@ class Login extends Component {
               placeholder="Usuario o email"
               value={this.state.loginCredential}
               onChange={this.handleChange}
+              maxLength="60"
             />
           </div>
 
@@ -97,6 +98,7 @@ class Login extends Component {
               placeholder="Contraseña"
               value={this.state.password}
               onChange={this.handleChange}
+              maxLength="100"
             />
           </div>
 
