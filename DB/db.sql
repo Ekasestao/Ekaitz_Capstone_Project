@@ -18,3 +18,11 @@ CREATE TABLE products (
   PRIMARY KEY (products_id),
   UNIQUE KEY products_id_UNIQUE (products_id)
 );
+CREATE TABLE blogs (
+  blogs_id int NOT NULL AUTO_INCREMENT,
+  blogs_title varchar(50) NOT NULL UNIQUE,
+  blogs_content varchar(500) NOT NULL,
+  blogs_img_url varchar(1000) NOT NULL,
+  PRIMARY KEY (blogs_id),
+  UNIQUE KEY blogs_id_UNIQUE (blogs_id)
+);
