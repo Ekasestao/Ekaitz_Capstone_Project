@@ -7,6 +7,7 @@ import Home from "./Pages/home";
 import Products from "./Pages/products";
 import ProductDetail from "./Pages/product-detail";
 import Blog from "./Pages/blog";
+import BlogDetail from "./Pages/blog-detail";
 import AboutUs from "./Pages/about-us";
 import ProductManager from "./Pages/product-manager";
 import Cart from "./Pages/cart";
@@ -218,6 +219,7 @@ class App extends Component {
               }
             />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
             <Route path="/about-us" element={<AboutUs />} />
             {this.state.loggedUser.admin ? this.adminPages() : null}
             <Route

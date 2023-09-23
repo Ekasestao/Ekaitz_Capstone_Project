@@ -82,7 +82,6 @@ class Products extends Component {
       })
       .catch((error) => {
         console.log("getProducts Error", error);
-        window.location.reload();
       });
   }
 

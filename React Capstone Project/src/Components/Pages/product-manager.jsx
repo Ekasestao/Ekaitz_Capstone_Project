@@ -81,7 +81,6 @@ class ProductManager extends Component {
       })
       .catch((error) => {
         console.log("getProducts ProductManager Error", error);
-        window.location.reload();
       });
   }
 
