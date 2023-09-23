@@ -36,7 +36,7 @@ class SearchBar extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value.toLowerCase(),
+      [event.target.name]: event.target.value,
     });
     this.fetchData(event.target.value.toLowerCase());
   }
