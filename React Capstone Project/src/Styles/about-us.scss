@@ -5,18 +5,22 @@
   height: 100%;
 
   span {
+    padding-left: 150px;
     width: 75%;
     font-size: 1.6em;
-    line-height: 1.7;
+    line-height: 1.7em;
 
     ul {
+      padding: 0px;
+      margin: 0px;
       margin-bottom: 40px;
       list-style: none;
 
       h3 {
         display: block;
         margin-bottom: 15px;
-        font-size: 1em;
+        font-size: 1.1em;
+        color: $gold;
       }
 
       li {

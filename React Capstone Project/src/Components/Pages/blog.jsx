@@ -104,7 +104,7 @@ class Blog extends Component {
 
     return (
       <div className="content-wrapper">
-        <div className="blog-container">
+        <div className="blog-wrapper">
           <BlogModal
             handleSuccessfullNewBlogSubmission={
               this.handleSuccessfullNewBlogSubmission

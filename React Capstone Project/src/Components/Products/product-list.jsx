@@ -1,5 +1,5 @@
 import React from "react";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaTrashAlt, FaSpinner } from "react-icons/fa";
 
 function ProductList(props) {
   const productList = props.data.map((product) => {
@@ -32,7 +32,19 @@ function ProductList(props) {
     );
   });
 
-  return <div className="product-list-wrapper">{productList}</div>;
+  return (
+    <div className="product-list-wrapper">
+      {productList}
+      {props.isLoading ? (
+        <div className="content-loader">
+          <span>
+            Cargando <FaSpinner className="loading-icon" />
+          </span>
+          <span>Si tarda mucho, pruebe a refrescar la página.</span>
+        </div>
+      ) : null}
+    </div>
+  );
 }
 
 export default ProductList;

@@ -11,6 +11,7 @@ class ProductManager extends Component {
     this.state = {
       products: [],
       productToEdit: {},
+      isLoading: true,
     };
 
     this.handleNewFormSubmission = this.handleNewFormSubmission.bind(this);
@@ -77,6 +78,7 @@ class ProductManager extends Component {
       .then((response) => {
         this.setState({
           products: [...response.data],
+          isLoading: false,
         });
       })
       .catch((error) => {
@@ -107,6 +109,7 @@ class ProductManager extends Component {
               handleDeleteClick={this.handleDeleteClick}
               data={this.state.products}
               handleEditClick={this.handleEditClick}
+              isLoading={this.state.isLoading}
             />
           </div>
         </div>
