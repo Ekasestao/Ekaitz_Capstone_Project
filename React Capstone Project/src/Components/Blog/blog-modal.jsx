@@ -15,7 +15,10 @@ class BlogModal extends Component {
         right: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
-        width: "800px",
+        height: "400px",
+        width: "700px",
+        backgroundColor: "#1e1f26",
+        border: "none",
       },
       overlay: {
         backgroundColor: "rgba(0, 0, 0, 0.8)",

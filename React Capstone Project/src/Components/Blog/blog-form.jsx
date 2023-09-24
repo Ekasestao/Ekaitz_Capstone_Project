@@ -47,17 +47,17 @@ class BlogForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="blog-form-wrapper">
-        <div className="two-column">
-          <input
-            type="text"
-            name="title"
-            placeholder="Blog title"
-            value={this.state.title}
-            onChange={this.handleChange}
-          />
-        </div>
+        <input
+          className="modal-input"
+          type="text"
+          name="title"
+          placeholder="Blog title"
+          value={this.state.title}
+          onChange={this.handleChange}
+        />
 
         <textarea
+          className="modal-textarea"
           name="content"
           placeholder="Content"
           value={this.state.content}
