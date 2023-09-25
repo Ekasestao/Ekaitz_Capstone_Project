@@ -15,7 +15,7 @@ class BlogModal extends Component {
         right: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
-        height: "400px",
+        height: "550px",
         width: "700px",
         backgroundColor: "#1e1f26",
         border: "none",
@@ -44,6 +44,7 @@ class BlogModal extends Component {
       >
         <BlogForm
           handleSuccessfullFormSubmission={this.handleSuccessfullFormSubmission}
+          handleModalClose={this.props.handleModalClose}
         />
       </ReactModal>
     );

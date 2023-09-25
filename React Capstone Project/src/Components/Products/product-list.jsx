@@ -35,6 +35,7 @@ function ProductList(props) {
   return (
     <div className="product-list-wrapper">
       {productList}
+
       {props.isLoading ? (
         <div className="content-loader">
           <span>

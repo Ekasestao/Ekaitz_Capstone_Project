@@ -135,18 +135,16 @@ class Products extends Component {
           </select>
         </div>
 
-        <div className="products-wrapper">
-          {products}
+        <div className="products-wrapper">{products}</div>
 
-          {this.state.isLoading ? (
-            <div className="content-loader">
-              <span>
-                Cargando <FaSpinner className="loading-icon" />
-              </span>
-              <span>Si tarda mucho, pruebe a refrescar la página.</span>
-            </div>
-          ) : null}
-        </div>
+        {this.state.isLoading ? (
+          <div className="content-loader">
+            <span>
+              Cargando <FaSpinner className="loading-icon" />
+            </span>
+            <span>Si tarda mucho, pruebe a refrescar la página.</span>
+          </div>
+        ) : null}
       </div>
     );
   }

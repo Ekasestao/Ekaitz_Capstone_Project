@@ -106,6 +106,7 @@ class ProductForm extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
+
     try {
       let img_url = this.state.img_url;
 

@@ -2,25 +2,26 @@
   width: 25%;
 
   .register-form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+
     .form-group {
       @include input-element();
-
-      &:nth-child(6) {
-        margin-bottom: -5px;
-      }
     }
 
     .same-passwords {
       color: $delete;
-      margin-bottom: 15px;
     }
 
     button {
       margin: 0;
     }
   }
+
   .go-login {
     margin-top: 20px;
+
     a {
       color: $gold;
       cursor: pointer;

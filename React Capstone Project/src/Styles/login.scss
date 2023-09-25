@@ -1,14 +1,19 @@
 .login-wrapper {
-  width: 30%;
+  width: 25%;
+
   .login-form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+
     .form-group {
-      margin-top: 10px;
       @include input-element();
     }
   }
 
   .go-register {
     margin-top: 20px;
+
     a {
       color: $gold;
       cursor: pointer;

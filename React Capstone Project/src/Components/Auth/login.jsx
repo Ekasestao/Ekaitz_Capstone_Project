@@ -75,7 +75,7 @@ class Login extends Component {
   render() {
     return (
       <div className="login-wrapper">
-        <h3>INICIAR SESIÓN</h3>
+        <h3>Iniciar Sesión</h3>
 
         <div className="error-text">{this.state.errorText}</div>
 

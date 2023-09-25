@@ -9,7 +9,7 @@ const BlogItem = (props) => {
       <Link to={`/blog/${blogs_id}`}>
         <h1>{blogs_title}</h1>
       </Link>
-      <div>{blogs_content}</div>
+      <div className="blog-content">{blogs_content}</div>
     </div>
   );
 };

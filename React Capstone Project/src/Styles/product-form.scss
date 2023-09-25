@@ -9,9 +9,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 50px;
     @include input-element();
-    input {
-      margin-bottom: 0px;
-    }
   }
 
   .image-uploader {

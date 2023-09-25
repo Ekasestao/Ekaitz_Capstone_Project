@@ -114,10 +114,16 @@ class Blog extends Component {
           />
 
           <div className="new-blog-link">
-            <a onClick={this.handleNewBlogClick}>Open Modal</a>
+            <a onClick={this.handleNewBlogClick}>Crear nuevo blog</a>
           </div>
 
-          <div className="blogs">{blogRecords}</div>
+          <div className="blogs">
+            {blogRecords.length == 0 && this.state.isLoading == false ? (
+              <span>No hay blogs</span>
+            ) : (
+              blogRecords
+            )}
+          </div>
 
           {this.state.isLoading ? (
             <div className="content-loader">

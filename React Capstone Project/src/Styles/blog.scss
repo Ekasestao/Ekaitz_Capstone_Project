@@ -1,6 +1,45 @@
 .blog-wrapper {
   display: flex;
+  flex-direction: column;
   height: 100%;
-  justify-content: center;
-  align-items: center;
+  font-size: 1.3em;
+
+  .new-blog-link {
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+
+    a:hover {
+      cursor: pointer;
+    }
+  }
+
+  .blogs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 20px 200px;
+
+    .blog {
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: $gold;
+        transition: 0.2s all ease-in-out;
+
+        &:hover {
+          cursor: pointer;
+          color: $dark-gold;
+        }
+
+        h1 {
+          margin: 0px;
+        }
+      }
+
+      .blog-content {
+        padding-top: 15px;
+      }
+    }
+  }
 }
