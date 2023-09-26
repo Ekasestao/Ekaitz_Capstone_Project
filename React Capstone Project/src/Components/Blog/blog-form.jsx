@@ -156,7 +156,7 @@ class BlogForm extends Component {
         </div>
 
         <button type="submit" className="btn">
-          Guardar
+          Crear Blog
         </button>
       </form>
     );

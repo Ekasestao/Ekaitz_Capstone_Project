@@ -33,14 +33,16 @@ class BlogDetail extends Component {
     const { blogs_title, blogs_content, blogs_img_url } = this.state.blogItem;
 
     return (
-      <div className="blog-wrapper">
-        <h1>{blogs_title}</h1>
+      <div className="content-wrapper">
+        <div className="blog-detail-wrapper">
+          <h1>{blogs_title}</h1>
 
-        <div className="featured-image-wrapper">
-          <img src={blogs_img_url} alt="featured image" />
+          <div className="img-wrapper">
+            <img src={blogs_img_url} alt={blogs_title} />
+          </div>
+
+          <div className="content">{blogs_content}</div>
         </div>
-
-        <div className="content">{blogs_content}</div>
       </div>
     );
   }

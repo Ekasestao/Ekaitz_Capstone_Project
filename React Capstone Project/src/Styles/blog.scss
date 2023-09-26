@@ -17,8 +17,8 @@
   .blogs {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 20px 200px;
+    gap: 50px;
+    padding: 25px 200px 50px 200px;
 
     .blog {
       a {

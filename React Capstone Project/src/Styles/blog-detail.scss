@@ -1,0 +1,30 @@
+.blog-detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding-top: 65px;
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    color: $gold;
+    font-size: 2.5em;
+  }
+
+  .img-wrapper {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 350px;
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 1.4em;
+  }
+}
