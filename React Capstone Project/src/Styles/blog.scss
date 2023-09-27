@@ -9,7 +9,14 @@
     justify-content: center;
     padding-top: 25px;
 
+    a {
+      color: $gold;
+      text-transform: uppercase;
+      transition: 0.4s all ease-in-out;
+    }
+
     a:hover {
+      color: $dark-gold;
       cursor: pointer;
     }
   }

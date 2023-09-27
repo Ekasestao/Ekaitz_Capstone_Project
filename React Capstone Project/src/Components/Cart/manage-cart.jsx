@@ -22,6 +22,7 @@ class ManageCart extends Component {
       this.setState({
         productInCart: "Eliminar del carro",
         className: "delete-cart",
+        icon: "FaTrashAlt",
       });
     } else {
       this.setState({

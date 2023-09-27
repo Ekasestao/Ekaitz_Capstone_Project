@@ -37,7 +37,7 @@ class Blog extends Component {
       blogModalIsOpen: false,
     });
 
-    document.body.style.overflow = "unset"; // Para desbloquear el scroll de la página principal al cerrar el modal
+    document.body.style.overflow = "unset";
   }
 
   handleNewBlogClick() {
@@ -45,7 +45,7 @@ class Blog extends Component {
       blogModalIsOpen: true,
     });
 
-    document.body.style.overflow = "hidden"; // Para bloquear el scroll de la página principal mientras el modal esté abierto
+    document.body.style.overflow = "hidden";
   }
 
   onScroll() {
@@ -77,7 +77,6 @@ class Blog extends Component {
         }
       )
       .then((response) => {
-        console.log("getting", response.data);
         this.setState({
           blogItems: this.state.blogItems.concat(response.data.blogs),
           totalCount: response.data.total,

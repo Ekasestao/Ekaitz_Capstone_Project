@@ -98,7 +98,7 @@
           margin-left: 5px;
           text-decoration: none;
           color: $default;
-          transition: 0.2s all ease-in-out;
+          transition: 0.4s all ease-in-out;
 
           @include hover();
         }
@@ -129,7 +129,7 @@
           justify-content: space-evenly;
           text-decoration: none;
           color: $default;
-          transition: 0.2s all ease-in-out;
+          transition: 0.4s all ease-in-out;
 
           @include hover();
 
@@ -137,6 +137,10 @@
             margin-top: 1px;
             font-size: 1.1em;
           }
+        }
+
+        .active {
+          color: $gold;
         }
       }
     }
