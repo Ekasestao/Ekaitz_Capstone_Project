@@ -9,6 +9,10 @@
     .form-group {
       @include input-element();
     }
+
+    button {
+      width: 30%;
+    }
   }
 
   .go-register {

@@ -113,7 +113,9 @@ class Blog extends Component {
           />
 
           <div className="new-blog-link">
-            <a onClick={this.handleNewBlogClick}>Crear nuevo blog</a>
+            {this.props.loggedInStatus === "LOGGED_IN" ? (
+              <a onClick={this.handleNewBlogClick}>Crear nuevo blog</a>
+            ) : null}
           </div>
 
           <div className="blogs">

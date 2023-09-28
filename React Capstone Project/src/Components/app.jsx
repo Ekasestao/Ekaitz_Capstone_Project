@@ -12,6 +12,7 @@ import AboutUs from "./Pages/about-us";
 import ProductManager from "./Pages/product-manager";
 import Cart from "./Pages/cart";
 import Auth from "./Pages/auth";
+import PaymentDetails from "./Payment/payment-details";
 import NoMatch from "./Pages/no-match";
 import Footer from "./Footer/footer";
 
@@ -29,6 +30,7 @@ class App extends Component {
     this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
     this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
     this.notLoggedPages = this.notLoggedPages.bind(this);
+    this.loggedPages = this.loggedPages.bind(this);
     this.adminPages = this.adminPages.bind(this);
     this.connectApi = this.connectApi.bind(this);
     this.checkLoginStatus = this.checkLoginStatus.bind(this);
@@ -166,6 +168,16 @@ class App extends Component {
     ];
   }
 
+  loggedPages() {
+    return [
+      <Route
+        key="payment-details"
+        path="/payment-details"
+        element={<PaymentDetails />}
+      />,
+    ];
+  }
+
   adminPages() {
     return [
       <Route
@@ -195,7 +207,7 @@ class App extends Component {
             <Route exact="true" path="/" element={<Home />} />
             {this.state.loggedInStatus === "NOT_LOGGED_IN"
               ? this.notLoggedPages()
-              : null}
+              : this.loggedPages()}
             <Route
               path="/productos"
               element={
@@ -218,7 +230,10 @@ class App extends Component {
                 />
               }
             />
-            <Route path="/blog" element={<Blog />} />
+            <Route
+              path="/blog"
+              element={<Blog loggedInStatus={this.state.loggedInStatus} />}
+            />
             <Route path="/blog/:slug" element={<BlogDetail />} />
             <Route path="/about-us" element={<AboutUs />} />
             {this.state.loggedUser.admin ? this.adminPages() : null}

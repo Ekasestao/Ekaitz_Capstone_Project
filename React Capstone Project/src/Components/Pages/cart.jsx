@@ -67,14 +67,16 @@ function Cart(props) {
                 </div>
                 <div className="cart-button">
                   <button className="btn">
-                    Realizar pago{" "}
-                    <MdKeyboardArrowRight className="icon-arrow-right" />
+                    <Link to="/payment-details">
+                      Realizar pago
+                      <MdKeyboardArrowRight className="icon-arrow-right" />
+                    </Link>
                   </button>
                 </div>
                 <span className="cart-choice">O</span>
                 <div className="cart-link">
                   <Link to="/productos">
-                    <MdKeyboardArrowLeft className="icon-arrow-left" />{" "}
+                    <MdKeyboardArrowLeft className="icon-arrow-left" />
                     Continuar comprando
                   </Link>
                 </div>
