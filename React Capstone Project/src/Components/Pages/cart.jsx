@@ -67,7 +67,7 @@ function Cart(props) {
                 </div>
                 <div className="cart-button">
                   <button className="btn">
-                    <Link to="/payment-details">
+                    <Link to="/payment">
                       Realizar pago
                       <MdKeyboardArrowRight className="icon-arrow-right" />
                     </Link>
