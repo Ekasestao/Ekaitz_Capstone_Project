@@ -1,0 +1,22 @@
+.paypal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: white;
+
+  .paypal-login-wrapper {
+    .paypal-logo {
+      display: flex;
+      justify-content: center;
+      height: 40px;
+    }
+
+    .paypal-btn {
+      background-color: #142c8e;
+      color: white;
+      border: 0px;
+      border-radius: 25px;
+    }
+  }
+}
