@@ -1,22 +1,87 @@
 .paypal-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100%;
   background-color: white;
+  color: #797f84;
 
   .paypal-login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #e1e4e5;
+    border-radius: 10px;
+    height: 400px;
+    width: 350px;
+    margin-top: 60px;
+    padding: 50px;
+
     .paypal-logo {
-      display: flex;
-      justify-content: center;
-      height: 40px;
+      height: 30px;
+      width: 30px;
+      margin-bottom: 55px;
+
+      img {
+        height: inherit;
+        width: inherit;
+        object-fit: fill;
+      }
     }
 
-    .paypal-btn {
-      background-color: #142c8e;
-      color: white;
-      border: 0px;
-      border-radius: 25px;
+    .error-text {
+      display: grid;
+      grid-template-columns: 1fr 7fr;
+      width: 100%;
+      height: 10%;
+      color: #101010;
+      background-color: #fff7f7;
+      border: 1px solid #c72e2e;
+      border-radius: 5px;
+      font-size: 1.6em;
+      padding: 8px;
+      margin-bottom: 40px;
+
+      span {
+        margin-top: 5px;
+        font-size: 0.5em;
+      }
+    }
+
+    .login-form-wrapper {
+      height: inherit;
+      width: inherit;
+
+      .form-group {
+        width: inherit;
+
+        .input-error {
+          border: 1px solid #fc0500;
+        }
+
+        input {
+          width: inherit;
+        }
+      }
+
+      .paypal-mandatory {
+        width: inherit;
+      }
+
+      .paypal-btn {
+        font-size: 1.1em;
+        height: 48px;
+        width: 100%;
+        background-color: #142c8e;
+        color: white;
+        border: 0px;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: 0.2s all ease-in-out;
+
+        &:hover {
+          background-color: #1940c1;
+        }
+      }
     }
   }
 }

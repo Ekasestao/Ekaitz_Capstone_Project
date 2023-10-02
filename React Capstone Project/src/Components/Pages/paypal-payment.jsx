@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { RiAlertLine } from "react-icons/ri";
+import { RiAlertFill } from "react-icons/ri";
 
 import PayPal from "../../Images/Payment/logo-paypal.png";
 
@@ -43,8 +43,8 @@ class PaypalPayment extends Component {
     }
 
     if (
-      this.state.loginCredential.length != 0 &&
-      this.state.password.length != 0
+      this.state.loginCredential.trim() !== "" &&
+      this.state.password.trim() !== ""
     ) {
       const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
       const numRegex = /^\d{9}$/;
@@ -80,9 +80,7 @@ class PaypalPayment extends Component {
 
             {this.state.showError ? (
               <div className="error-text">
-                <div className="error-icon">
-                  <RiAlertLine />
-                </div>
+                <RiAlertFill style={{ color: "#C72E2E" }} />
                 <span>
                   Alguno de tus datos no es correcto. Inténtalo de nuevo.
                 </span>
@@ -98,14 +96,17 @@ class PaypalPayment extends Component {
                   value={this.state.loginCredential}
                   onChange={this.handleChange}
                   maxLength="60"
+                  autoComplete="off"
+                  className={
+                    this.state.loginCredentialMandatory ? "input-error" : ""
+                  }
                 />
               </div>
 
               {this.state.loginCredentialMandatory ? (
                 <div className="paypal-mandatory">
-                  <div className="error-icon">
-                    <RiAlertLine />
-                  </div>
+                  <RiAlertFill style={{ color: "#C72E2E" }} />
+
                   <span>Obligatorio</span>
                 </div>
               ) : null}
@@ -118,9 +119,10 @@ class PaypalPayment extends Component {
                   value={this.state.password}
                   onChange={this.handleChange}
                   maxLength="100"
+                  autoComplete="off"
+                  className={this.state.passwordMandatory ? "input-error" : ""}
                 />
                 <button
-                  type="button"
                   className="show-password-button"
                   onClick={this.togglePasswordVisibility}
                 >
@@ -130,9 +132,7 @@ class PaypalPayment extends Component {
 
               {this.state.passwordMandatory ? (
                 <div className="paypal-mandatory">
-                  <div className="error-icon">
-                    <RiAlertLine />
-                  </div>
+                  <RiAlertFill style={{ color: "#C72E2E" }} />
                   <span>Obligatorio</span>
                 </div>
               ) : null}

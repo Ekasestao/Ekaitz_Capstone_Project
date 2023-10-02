@@ -28,11 +28,17 @@
 
       a {
         .paypal {
+          height: 125px;
           width: 65%;
+          aspect-ratio: 4/3;
+          object-fit: fill;
         }
 
         .credit-card {
+          height: 125px;
           width: 50%;
+          aspect-ratio: 4/3;
+          object-fit: fill;
         }
 
         display: flex;
