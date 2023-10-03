@@ -15,6 +15,7 @@ import Auth from "./Pages/auth";
 import Payment from "./Pages/payment";
 import PaypalPayment from "./Pages/paypal-payment";
 import CreditCardPayment from "./Pages/credit-card-payment";
+import Invoice from "./Pages/payment-invoice";
 import NoMatch from "./Pages/no-match";
 import Footer from "./Footer/footer";
 
@@ -183,6 +184,7 @@ class App extends Component {
         path="/payment/tarjeta-de-credito"
         element={<CreditCardPayment />}
       />,
+      <Route key="invoice" path="/invoice" element={<Invoice />} />,
     ];
   }
 
