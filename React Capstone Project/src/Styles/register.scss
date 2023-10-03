@@ -4,7 +4,7 @@
   .register-form-wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 20px;
 
     .form-group {
       @include input-element();

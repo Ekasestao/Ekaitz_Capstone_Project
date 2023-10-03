@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { RiAlertFill } from "react-icons/ri";
 
+import NavigateHook from "../Hooks/navigate";
 import PayPal from "../../Images/Payment/logo-paypal.png";
 
 class PaypalPayment extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       loginCredential: "",
@@ -46,6 +47,7 @@ class PaypalPayment extends Component {
         numRegex.test(this.state.loginCredential)
       ) {
         this.setState({ showError: false });
+        this.props.navigate("/");
       } else {
         this.setState({ showError: true, password: "" });
       }
@@ -83,9 +85,10 @@ class PaypalPayment extends Component {
 
                 <div className="form-group">
                   <input
+                    id="loginCredential"
                     type="text"
                     name="loginCredential"
-                    placeholder="Correo electrónico o número de móvil"
+                    placeholder=" "
                     value={this.state.loginCredential}
                     onChange={this.handleChange}
                     maxLength="60"
@@ -95,6 +98,9 @@ class PaypalPayment extends Component {
                         : "input-ok"
                     }
                   />
+                  <label htmlFor="loginCredential">
+                    Correo electrónico o número de móvil
+                  </label>
                 </div>
 
                 {this.state.loginCredentialMandatory ? (
@@ -109,9 +115,10 @@ class PaypalPayment extends Component {
 
                 <div className="form-group">
                   <input
+                    id="password"
                     type="password"
                     name="password"
-                    placeholder="Contraseña"
+                    placeholder=" "
                     value={this.state.password}
                     onChange={this.handleChange}
                     maxLength="100"
@@ -120,6 +127,8 @@ class PaypalPayment extends Component {
                       this.state.passwordMandatory ? "input-error" : "input-ok"
                     }
                   />
+
+                  <label htmlFor="password">Contraseña</label>
                 </div>
 
                 {this.state.passwordMandatory ? (
@@ -137,10 +146,18 @@ class PaypalPayment extends Component {
               </button>
             </form>
           </div>
+          <p>
+            Aviso Importante: Esto es una simulación con fines de entrenamiento
+            o trabajo y no está afiliado a PayPal u otra entidad financiera
+            real. Los datos ingresados aquí no se almacenan ni se utilizan con
+            fines comerciales. Por favor, no introduzca información real de
+            inicio de sesión o datos sensibles. Con introducir un correo o
+            teléfono y contraseña ficiticios funciona.
+          </p>
         </div>
       </div>
     );
   }
 }
 
-export default PaypalPayment;
+export default NavigateHook(PaypalPayment);
