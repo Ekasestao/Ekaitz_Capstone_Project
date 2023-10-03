@@ -13,18 +13,10 @@ class PaypalPayment extends Component {
       showError: false,
       loginCredentialMandatory: false,
       passwordMandatory: false,
-      showPassword: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.togglePasswordVisibility = this.togglePasswordVisibility.bind(this);
-  }
-
-  togglePasswordVisibility() {
-    this.setState((prevState) => ({
-      showPassword: !prevState.showPassword,
-    }));
   }
 
   handleSubmit() {
@@ -55,7 +47,7 @@ class PaypalPayment extends Component {
       ) {
         this.setState({ showError: false });
       } else {
-        this.setState({ showError: true });
+        this.setState({ showError: true, password: "" });
       }
     } else {
       this.setState({ showError: false });
@@ -78,64 +70,67 @@ class PaypalPayment extends Component {
               <img src={PayPal} alt="PayPal" />
             </div>
 
-            {this.state.showError ? (
-              <div className="error-text">
-                <RiAlertFill style={{ color: "#C72E2E" }} />
-                <span>
-                  Alguno de tus datos no es correcto. Inténtalo de nuevo.
-                </span>
-              </div>
-            ) : null}
-
             <form onSubmit={this.handleSubmit} className="login-form-wrapper">
-              <div className="form-group">
-                <input
-                  type="text"
-                  name="loginCredential"
-                  placeholder="Email o número de movil"
-                  value={this.state.loginCredential}
-                  onChange={this.handleChange}
-                  maxLength="60"
-                  autoComplete="off"
-                  className={
-                    this.state.loginCredentialMandatory ? "input-error" : ""
-                  }
-                />
-              </div>
+              <div className="input-wrapper">
+                {this.state.showError ? (
+                  <div className="error-text">
+                    <RiAlertFill style={{ color: "#C72E2E" }} />
+                    <span>
+                      Alguno de tus datos no es correcto. Inténtalo de nuevo.
+                    </span>
+                  </div>
+                ) : null}
 
-              {this.state.loginCredentialMandatory ? (
-                <div className="paypal-mandatory">
-                  <RiAlertFill style={{ color: "#C72E2E" }} />
-
-                  <span>Obligatorio</span>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="loginCredential"
+                    placeholder="Correo electrónico o número de móvil"
+                    value={this.state.loginCredential}
+                    onChange={this.handleChange}
+                    maxLength="60"
+                    className={
+                      this.state.loginCredentialMandatory
+                        ? "input-error"
+                        : "input-ok"
+                    }
+                  />
                 </div>
-              ) : null}
 
-              <div className="form-group">
-                <input
-                  type={this.state.showPassword ? "text" : "password"}
-                  name="password"
-                  placeholder="Contraseña"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                  maxLength="100"
-                  autoComplete="off"
-                  className={this.state.passwordMandatory ? "input-error" : ""}
-                />
-                <button
-                  className="show-password-button"
-                  onClick={this.togglePasswordVisibility}
-                >
-                  {this.state.showPassword ? "Ocultar" : "Mostrar"}
-                </button>
-              </div>
+                {this.state.loginCredentialMandatory ? (
+                  <div className="paypal-mandatory">
+                    <RiAlertFill
+                      style={{ color: "#C72E2E", fontSize: "1.6em" }}
+                    />
 
-              {this.state.passwordMandatory ? (
-                <div className="paypal-mandatory">
-                  <RiAlertFill style={{ color: "#C72E2E" }} />
-                  <span>Obligatorio</span>
+                    <span>Obligatorio</span>
+                  </div>
+                ) : null}
+
+                <div className="form-group">
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Contraseña"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    maxLength="100"
+                    autoComplete="new-password"
+                    className={
+                      this.state.passwordMandatory ? "input-error" : "input-ok"
+                    }
+                  />
                 </div>
-              ) : null}
+
+                {this.state.passwordMandatory ? (
+                  <div className="paypal-mandatory">
+                    <RiAlertFill
+                      style={{ color: "#C72E2E", fontSize: "1.6em" }}
+                    />
+                    <span>Obligatorio</span>
+                  </div>
+                ) : null}
+              </div>
 
               <button className="paypal-btn" type="submit">
                 Iniciar sesión
