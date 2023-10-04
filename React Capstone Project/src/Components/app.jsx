@@ -177,7 +177,7 @@ class App extends Component {
       <Route
         key="paypal-payment"
         path="/payment/paypal"
-        element={<PaypalPayment />}
+        element={<PaypalPayment cartItems={this.state.cartItems} />}
       />,
       <Route
         key="credit-card-payment"

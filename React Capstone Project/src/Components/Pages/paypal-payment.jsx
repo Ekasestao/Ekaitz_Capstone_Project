@@ -4,8 +4,8 @@ import PaypalLogin from "../PayPal/paypal-login";
 import PaypalResume from "../PayPal/paypal-resume";
 
 class PaypalPayment extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       page: "login",
@@ -34,7 +34,10 @@ class PaypalPayment extends Component {
         {this.state.page === "login" ? (
           <PaypalLogin changePage={this.changePage} />
         ) : (
-          <PaypalResume changePage={this.changePage} />
+          <PaypalResume
+            changePage={this.changePage}
+            cartItems={this.props.cartItems}
+          />
         )}
       </div>
     );
