@@ -1,7 +1,18 @@
 import React from "react";
 
-function Invoice() {
-  return <div className="content-wrapper">payment-invoice</div>;
+import NavigateHook from "../Hooks/navigate";
+
+function Invoice(props) {
+  const handleSubmit = () => {
+    props.navigate("/");
+  };
+
+  return (
+    <div className="content-wrapper">
+      payment-invoice
+      <button onClick={handleSubmit}>Volver a la página principal</button>
+    </div>
+  );
 }
 
-export default Invoice;
+export default NavigateHook(Invoice);
