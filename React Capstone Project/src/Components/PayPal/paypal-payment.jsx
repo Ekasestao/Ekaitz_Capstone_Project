@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import PaypalLogin from "../PayPal/paypal-login";
-import PaypalResume from "../PayPal/paypal-resume";
+import PaypalLogin from "./paypal-login";
+import PaypalResume from "./paypal-resume";
 
 class PaypalPayment extends Component {
   constructor(props) {
@@ -17,26 +17,26 @@ class PaypalPayment extends Component {
   changePage() {
     if (this.state.page === "login") {
       this.setState({ page: "resume" });
-      localStorage.setItem("paypal-page", JSON.stringify("resume"));
+      localStorage.setItem("paypalPage", JSON.stringify("resume"));
     } else {
       this.setState({ page: "login" });
-      localStorage.setItem("paypal-page", JSON.stringify("login"));
+      localStorage.setItem("paypalPage", JSON.stringify("login"));
     }
   }
 
   componentDidMount() {
-    this.setState({ page: JSON.parse(localStorage.getItem("paypal-page")) });
+    this.setState({ page: JSON.parse(localStorage.getItem("paypalPage")) });
   }
 
   render() {
     return (
-      <div className="content-wrapper">
+      <div className="paypal-wrapper">
         {this.state.page === "login" ? (
           <PaypalLogin changePage={this.changePage} />
         ) : (
           <PaypalResume
             changePage={this.changePage}
-            cartItems={this.props.cartItems}
+            products={this.props.products}
           />
         )}
       </div>

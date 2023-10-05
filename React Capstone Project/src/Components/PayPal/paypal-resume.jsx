@@ -9,30 +9,13 @@ function PaypalResume(props) {
   };
 
   const acceptPayment = () => {
+    event.preventDefault();
     props.navigate("/invoice");
     props.changePage();
   };
 
-  const Products = props.cartItems.map((product) => {
-    return (
-      <div className="product" key={product.products_id}>
-        <div className="product-description">
-          <div className="product-name">{product.products_name}</div>
-          <div className="product-id">
-            Número de artículo: {product.products_id}
-          </div>
-          <div className="product-price">
-            Precio del artículo: €{product.products_price}
-          </div>
-          <div className="product-quantity">Cantidad: 1</div>
-        </div>
-        <div className="product-amount">€{product.products_price}</div>
-      </div>
-    );
-  });
-
   return (
-    <div className="content-wrapper">
+    <div className="paypal-wrapper">
       <div className="paypal-resume">
         <div className="order-resume">
           <span style={{ fontSize: "1.3em" }}>Resumen de su pedido</span>
@@ -40,7 +23,7 @@ function PaypalResume(props) {
             <span>Descripciones</span>
             <span>Importe</span>
           </div>
-          <div className="paypal-products">{Products}</div>
+          <div className="paypal-products">{props.products}</div>
           <div className="paypal-total">
             <span>Importe total a pagar</span>
             <span className="total">

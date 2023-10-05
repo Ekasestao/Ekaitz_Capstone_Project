@@ -1,38 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import Paypal from "../../Images/Payment/paypal.png";
-import CreditCard from "../../Images/Payment/tarjetadecredito.png";
+import PaypalPayment from "../PayPal/paypal-payment";
+import CreditCardPayment from "../CreditCard/credit-card-payment";
 
-function Payment() {
+function Payment(props) {
+  const Products = props.cartItems.map((product) => {
+    return (
+      <div className="product" key={product.products_id}>
+        <div className="product-description">
+          <div className="product-name">{product.products_name}</div>
+          <div className="product-id">
+            Número de artículo: {product.products_id}
+          </div>
+          <div className="product-price">
+            Precio del artículo: €{product.products_price}
+          </div>
+          <div className="product-quantity">Cantidad: 1</div>
+        </div>
+        <div className="product-amount">€{product.products_price}</div>
+      </div>
+    );
+  });
+
   return (
     <div className="content-wrapper">
-      <div className="payment">
-        <h2>Seleccione un método de pago</h2>
-        <div className="payment-options">
-          <div className="payment-option">
-            <Link to="/payment/paypal">
-              <img className="paypal" src={Paypal} alt="PayPal" />
-              PayPal
-            </Link>
-          </div>
-          <div className="payment-option">
-            <Link to="/payment/tarjeta-de-credito">
-              <img
-                className="credit-card"
-                src={CreditCard}
-                alt="Tarjeta de Crédito"
-              />
-              Tarjeta de Crédito
-            </Link>
-          </div>
-        </div>
-        <div className="payment-cancel">
-          <button className="btn">
-            <Link to="/carro">Cancelar Pago</Link>
-          </button>
-        </div>
-      </div>
+      {JSON.parse(localStorage.getItem("paymentMethod")) === "paypal" ? (
+        <PaypalPayment products={Products} />
+      ) : (
+        <CreditCardPayment products={Products} />
+      )}
     </div>
   );
 }

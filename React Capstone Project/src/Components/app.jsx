@@ -12,9 +12,8 @@ import AboutUs from "./Pages/about-us";
 import ProductManager from "./Pages/product-manager";
 import Cart from "./Pages/cart";
 import Auth from "./Pages/auth";
+import PaymentChoice from "./Pages/payment-choice";
 import Payment from "./Pages/payment";
-import PaypalPayment from "./Pages/paypal-payment";
-import CreditCardPayment from "./Pages/credit-card-payment";
 import Invoice from "./Pages/payment-invoice";
 import NoMatch from "./Pages/no-match";
 import Footer from "./Footer/footer";
@@ -173,16 +172,15 @@ class App extends Component {
 
   loggedPages() {
     return [
-      <Route key="payment-choice" path="/payment" element={<Payment />} />,
       <Route
-        key="paypal-payment"
-        path="/payment/paypal"
-        element={<PaypalPayment cartItems={this.state.cartItems} />}
+        key="payment-choice"
+        path="/payment-choice"
+        element={<PaymentChoice />}
       />,
       <Route
-        key="credit-card-payment"
-        path="/payment/tarjeta-de-credito"
-        element={<CreditCardPayment />}
+        key="payment"
+        path="/payment"
+        element={<Payment cartItems={this.state.cartItems} />}
       />,
       <Route key="invoice" path="/invoice" element={<Invoice />} />,
     ];

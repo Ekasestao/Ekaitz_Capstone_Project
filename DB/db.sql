@@ -26,3 +26,13 @@ CREATE TABLE blogs (
   PRIMARY KEY (blogs_id),
   UNIQUE KEY blogs_id_UNIQUE (blogs_id)
 );
+CREATE TABLE invoices (
+  invoices_id int NOT NULL AUTO_INCREMENT,
+  invoices_name varchar(50) NOT NULL,
+  invoices_lastname varchar(50) NOT NULL,
+  invoices_products varchar(100) NOT NULL,
+  invoices_total float NOT NULL,
+  invoices_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (invoices_id),
+  UNIQUE KEY invoices_id_UNIQUE (invoices_id)
+);
