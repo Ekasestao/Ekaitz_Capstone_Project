@@ -4,14 +4,12 @@ import NavigateHook from "../Hooks/navigate";
 
 function CreditCardResume(props) {
   const cancelPayment = () => {
-    event.preventDefault();
     props.navigate("/carro");
   };
 
   const acceptPayment = () => {
-    event.preventDefault();
     props.navigate("/invoice");
-    props.changePage();
+    props.changePageCreditCard();
   };
 
   return (

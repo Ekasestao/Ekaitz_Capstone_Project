@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-class AddCreditCard extends Component {
-  constructor() {
-    super();
+class CreditCardAdd extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
       currentCardBackground: Math.floor(Math.random() * 25 + 1),
@@ -28,7 +28,10 @@ class AddCreditCard extends Component {
     this.blurInput = this.blurInput.bind(this);
   }
 
-  handleSubmit() {}
+  handleSubmit() {
+    event.preventDefault();
+    this.props.changePageCreditCard();
+  }
 
   getCardType() {
     let number = this.state.cardNumber;
@@ -429,4 +432,4 @@ class AddCreditCard extends Component {
   }
 }
 
-export default AddCreditCard;
+export default CreditCardAdd;

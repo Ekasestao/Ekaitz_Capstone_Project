@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import AddCreditCard from "./add-credit-card";
+import CreditCardAdd from "./credit-card-add";
 import CreditCardResume from "./credit-card-resume";
 
 class CreditCardPayment extends Component {
@@ -10,6 +10,8 @@ class CreditCardPayment extends Component {
     this.state = {
       page: "add",
     };
+
+    this.changePage = this.changePage.bind(this);
   }
 
   changePage() {
@@ -23,19 +25,17 @@ class CreditCardPayment extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      page: JSON.parse(localStorage.getItem("creditCardPage")),
-    });
+    this.setState({ page: JSON.parse(localStorage.getItem("creditCardPage")) });
   }
 
   render() {
     return (
       <div className="credit-cart-wrapper">
         {this.state.page === "add" ? (
-          <AddCreditCard changePage={this.changePage} />
+          <CreditCardAdd changePageCreditCard={this.changePage} />
         ) : (
           <CreditCardResume
-            changePage={this.changePage}
+            changePageCreditCard={this.changePage}
             products={this.props.products}
           />
         )}

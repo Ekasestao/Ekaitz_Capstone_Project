@@ -32,10 +32,10 @@ class PaypalPayment extends Component {
     return (
       <div className="paypal-wrapper">
         {this.state.page === "login" ? (
-          <PaypalLogin changePage={this.changePage} />
+          <PaypalLogin changePagePaypal={this.changePage} />
         ) : (
           <PaypalResume
-            changePage={this.changePage}
+            changePagePaypal={this.changePage}
             products={this.props.products}
           />
         )}

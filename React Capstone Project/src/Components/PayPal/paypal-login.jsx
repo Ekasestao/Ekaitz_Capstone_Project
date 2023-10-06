@@ -46,7 +46,7 @@ class PaypalLogin extends Component {
         numRegex.test(this.state.loginCredential)
       ) {
         this.setState({ showError: false });
-        this.props.changePage();
+        this.props.changePagePaypal();
       } else {
         this.setState({ showError: true, password: "" });
       }

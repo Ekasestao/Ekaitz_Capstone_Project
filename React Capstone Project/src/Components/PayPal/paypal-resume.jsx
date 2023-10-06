@@ -11,7 +11,7 @@ function PaypalResume(props) {
   const acceptPayment = () => {
     event.preventDefault();
     props.navigate("/invoice");
-    props.changePage();
+    props.changePagePaypal();
   };
 
   return (
