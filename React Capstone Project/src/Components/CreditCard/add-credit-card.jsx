@@ -116,18 +116,52 @@ class AddCreditCard extends Component {
             </div>
             <div className="card-form__inner">
               <form onSubmit={this.handleSubmit}>
-                <input
-                  type="text"
-                  ref={this.cardInputRef}
-                  onFocus={this.focusInput}
-                  onBlur={this.blurInput}
-                />
-                <input
-                  type="text"
-                  ref={this.cardInputRef}
-                  onFocus={this.focusInput}
-                  onBlur={this.blurInput}
-                />
+                <div className="card-input">
+                  <label htmlFor="cardNumber" className="card-input__label">
+                    Número de la Tarjeta
+                  </label>
+                  <input
+                    type="text"
+                    className="card-input__input"
+                    id="cardNumber"
+                    ref={this.cardInputRef}
+                    value={this.props.cardNumber}
+                    onFocus={this.props.focusInput}
+                    onBlur={this.props.blurInput}
+                    data-ref="cardNumber"
+                    autoComplete="off"
+                  />
+                </div>
+                <div className="card-input">
+                  <label htmlFor="cardName" className="card-input__label">
+                    Titular de la Tarjeta
+                  </label>
+                  <input
+                    type="text"
+                    className="card-input__input"
+                    id="cardName"
+                    ref={this.cardInputRef}
+                    value={this.state.cardName}
+                    onInput={(e) => {
+                      const newValue = e.target.value
+                        .replace(/[^a-zA-Z ]/g, "")
+                        .slice(0, 30);
+                      this.setState({ cardName: newValue });
+                    }}
+                    onPaste={(e) => {
+                      e.preventDefault();
+                      const pastedText = e.clipboardData.getData("text");
+                      const newValue = pastedText
+                        .replace(/[^a-zA-Z]/g, "")
+                        .slice(0, 30);
+                      this.setState({ cardName: newValue });
+                    }}
+                    onFocus={this.focusInput}
+                    onBlur={this.blurInput}
+                    data-ref="cardName"
+                    autoComplete="off"
+                  />
+                </div>
                 <div className="card-form__row">
                   <div className="card-form__col">
                     <div className="card-form__group">
@@ -205,7 +239,7 @@ class AddCreditCard extends Component {
                         type="text"
                         className="card-input__input"
                         id="cardCvv"
-                        maxLength="3"
+                        ref={this.cardInputRef}
                         value={this.state.cardCvv}
                         onFocus={() => this.flipCard(true)}
                         onBlur={() => this.flipCard(false)}
@@ -213,7 +247,9 @@ class AddCreditCard extends Component {
                         inputMode="numeric"
                         pattern="[0-9]*"
                         onInput={(e) => {
-                          const newValue = e.target.value.replace(/\D/g, "");
+                          const newValue = e.target.value
+                            .replace(/\D/g, "")
+                            .slice(0, 3);
                           this.setState({ cardCvv: newValue });
                         }}
                         onPaste={(e) => {
