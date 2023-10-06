@@ -19,7 +19,10 @@ class AddCreditCard extends Component {
       isInputFocused: false,
     };
 
-    this.cardInputRef = React.createRef();
+    this.cardNumberRef = React.createRef();
+    this.cardNameRef = React.createRef();
+    this.cardDateRef = React.createRef();
+    this.cardCvvRef = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.focusInput = this.focusInput.bind(this);
@@ -51,9 +54,9 @@ class AddCreditCard extends Component {
     this.setState({ isCardFlipped: status });
   }
 
-  focusInput(e) {
+  focusInput(inputRef) {
     this.setState({ isInputFocused: true });
-    const target = this.cardInputRef.current;
+    const target = inputRef.current;
     if (target) {
       this.setState({
         focusElementStyle: {
@@ -83,6 +86,15 @@ class AddCreditCard extends Component {
         this.setState({ cardMonth: "" });
       }
     }
+  }
+
+  componentDidMount() {
+    this.setState({ cardNumberTemp: this.cardMask }, () => {
+      const cardNumberInput = document.getElementById("cardNumber");
+      if (cardNumberInput) {
+        cardNumberInput.focus();
+      }
+    });
   }
 
   render() {
@@ -124,11 +136,16 @@ class AddCreditCard extends Component {
                     type="text"
                     className="card-input__input"
                     id="cardNumber"
-                    ref={this.cardInputRef}
-                    value={this.props.cardNumber}
-                    onFocus={this.props.focusInput}
-                    onBlur={this.props.blurInput}
-                    data-ref="cardNumber"
+                    ref={this.cardNumberRef}
+                    value={this.state.cardNumber}
+                    onInput={(e) => {
+                      const value = e.target.value.replace(/\D/g, "");
+                      const formattedValue = value.replace(/(\d{4})/g, "$1 ");
+                      const newValue = formattedValue.trim().slice(0, 14);
+                      this.setState({ cardNumber: newValue });
+                    }}
+                    onFocus={() => this.focusInput(this.cardNumberRef)}
+                    onBlur={this.blurInput}
                     autoComplete="off"
                   />
                 </div>
@@ -140,7 +157,7 @@ class AddCreditCard extends Component {
                     type="text"
                     className="card-input__input"
                     id="cardName"
-                    ref={this.cardInputRef}
+                    ref={this.cardNameRef}
                     value={this.state.cardName}
                     onInput={(e) => {
                       const newValue = e.target.value
@@ -148,17 +165,8 @@ class AddCreditCard extends Component {
                         .slice(0, 30);
                       this.setState({ cardName: newValue });
                     }}
-                    onPaste={(e) => {
-                      e.preventDefault();
-                      const pastedText = e.clipboardData.getData("text");
-                      const newValue = pastedText
-                        .replace(/[^a-zA-Z]/g, "")
-                        .slice(0, 30);
-                      this.setState({ cardName: newValue });
-                    }}
-                    onFocus={this.focusInput}
+                    onFocus={() => this.focusInput(this.cardNameRef)}
                     onBlur={this.blurInput}
-                    data-ref="cardName"
                     autoComplete="off"
                   />
                 </div>
@@ -171,14 +179,14 @@ class AddCreditCard extends Component {
                       <select
                         className="card-input__input -select"
                         id="cardYear"
+                        ref={this.cardDate}
                         value={this.state.cardYear}
                         onChange={(e) => {
                           const selectedYear = parseInt(e.target.value);
                           this.setState({ cardYear: selectedYear });
                         }}
-                        onFocus={this.focusInput}
+                        onFocus={() => this.focusInput(this.cardDateRef)}
                         onBlur={this.blurInput}
-                        data-ref="cardDate"
                       >
                         <option value="" disabled>
                           Año
@@ -195,13 +203,13 @@ class AddCreditCard extends Component {
                       <select
                         className="card-input__input -select"
                         id="cardMonth"
+                        ref={this.cardDate}
                         value={this.state.cardMonth}
                         onChange={(e) =>
                           this.setState({ cardMonth: e.target.value })
                         }
-                        onFocus={this.focusInput}
+                        onFocus={() => this.focusInput(this.cardDateRef)}
                         onBlur={this.blurInput}
-                        data-ref="cardDate"
                       >
                         <option value="" disabled>
                           Mes
@@ -239,9 +247,11 @@ class AddCreditCard extends Component {
                         type="text"
                         className="card-input__input"
                         id="cardCvv"
-                        ref={this.cardInputRef}
+                        ref={this.cardCvvRef}
                         value={this.state.cardCvv}
-                        onFocus={() => this.flipCard(true)}
+                        onFocus={() => {
+                          this.flipCard(true), this.focusInput(this.cardCvvRef);
+                        }}
                         onBlur={() => this.flipCard(false)}
                         autoComplete="off"
                         inputMode="numeric"
@@ -250,14 +260,6 @@ class AddCreditCard extends Component {
                           const newValue = e.target.value
                             .replace(/\D/g, "")
                             .slice(0, 3);
-                          this.setState({ cardCvv: newValue });
-                        }}
-                        onPaste={(e) => {
-                          const pastedText = e.clipboardData.getData("text");
-                          const newValue = pastedText
-                            .replace(/\D/g, "")
-                            .slice(0, 3);
-                          e.preventDefault();
                           this.setState({ cardCvv: newValue });
                         }}
                       />
