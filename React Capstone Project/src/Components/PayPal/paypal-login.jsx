@@ -64,8 +64,8 @@ class PaypalLogin extends Component {
 
   render() {
     return (
-      <div className="paypal-wrapper">
-        <div className="paypal-login-wrapper">
+      <div className="paypal-login-wrapper">
+        <div className="paypal-login">
           <div className="paypal-logo">
             <img src={PayPal} alt="PayPal" />
           </div>
