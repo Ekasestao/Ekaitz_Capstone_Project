@@ -101,7 +101,7 @@ class CreditCardAdd extends Component {
 
   render() {
     return (
-      <div className="add-credit-card">
+      <div className="credit-card-add">
         <div className="wrapper" id="app">
           <div className="card-form">
             <div className="card-list">

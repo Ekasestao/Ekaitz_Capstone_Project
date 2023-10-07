@@ -25,9 +25,15 @@ function Payment(props) {
   return (
     <div className="content-wrapper">
       {JSON.parse(localStorage.getItem("paymentMethod")) === "paypal" ? (
-        <PaypalPayment products={Products} />
+        <PaypalPayment
+          products={Products}
+          deleteAllCart={props.deleteAllCart}
+        />
       ) : (
-        <CreditCardPayment products={Products} />
+        <CreditCardPayment
+          products={Products}
+          deleteAllCart={props.deleteAllCart}
+        />
       )}
     </div>
   );

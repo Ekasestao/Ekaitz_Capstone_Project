@@ -38,6 +38,17 @@ class App extends Component {
     this.checkLoginStatus = this.checkLoginStatus.bind(this);
     this.addCart = this.addCart.bind(this);
     this.deleteCart = this.deleteCart.bind(this);
+    this.deleteAllCart = this.deleteAllCart.bind(this);
+  }
+
+  deleteAllCart() {
+    this.setState({
+      cartItems: [],
+    });
+    localStorage.setItem(
+      `userCart_${this.state.loggedUser.id}`,
+      JSON.stringify([])
+    );
   }
 
   deleteCart(product) {
@@ -180,7 +191,12 @@ class App extends Component {
       <Route
         key="payment"
         path="/payment"
-        element={<Payment cartItems={this.state.cartItems} />}
+        element={
+          <Payment
+            cartItems={this.state.cartItems}
+            deleteAllCart={this.deleteAllCart}
+          />
+        }
       />,
       <Route key="invoice" path="/invoice" element={<Invoice />} />,
     ];

@@ -4,19 +4,18 @@ import NavigateHook from "../Hooks/navigate";
 
 function PaypalResume(props) {
   const cancelPayment = () => {
-    event.preventDefault();
     props.navigate("/carro");
   };
 
   const acceptPayment = () => {
-    event.preventDefault();
     props.navigate("/invoice");
     props.changePagePaypal();
+    props.deleteAllCart();
   };
 
   return (
     <div className="paypal-resume">
-      <div className="order-resume">
+      <div className="paypal-order-resume">
         <span style={{ fontSize: "1.3em" }}>Resumen de su pedido</span>
         <div className="paypal-columns">
           <span>Descripciones</span>

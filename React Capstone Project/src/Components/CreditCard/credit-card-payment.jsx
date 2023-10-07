@@ -30,13 +30,14 @@ class CreditCardPayment extends Component {
 
   render() {
     return (
-      <div className="credit-cart-wrapper">
+      <div className="credit-card-wrapper">
         {this.state.page === "add" ? (
           <CreditCardAdd changePageCreditCard={this.changePage} />
         ) : (
           <CreditCardResume
             changePageCreditCard={this.changePage}
             products={this.props.products}
+            deleteAllCart={this.props.deleteAllCart}
           />
         )}
       </div>

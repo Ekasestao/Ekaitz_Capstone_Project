@@ -1,93 +1,95 @@
-.paypal-resume {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
+.paypal-wrapper {
   background-color: white;
-  color: black;
-  padding: 70px 0px;
-
-  .order-resume {
+  .paypal-resume {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
-    border: 3px solid #ededed;
-    border-radius: 10px;
-    width: 25%;
-    padding: 15px 30px;
+    width: 100%;
+    color: black;
+    padding: 70px 0px;
 
-    .paypal-columns {
+    .paypal-order-resume {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      width: 100%;
-      height: 25px;
-      background-color: #ededed;
-      margin-top: 20px;
-      font-size: 0.9em;
+      justify-content: space-evenly;
+      border: 3px solid #ededed;
+      border-radius: 10px;
+      height: 100%;
+      width: 25%;
+      padding: 15px 30px;
 
-      span {
-        margin: 0px 30px;
-      }
-    }
-
-    .paypal-products {
-      font-size: 0.8em;
-      width: 100%;
-      font-weight: 100;
-
-      .product {
+      .paypal-columns {
         display: flex;
         justify-content: space-between;
-        border-bottom: 3px solid #e4e4e4;
-        padding: 10px 0px;
+        align-items: center;
+        width: 100%;
+        height: 25px;
+        background-color: #ededed;
+        margin-top: 20px;
+        font-size: 0.9em;
 
-        .product-description {
-          color: #5b5a5c;
+        span {
+          margin: 0px 30px;
+        }
+      }
 
-          .product-name {
-            color: black;
+      .paypal-products {
+        font-size: 0.8em;
+        width: 100%;
+        font-weight: 100;
+
+        .product {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 3px solid #e4e4e4;
+          padding: 10px 0px;
+
+          .product-description {
+            color: #5b5a5c;
+
+            .product-name {
+              color: black;
+              font-weight: 600;
+            }
+          }
+
+          .product-amount {
+            margin-right: 35px;
             font-weight: 600;
           }
         }
+      }
 
-        .product-amount {
-          margin-right: 35px;
-          font-weight: 600;
+      .paypal-total {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+
+        .total {
+          margin-right: 30px;
         }
       }
-    }
 
-    .paypal-total {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
+      .paypal-buttons {
+        display: grid;
+        grid-template-columns: 1fr 0.7fr;
+        gap: 50px;
+        justify-content: space-evenly;
+        margin-top: 40px;
 
-      .total {
-        margin-right: 30px;
-      }
-    }
+        button {
+          background-color: #fbc464;
+          border: 1px solid #ae6a01;
+          font-size: 1.1em;
+          padding: 5px 10px;
+          transition: 0.3s all ease-in-out;
 
-    .paypal-buttons {
-      display: grid;
-      grid-template-columns: 1fr 0.7fr;
-      gap: 50px;
-      justify-content: space-evenly;
-      margin-top: 40px;
-
-      button {
-        background-color: #fbc464;
-        border: 1px solid #ae6a01;
-        font-size: 1.1em;
-        padding: 5px 10px;
-        transition: 0.3s all ease-in-out;
-
-        &:hover {
-          cursor: pointer;
-          background-color: #faa41a;
+          &:hover {
+            cursor: pointer;
+            background-color: #faa41a;
+          }
         }
       }
     }
