@@ -38,17 +38,41 @@ class App extends Component {
     this.checkLoginStatus = this.checkLoginStatus.bind(this);
     this.addCart = this.addCart.bind(this);
     this.deleteCart = this.deleteCart.bind(this);
-    this.deleteAllCart = this.deleteAllCart.bind(this);
+    this.createInvoice = this.createInvoice.bind(this);
   }
 
-  deleteAllCart() {
-    this.setState({
-      cartItems: [],
-    });
-    localStorage.setItem(
-      `userCart_${this.state.loggedUser.id}`,
-      JSON.stringify([])
-    );
+  createInvoice() {
+    const ids = this.state.cartItems.map((item) => item.products_id);
+
+    axios
+      .post(
+        "http://ekasestao.pythonanywhere.com/invoice",
+        {
+          invoices_name: this.state.loggedUser.name,
+          invoices_lastname: this.state.loggedUser.lastname,
+          invoices_products: ids,
+          invoices_total: JSON.parse(localStorage.getItem("cartPrice")),
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        this.setState({
+          cartItems: [],
+        });
+
+        localStorage.setItem(
+          `userCart_${this.state.loggedUser.id}`,
+          JSON.stringify([])
+        );
+
+        localStorage.setItem(
+          "invoiceId",
+          JSON.stringify(response.data.invoices_id)
+        );
+      })
+      .catch((error) => {
+        console.error("Error createInvoice", error);
+      });
   }
 
   deleteCart(product) {
@@ -194,7 +218,7 @@ class App extends Component {
         element={
           <Payment
             cartItems={this.state.cartItems}
-            deleteAllCart={this.deleteAllCart}
+            createInvoice={this.createInvoice}
           />
         }
       />,

@@ -27,12 +27,12 @@ function Payment(props) {
       {JSON.parse(localStorage.getItem("paymentMethod")) === "paypal" ? (
         <PaypalPayment
           products={Products}
-          deleteAllCart={props.deleteAllCart}
+          createInvoice={props.createInvoice}
         />
       ) : (
         <CreditCardPayment
           products={Products}
-          deleteAllCart={props.deleteAllCart}
+          createInvoice={props.createInvoice}
         />
       )}
     </div>

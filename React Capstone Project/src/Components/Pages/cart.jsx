@@ -27,11 +27,12 @@ function Cart(props) {
         </div>
         <div className="product-text">
           <div className="product-name">
-            <Link to={`/products/${product.products_id}`}>
+            <Link to={`/productos/${product.products_id}`}>
               <h3>{product.products_name}</h3>
             </Link>
           </div>
           <div className="product-price">{product.products_price} €</div>
+
           <ManageCart
             product={product}
             deleteCart={props.deleteCart}

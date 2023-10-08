@@ -1,6 +1,6 @@
 import React from "react";
 
-import NavigateHook from "../Hooks/navigate";
+import navigateHook from "../Hooks/navigate";
 
 function CreditCardResume(props) {
   const cancelPayment = () => {
@@ -10,7 +10,7 @@ function CreditCardResume(props) {
   const acceptPayment = () => {
     props.navigate("/factura");
     props.changePageCreditCard();
-    props.deleteAllCart();
+    props.createInvoice();
   };
 
   return (
@@ -41,4 +41,4 @@ function CreditCardResume(props) {
   );
 }
 
-export default NavigateHook(CreditCardResume);
+export default navigateHook(CreditCardResume);

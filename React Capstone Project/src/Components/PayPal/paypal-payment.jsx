@@ -37,7 +37,7 @@ class PaypalPayment extends Component {
           <PaypalResume
             changePagePaypal={this.changePage}
             products={this.props.products}
-            deleteAllCart={this.props.deleteAllCart}
+            createInvoice={this.props.createInvoice}
           />
         )}
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import NavigateHook from "../Hooks/navigate";
+import navigateHook from "../Hooks/navigate";
 
 function PaypalResume(props) {
   const cancelPayment = () => {
@@ -10,7 +10,7 @@ function PaypalResume(props) {
   const acceptPayment = () => {
     props.navigate("/factura");
     props.changePagePaypal();
-    props.deleteAllCart();
+    props.createInvoice();
   };
 
   return (
@@ -41,4 +41,4 @@ function PaypalResume(props) {
   );
 }
 
-export default NavigateHook(PaypalResume);
+export default navigateHook(PaypalResume);

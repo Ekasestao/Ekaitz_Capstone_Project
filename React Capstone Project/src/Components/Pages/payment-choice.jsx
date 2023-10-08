@@ -26,7 +26,7 @@ function PaymentChoice() {
           <div className="payment-option">
             <Link
               className="paypal-option"
-              to="/payment"
+              to="/pago"
               onClick={() => {
                 localStorage.setItem("paymentMethod", JSON.stringify("paypal"));
               }}
@@ -39,7 +39,7 @@ function PaymentChoice() {
           <div className="payment-option">
             <Link
               className="credit-card-option"
-              to="/payment"
+              to="/pago"
               onClick={() => {
                 localStorage.setItem(
                   "paymentMethod",
