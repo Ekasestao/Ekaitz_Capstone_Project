@@ -170,7 +170,7 @@ class App extends Component {
     return [
       <Route
         key="auth"
-        path="/auth"
+        path="/autenticación"
         element={
           <Auth
             handleSuccessfulLogin={this.handleSuccessfulLogin}
@@ -185,12 +185,12 @@ class App extends Component {
     return [
       <Route
         key="payment-choice"
-        path="/payment-choice"
+        path="/elección-pago"
         element={<PaymentChoice />}
       />,
       <Route
         key="payment"
-        path="/payment"
+        path="/pago"
         element={
           <Payment
             cartItems={this.state.cartItems}
@@ -198,7 +198,7 @@ class App extends Component {
           />
         }
       />,
-      <Route key="invoice" path="/invoice" element={<Invoice />} />,
+      <Route key="invoice" path="/factura" element={<Invoice />} />,
     ];
   }
 
@@ -244,7 +244,7 @@ class App extends Component {
               }
             />
             <Route
-              path="/products/:slug"
+              path="/productos/:slug"
               element={
                 <ProductDetail
                   addCart={this.addCart}
@@ -259,7 +259,7 @@ class App extends Component {
               element={<Blog loggedInStatus={this.state.loggedInStatus} />}
             />
             <Route path="/blog/:slug" element={<BlogDetail />} />
-            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/sobre-nosotros" element={<AboutUs />} />
             {this.state.loggedUser.admin ? this.adminPages() : null}
             <Route
               path="/carro"

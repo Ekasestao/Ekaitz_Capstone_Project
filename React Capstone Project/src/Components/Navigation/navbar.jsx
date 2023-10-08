@@ -72,7 +72,7 @@ class Navbar extends Component {
               </div>
             ) : this.props.loggedInStatus === "NOT_LOGGED_IN" ? (
               <div className="nav-login">
-                <NavLink to="/auth">
+                <NavLink to="/autenticación">
                   <span>Iniciar Sesión</span>
                 </NavLink>
               </div>
@@ -111,7 +111,7 @@ class Navbar extends Component {
             </div>
 
             <div className="nav-links-wrapper">
-              {this.dynamicLink("/about-us", "sobre nosotros")}
+              {this.dynamicLink("/sobre-nosotros", "sobre nosotros")}
             </div>
 
             {JSON.parse(localStorage.getItem("user")).admin ? (

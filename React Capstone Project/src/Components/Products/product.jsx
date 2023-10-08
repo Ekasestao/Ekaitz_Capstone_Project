@@ -20,7 +20,7 @@ function Product(props) {
 
       <div className="product-text">
         <div className="product-name">
-          <Link to={`/products/${products_id}`}>
+          <Link to={`/productos/${products_id}`}>
             <h3>{products_name}</h3>
           </Link>
         </div>

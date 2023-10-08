@@ -67,7 +67,7 @@ function Cart(props) {
                 </div>
                 <div className="cart-button">
                   <button className="btn">
-                    <Link to="/payment-choice">
+                    <Link to="/elección-pago">
                       Realizar pago
                       <MdKeyboardArrowRight className="icon-arrow-right" />
                     </Link>
@@ -93,8 +93,8 @@ function Cart(props) {
         ) : (
           <div className="not-logged-cart">
             <span>
-              <Link to="/auth">Inicie sesión</Link> para añadir productos al
-              carro
+              <Link to="/autenticación">Inicie sesión</Link> para añadir
+              productos al carro
             </span>
           </div>
         )}

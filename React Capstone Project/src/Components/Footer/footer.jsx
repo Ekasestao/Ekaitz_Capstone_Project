@@ -30,7 +30,7 @@ const Footer = () => {
             {dynamicLink("/blog", "Blog")}
           </div>
           <div className="footer-links-wrapper">
-            {dynamicLink("/about-us", "Sobre Nosotros")}
+            {dynamicLink("/sobre-nosotros", "Sobre Nosotros")}
           </div>
         </div>
       </div>

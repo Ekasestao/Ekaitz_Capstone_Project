@@ -8,7 +8,7 @@ function CreditCardResume(props) {
   };
 
   const acceptPayment = () => {
-    props.navigate("/invoice");
+    props.navigate("/factura");
     props.changePageCreditCard();
     props.deleteAllCart();
   };

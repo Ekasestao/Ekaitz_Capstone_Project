@@ -8,7 +8,7 @@ function PaypalResume(props) {
   };
 
   const acceptPayment = () => {
-    props.navigate("/invoice");
+    props.navigate("/factura");
     props.changePagePaypal();
     props.deleteAllCart();
   };
