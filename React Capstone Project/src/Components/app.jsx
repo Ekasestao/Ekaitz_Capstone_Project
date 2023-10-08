@@ -69,6 +69,8 @@ class App extends Component {
           "invoiceId",
           JSON.stringify(response.data.invoices_id)
         );
+
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error createInvoice", error);

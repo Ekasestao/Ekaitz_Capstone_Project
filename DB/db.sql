@@ -32,7 +32,7 @@ CREATE TABLE invoices (
   invoices_lastname varchar(50) NOT NULL,
   invoices_products varchar(100) NOT NULL,
   invoices_total float NOT NULL,
-  invoices_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  invoices_date timestamp NOT NULL,
   PRIMARY KEY (invoices_id),
   UNIQUE KEY invoices_id_UNIQUE (invoices_id)
 );
