@@ -57,7 +57,6 @@ class App extends Component {
           this.setState({
             invoice: response.data,
           });
-          console.log(response);
         }
       })
       .catch((error) => {
@@ -190,6 +189,15 @@ class App extends Component {
       : null;
   }
 
+  componentDidUpdate() {
+    const prevInvoiceId = JSON.parse(localStorage.getItem("invoiceId"));
+    const currentInvoiceId = this.state.invoice.id;
+
+    if (prevInvoiceId !== currentInvoiceId) {
+      this.getInvoice();
+    }
+  }
+
   componentDidMount() {
     this.connectApi();
     this.checkLoginStatus();
@@ -211,8 +219,6 @@ class App extends Component {
         cartItems: [],
       });
     }
-
-    console.log(localStorage);
   }
 
   notLoggedPages() {
@@ -250,7 +256,7 @@ class App extends Component {
       <Route
         key="invoice"
         path="/factura"
-        element={<Invoice invoice={JSON.stringify(this.state.invoice)} />}
+        element={<Invoice invoice={this.state.invoice} />}
       />,
     ];
   }
