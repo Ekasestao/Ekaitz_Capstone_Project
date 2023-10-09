@@ -1,0 +1,12 @@
+@media screen and (max-width: 768px) {
+  .home-content-wrapper {
+    display: block;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}

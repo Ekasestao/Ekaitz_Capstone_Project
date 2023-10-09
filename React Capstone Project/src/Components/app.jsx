@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, json } from "react-router-dom";
 import axios from "axios";
 
 import Navbar from "./Navigation/navbar";
@@ -26,6 +26,7 @@ class App extends Component {
       cartItems: [],
       loggedInStatus: "NOT_LOGGED_IN",
       loggedUser: {},
+      invoice: {},
     };
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
@@ -39,6 +40,29 @@ class App extends Component {
     this.addCart = this.addCart.bind(this);
     this.deleteCart = this.deleteCart.bind(this);
     this.createInvoice = this.createInvoice.bind(this);
+    this.getInvoice = this.getInvoice.bind(this);
+  }
+
+  getInvoice() {
+    const invoiceId = JSON.parse(localStorage.getItem("invoiceId"));
+
+    axios
+      .get(`http://ekasestao.pythonanywhere.com/invoice/${invoiceId}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        if (response.data.status === 404) {
+          window.location.reload();
+        } else {
+          this.setState({
+            invoice: response.data,
+          });
+          console.log(response);
+        }
+      })
+      .catch((error) => {
+        console.log("Error getInvoice", error);
+      });
   }
 
   createInvoice() {
@@ -69,8 +93,6 @@ class App extends Component {
           "invoiceId",
           JSON.stringify(response.data.invoices_id)
         );
-
-        window.location.reload();
       })
       .catch((error) => {
         console.error("Error createInvoice", error);
@@ -171,6 +193,7 @@ class App extends Component {
   componentDidMount() {
     this.connectApi();
     this.checkLoginStatus();
+    this.getInvoice();
     const loggedInStatus = JSON.parse(localStorage.getItem("loggedInStatus"));
     const loggedUser = JSON.parse(localStorage.getItem("user"));
 
@@ -224,7 +247,11 @@ class App extends Component {
           />
         }
       />,
-      <Route key="invoice" path="/factura" element={<Invoice />} />,
+      <Route
+        key="invoice"
+        path="/factura"
+        element={<Invoice invoice={JSON.stringify(this.state.invoice)} />}
+      />,
     ];
   }
 

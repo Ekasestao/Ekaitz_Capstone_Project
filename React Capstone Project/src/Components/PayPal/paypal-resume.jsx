@@ -8,9 +8,9 @@ function PaypalResume(props) {
   };
 
   const acceptPayment = () => {
-    props.navigate("/factura");
-    props.changePagePaypal();
     props.createInvoice();
+    props.changePagePaypal();
+    props.navigate("/factura");
   };
 
   return (
