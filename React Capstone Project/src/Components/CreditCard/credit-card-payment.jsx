@@ -37,7 +37,7 @@ class CreditCardPayment extends Component {
           <CreditCardResume
             changePageCreditCard={this.changePage}
             products={this.props.products}
-            deleteAllCart={this.props.deleteAllCart}
+            createInvoice={this.props.createInvoice}
           />
         )}
       </div>

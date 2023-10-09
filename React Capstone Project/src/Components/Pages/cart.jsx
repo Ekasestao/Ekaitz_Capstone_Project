@@ -15,7 +15,7 @@ function Cart(props) {
 
   const discountAmount = (officialPrice * discountPercentage) / 100;
 
-  const totalPrice = officialPrice - discountAmount;
+  const totalPrice = (officialPrice - discountAmount).toFixed(2);
 
   localStorage.setItem("cartPrice", JSON.stringify(totalPrice));
 

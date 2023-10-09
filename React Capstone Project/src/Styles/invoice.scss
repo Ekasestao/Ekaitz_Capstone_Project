@@ -68,7 +68,10 @@
 
           .invoice-product {
             display: flex;
-            margin-top: 10px;
+            justify-content: space-between;
+            margin-top: 15px;
+            border: 1px solid black;
+            padding: 5px;
           }
         }
 

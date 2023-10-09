@@ -40,9 +40,9 @@ class Invoice extends Component {
                         className="invoice-product"
                         key={product.products_id}
                       >
-                        <span>Id: {product.products_id}</span>{" "}
+                        <span>Nº Producto: {product.products_id}</span>
                         <span>Nombre: {product.products_name}</span>
-                        <span>Precio: {product.products_price}</span>
+                        <span>Precio: {product.products_price} €</span>
                       </div>
                     ))}
                   </div>
