@@ -53,6 +53,9 @@ class App extends Component {
       .then((response) => {
         if (response.data.status === 404) {
           window.location.reload();
+          if (response.data.status === 404) {
+            localStorage.setItem("invoiceId", 0);
+          }
         } else {
           this.setState({
             invoice: response.data,
@@ -61,6 +64,7 @@ class App extends Component {
       })
       .catch((error) => {
         console.log("Error getInvoice", error);
+        localStorage.setItem("invoiceId", 0);
       });
   }
 

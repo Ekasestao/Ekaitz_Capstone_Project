@@ -23,7 +23,7 @@ function CreditCardResume(props) {
         </div>
         <div className="credit-card-products">{props.products}</div>
         <div className="credit-card-total">
-          <span>Importe total a pagar</span>
+          <span>Importe total a pagar:</span>
           <span className="total">
             €{JSON.parse(localStorage.getItem("cartPrice"))}
           </span>

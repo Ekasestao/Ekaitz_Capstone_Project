@@ -1,41 +1,42 @@
-import React, { Component } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
-import NavigateHook from "../Hooks/navigate";
-
-class Invoice extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      id: "",
-      name: "",
-      lastname: "",
-      products: [],
-      total: "",
-      date: "",
-    };
-  }
-
-  render() {
-    const invoiceObject = this.props.invoice;
-    const fullName = `${invoiceObject.name} ${invoiceObject.lastname}`;
-    return (
-      <div className="content-wrapper">
-        <div className="payment-invoice">
+function Invoice(props) {
+  const invoiceObject = props.invoice;
+  const fullName = `${invoiceObject.name} ${invoiceObject.lastname}`;
+  return (
+    <div className="content-wrapper">
+      <div className="payment-invoice">
+        {invoiceObject.length !== 0 ? (
           <div className="invoice-wrapper">
             <div className="invoice">
               <div className="invoice-top">
-                <div className="invoice-id">Nº Factura: {invoiceObject.id}</div>
-                <div className="invoice-date">Fecha: {invoiceObject.date}</div>
+                <div className="invoice-id-date">
+                  {invoiceObject.id ? (
+                    <div className="invoice-id">
+                      Nº Factura: {invoiceObject.id}
+                    </div>
+                  ) : null}
+
+                  {invoiceObject.date ? (
+                    <div className="invoice-date">
+                      Fecha: {invoiceObject.date}
+                    </div>
+                  ) : null}
+                </div>
               </div>
-              <div className="invoice-fullname">
-                Nombre Completo: {fullName}
-              </div>
+
+              {invoiceObject.name && invoiceObject.lastname ? (
+                <div className="invoice-fullname">
+                  Nombre Completo: {fullName}
+                </div>
+              ) : null}
+
               <div className="invoice-bottom">
-                {this.props.invoice.products ? (
+                {props.invoice.products ? (
                   <div className="invoice-products">
                     Productos:
-                    {this.props.invoice.products.map((product) => (
+                    {props.invoice.products.map((product) => (
                       <div
                         className="invoice-product"
                         key={product.products_id}
@@ -47,24 +48,38 @@ class Invoice extends Component {
                     ))}
                   </div>
                 ) : null}
-                <div className="invoice-total">
-                  Precio Total: {invoiceObject.total} €
-                </div>
+
+                {invoiceObject.total ? (
+                  <div className="invoice-total">
+                    <span>
+                      Precio Total:
+                      {parseFloat(invoiceObject.total).toFixed(2)}€
+                    </span>
+                  </div>
+                ) : null}
               </div>
+
               <div className="invoice-button">
                 <button
                   className="btn"
                   onClick={() => this.props.navigate("/")}
                 >
-                  Volver a la página principal
+                  Página principal
                 </button>
               </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="no-invoice">
+            <h2>No se ha encontrado la factura</h2>
+            <div className="invoice-button">
+              <Link to="/">Volver a la página principal</Link>
+            </div>
+          </div>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default NavigateHook(Invoice);
+export default Invoice;

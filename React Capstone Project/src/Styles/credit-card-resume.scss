@@ -55,6 +55,7 @@
           }
 
           .product-amount {
+            color: $default;
             margin-right: 35px;
             font-weight: 600;
           }
@@ -62,10 +63,12 @@
       }
 
       .credit-card-total {
+        color: $default;
         width: 100%;
         display: flex;
         justify-content: space-between;
         margin-top: 10px;
+        font-size: 1.1em;
 
         .total {
           margin-right: 30px;

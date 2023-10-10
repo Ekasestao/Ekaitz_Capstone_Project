@@ -20,6 +20,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      align-items: center;
       background-color: #fff;
       padding: 20px;
       border: 1px solid #ccc;
@@ -27,23 +28,27 @@
       min-height: 0;
 
       .invoice-top {
-        display: flex;
-        justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
+        width: 100%;
 
-        .invoice-id {
-          font-size: 20px;
-          font-weight: bold;
-        }
+        .invoice-id-date {
+          display: flex;
+          justify-content: space-between;
 
-        .invoice-date {
-          font-size: 18px;
+          .invoice-id {
+            font-size: 20px;
+            font-weight: bold;
+          }
+
+          .invoice-date {
+            font-size: 18px;
+          }
         }
       }
 
       .invoice-fullname {
-        display: flex;
+        width: 100%;
 
         .invoice-name,
         .invoice-lastname {
@@ -56,6 +61,7 @@
       .invoice-bottom {
         flex-grow: 1;
         display: flex;
+        width: 100%;
         flex-direction: column;
         justify-content: space-between;
 
@@ -65,12 +71,13 @@
           flex-direction: column;
           justify-content: center;
           margin-top: 25px;
+          font-size: 0.9em;
 
           .invoice-product {
             display: flex;
             justify-content: space-between;
             margin-top: 15px;
-            border: 1px solid black;
+            border-bottom: 1px solid black;
             padding: 5px;
           }
         }
@@ -79,6 +86,14 @@
           margin-top: 20px;
           font-size: 18px;
           font-weight: bold;
+
+          span {
+            display: inline-block;
+            white-space: nowrap;
+            padding-bottom: 5px;
+            border-bottom: 2px solid black;
+            margin-bottom: 10px;
+          }
         }
       }
 
@@ -87,10 +102,31 @@
         flex-direction: column;
         align-items: center;
         justify-content: end;
+        width: 100%;
 
         button {
-          width: 100%;
+          width: 50%;
         }
+      }
+    }
+  }
+
+  .no-invoice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.7em;
+
+    a {
+      text-decoration: none;
+      color: $gold;
+      cursor: pointer;
+      transition: 0.2s all ease-in-out;
+
+      &:hover {
+        color: $dark-gold;
       }
     }
   }

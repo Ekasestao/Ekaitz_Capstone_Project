@@ -28,7 +28,7 @@ function AboutUs() {
               ejemplo:
             </h3>
             <li>Crear una barra de navegación con sugerencias</li>
-            <li>Poder completar transacciones</li>
+            <li>Poder 'completar transacciones'</li>
           </ul>
         </span>
       </div>
