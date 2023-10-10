@@ -8,7 +8,7 @@ function SearchResults(props) {
         return (
           <NavLink
             key={result.products_id}
-            to={`/products/${result.products_id}`}
+            to={`/productos/${result.products_id}`}
             onClick={window.location.reload}
           >
             <div className="result">{result.products_name}</div>
