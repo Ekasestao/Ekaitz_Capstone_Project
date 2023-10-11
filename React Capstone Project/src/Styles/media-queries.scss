@@ -84,6 +84,28 @@
           }
         }
       }
+
+      .aboutus-content-wrapper {
+        span {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          padding: 0;
+          width: 75%;
+
+          ul {
+            margin: 0;
+
+            h3 {
+              margin: 10px 0px;
+            }
+
+            li {
+              margin: 0;
+            }
+          }
+        }
+      }
     }
 
     .footer-wrapper {
