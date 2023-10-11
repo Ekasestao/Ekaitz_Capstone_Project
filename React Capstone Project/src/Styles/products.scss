@@ -32,10 +32,12 @@
     height: 180px;
     width: 100%;
     margin: 45px 0px;
+    border-radius: 5px;
     background-color: $topnav-background;
 
     .product-img {
-      height: 180px;
+      height: 100%;
+
       img {
         @include product-img();
         border-radius: 5px;
@@ -64,6 +66,7 @@
           }
         }
       }
+
       .product-description {
         line-height: 1.5em;
       }

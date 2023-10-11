@@ -84,14 +84,15 @@
 
     .nav-right-side {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      padding: 0px 38%;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      justify-content: center;
       font-size: 0.8em;
       text-transform: uppercase;
 
       .logged-in {
         display: flex;
-        justify-content: center;
+        justify-content: end;
         align-items: center;
 
         a {
@@ -126,8 +127,8 @@
 
         a {
           display: flex;
+          gap: 3px;
           width: 80%;
-          justify-content: space-evenly;
           text-decoration: none;
           color: $default;
           transition: 0.4s all ease-in-out;
