@@ -10,6 +10,7 @@ textarea {
   font-size: 1.1em;
   font-family: "Arial", sans-serif;
   outline: none;
+  resize: none;
 
   &:focus {
     border: 1px solid $dark-gold;
