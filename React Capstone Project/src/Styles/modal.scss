@@ -1,7 +1,7 @@
 .blog-form-wrapper {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 6%;
+  gap: 25px;
   width: 95%;
   @include input-element();
 
@@ -23,7 +23,7 @@
     .product-manager-image-wrapper {
       img {
         width: 100%;
-        height: 100%;
+        height: 180px;
         object-fit: fill;
         border-radius: 5px;
       }

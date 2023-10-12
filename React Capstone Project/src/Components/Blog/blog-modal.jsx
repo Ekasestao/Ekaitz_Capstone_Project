@@ -15,8 +15,8 @@ class BlogModal extends Component {
         right: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
-        height: "60%",
-        width: "35%",
+        height: "550px",
+        width: "700px",
         backgroundColor: "#1e1f26",
         border: "none",
       },
@@ -34,6 +34,10 @@ class BlogModal extends Component {
   }
 
   render() {
+    window.innerWidth <= 850
+      ? (this.customStyles.content.width = "400px")
+      : (this.customStyles.content.width = "700px");
+
     return (
       <ReactModal
         style={this.customStyles}
