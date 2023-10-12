@@ -10,6 +10,8 @@
     font-size: 0.7em;
 
     .nav-wrapper {
+      height: 160px;
+
       .nav-top-wrapper {
         .nav-right-side {
           .logged-in {
@@ -32,6 +34,8 @@
     }
 
     .content-wrapper {
+      min-height: (calc(100vh - 257px));
+
       .auth-wrapper {
         .login-wrapper,
         .register-wrapper {
@@ -106,12 +110,48 @@
           }
         }
       }
+
+      .blog-wrapper {
+        .blogs {
+          padding: 25px 100px 50px 100px;
+        }
+      }
+
+      textarea {
+        height: 100px;
+      }
+
+      .product-manager-wrapper {
+        font-size: 0.8em;
+        grid-template-columns: 1fr 1fr;
+
+        .product-form-wrapper {
+          gap: 20px;
+          padding: 30px 30px;
+        }
+
+        .product-list-wrapper {
+          height: 100%;
+
+          .product {
+            padding: 15px;
+
+            .product-text {
+              .actions {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+              }
+            }
+          }
+        }
+      }
     }
 
     .footer-wrapper {
-      display: grid;
       grid-template-columns: 1fr;
       font-size: 0.9em;
+      height: 95px;
 
       .footer-left-side {
         margin-top: 2px;

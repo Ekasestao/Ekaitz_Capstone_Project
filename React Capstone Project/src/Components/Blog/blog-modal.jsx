@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactModal from "react-modal";
 import BlogForm from "../blog/blog-form";
 
-ReactModal.setAppElement("#root"); // O pasar como prop al objeto: appElement={document.getElementById("root") || undefined}
+ReactModal.setAppElement("#root");
 
 class BlogModal extends Component {
   constructor(props) {
