@@ -55,11 +55,13 @@
       font-size: 1.2em;
 
       .product-name {
+        padding-bottom: 10px;
+
         a {
+          display: inline-block;
           text-decoration: none;
 
           h3 {
-            padding: 0px 0px 10px 0px;
             margin: 0px;
             color: $gold;
             font-size: 2em;

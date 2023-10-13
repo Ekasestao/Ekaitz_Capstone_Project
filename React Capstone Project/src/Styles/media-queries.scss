@@ -9,11 +9,30 @@
     width: 100%;
     font-size: 0.7em;
 
+    textarea {
+      height: 100px;
+    }
+
     .nav-wrapper {
       height: 160px;
 
       .nav-top-wrapper {
+        .nav-left-side {
+          .search-wrapper {
+            .search-bar {
+              input {
+                height: 25px;
+                &::placeholder {
+                  color: $default;
+                  font-size: 0.9em;
+                }
+              }
+            }
+          }
+        }
+
         .nav-right-side {
+          font-size: 0.9em;
           .logged-in {
             a {
               padding-bottom: 2px;
@@ -69,6 +88,8 @@
             padding: 0px 10px;
 
             .product-name {
+              padding: 0;
+
               a {
                 h3 {
                   padding: 0px 0px 2px 0px;
@@ -86,6 +107,40 @@
               padding-right: 10px;
             }
           }
+        }
+      }
+
+      .product-detail {
+        padding: 0px 60px;
+
+        .product-wrapper {
+          .product {
+            display: grid;
+            grid-template-rows: 1fr 1.4fr;
+            gap: 0px;
+
+            .product-img {
+              height: 100%;
+              border: none;
+              border-bottom: 4px solid $gold;
+            }
+
+            .product-text {
+              font-size: 1.3em;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-evenly;
+              width: 90%;
+              height: 100%;
+              padding: 0px 18px;
+            }
+          }
+        }
+      }
+
+      .blog-wrapper {
+        .blogs {
+          padding: 25px 100px 50px 100px;
         }
       }
 
@@ -111,16 +166,6 @@
         }
       }
 
-      .blog-wrapper {
-        .blogs {
-          padding: 25px 100px 50px 100px;
-        }
-      }
-
-      textarea {
-        height: 100px;
-      }
-
       .product-manager-wrapper {
         font-size: 0.8em;
         grid-template-columns: 1fr 1fr;
@@ -142,6 +187,17 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
               }
+            }
+          }
+        }
+      }
+
+      .cart-wrapper {
+        font-size: 0.9em;
+
+        .logged-cart-products {
+          .cart-products {
+            .product {
             }
           }
         }
