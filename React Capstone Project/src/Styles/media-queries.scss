@@ -175,6 +175,10 @@
             }
           }
           .product-price-cart {
+            .product-price {
+              font-size: 1.2em;
+            }
+
             .product-cart {
               padding-right: 10px;
             }
@@ -238,12 +242,20 @@
       }
 
       .product-manager-wrapper {
-        font-size: 0.8em;
-        grid-template-columns: 1fr 1fr;
+        font-size: 0.9em;
+        grid-template-columns: 1.7fr 1fr;
 
         .product-form-wrapper {
           gap: 20px;
           padding: 30px 30px;
+
+          .image-uploader {
+            width: 60%;
+          }
+
+          button {
+            font-size: 1.6em;
+          }
         }
 
         .product-list-wrapper {
