@@ -51,35 +51,37 @@ function Cart(props) {
           products.length > 0 ? (
             <div className="logged-cart-products">
               <div className="cart-products">{products}</div>
-              <div className="cart-details">
-                <div className="cart-price">
-                  <div className="cart-oficial-price">
-                    <span>Precio oficial</span>
-                    <span>{officialPrice} €</span>
+              <div className="cart-details-wrapper">
+                <div className="cart-details">
+                  <div className="cart-price">
+                    <div className="cart-oficial-price">
+                      <span>Precio oficial</span>
+                      <span>{officialPrice} €</span>
+                    </div>
+                    <div className="cart-discount">
+                      <span>Descuento</span>
+                      <span>{discountAmount} €</span>
+                    </div>
+                    <div className="cart-total">
+                      <span>Total</span>
+                      <span>{totalPrice} €</span>
+                    </div>
                   </div>
-                  <div className="cart-discount">
-                    <span>Descuento</span>
-                    <span>{discountAmount} €</span>
+                  <div className="cart-button">
+                    <button className="btn">
+                      <Link to="/elección-pago">
+                        Realizar pago
+                        <MdKeyboardArrowRight className="icon-arrow-right" />
+                      </Link>
+                    </button>
                   </div>
-                  <div className="cart-total">
-                    <span>Total</span>
-                    <span>{totalPrice} €</span>
-                  </div>
-                </div>
-                <div className="cart-button">
-                  <button className="btn">
-                    <Link to="/elección-pago">
-                      Realizar pago
-                      <MdKeyboardArrowRight className="icon-arrow-right" />
+                  <span className="cart-choice">O</span>
+                  <div className="cart-link">
+                    <Link to="/productos">
+                      <MdKeyboardArrowLeft className="icon-arrow-left" />
+                      Continuar comprando
                     </Link>
-                  </button>
-                </div>
-                <span className="cart-choice">O</span>
-                <div className="cart-link">
-                  <Link to="/productos">
-                    <MdKeyboardArrowLeft className="icon-arrow-left" />
-                    Continuar comprando
-                  </Link>
+                  </div>
                 </div>
               </div>
             </div>

@@ -11,7 +11,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: start;
+      align-items: center;
       padding-left: 300px;
 
       .product {
@@ -63,116 +63,118 @@
         }
       }
     }
-
-    .cart-details {
-      display: grid;
-      grid-template-rows: 1fr 0.4fr 0.4fr 0.4fr;
-      margin-left: 210px;
-      padding: 40px;
-      height: 350px;
-      width: 430px;
-      border: 3px solid $gold;
-      border-radius: 10px;
-      background-color: $topnav-background;
-
-      .cart-price {
+    .cart-details-wrapper {
+      .cart-details {
         display: grid;
-        grid-template-rows: 1fr 1fr 1.8fr;
+        grid-template-rows: 1fr 0.4fr 0.4fr 0.4fr;
+        margin-left: 210px;
+        padding: 40px;
+        height: 350px;
+        width: 430px;
+        border: 3px solid $gold;
+        border-radius: 10px;
+        background-color: $topnav-background;
 
-        .cart-oficial-price {
-          display: flex;
-          justify-content: space-between;
+        .cart-price {
+          display: grid;
+          grid-template-rows: 1fr 1fr 1.8fr;
+
+          .cart-oficial-price {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          .cart-discount {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: white;
+          }
         }
 
-        .cart-discount {
+        .cart-button {
           display: flex;
-          justify-content: space-between;
-        }
-
-        .cart-total {
-          display: flex;
-          justify-content: space-between;
-          margin-top: 10px;
-          color: white;
-        }
-      }
-
-      .cart-button {
-        display: flex;
-        justify-content: center;
-        height: 100%;
-
-        button {
-          display: flex;
-          align-items: center;
           justify-content: center;
-          padding: 0px;
-          margin: 0px;
           height: 100%;
-          width: 100%;
-          border-radius: 10px;
 
-          a {
+          button {
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0px;
+            margin: 0px;
             height: 100%;
             width: 100%;
-            text-decoration: none;
-            color: black;
+            border-radius: 10px;
 
-            .icon-arrow-right {
-              font-size: 1.2em;
-              padding-top: 4px;
-              padding-left: 4px;
+            a {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              width: 100%;
+              text-decoration: none;
+              color: black;
+
+              .icon-arrow-right {
+                font-size: 1.2em;
+                padding-top: 4px;
+                padding-left: 4px;
+              }
             }
           }
         }
-      }
 
-      .cart-choice {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 0.8em;
-        margin-top: 40px;
-
-        &::before,
-        &::after {
-          content: "";
-          border-top: 1px solid $default;
-          flex-grow: 1;
-          vertical-align: middle;
-        }
-
-        &::before {
-          margin-right: 15px;
-        }
-
-        &::after {
-          margin-left: 15px;
-        }
-      }
-
-      .cart-link {
-        display: flex;
-        justify-content: center;
-        align-items: end;
-        a {
+        .cart-choice {
           display: flex;
           justify-content: center;
           align-items: center;
-          text-decoration: none;
-          color: $default;
-          transition: 0.3s all ease-in-out;
+          font-size: 0.8em;
+          margin-top: 40px;
 
-          &:hover {
-            color: $gold;
+          &::before,
+          &::after {
+            content: "";
+            border-top: 1px solid $default;
+            flex-grow: 1;
+            vertical-align: middle;
           }
 
-          .icon-arrow-left {
-            font-size: 1.5em;
-            padding-right: 4px;
+          &::before {
+            margin-right: 15px;
+          }
+
+          &::after {
+            margin-left: 15px;
+          }
+        }
+
+        .cart-link {
+          display: flex;
+          justify-content: center;
+          align-items: end;
+
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: $default;
+            transition: 0.3s all ease-in-out;
+
+            &:hover {
+              color: $gold;
+            }
+
+            .icon-arrow-left {
+              font-size: 1.5em;
+              padding-right: 4px;
+            }
           }
         }
       }
