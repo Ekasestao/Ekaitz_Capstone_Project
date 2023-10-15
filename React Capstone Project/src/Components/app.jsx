@@ -51,16 +51,9 @@ class App extends Component {
         withCredentials: true,
       })
       .then((response) => {
-        if (response.data.status === 404) {
-          window.location.reload();
-          if (response.data.status === 404) {
-            localStorage.setItem("invoiceId", 0);
-          }
-        } else {
-          this.setState({
-            invoice: response.data,
-          });
-        }
+        this.setState({
+          invoice: response.data,
+        });
       })
       .catch((error) => {
         console.log("Error getInvoice", error);

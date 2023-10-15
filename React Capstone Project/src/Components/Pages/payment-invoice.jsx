@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import navigateHook from "../Hooks/navigate";
+
 function Invoice(props) {
   const invoiceObject = props.invoice;
   const fullName = `${invoiceObject.name} ${invoiceObject.lastname}`;
   return (
     <div className="content-wrapper">
       <div className="payment-invoice">
-        {invoiceObject.length !== 0 ? (
+        {Object.keys(invoiceObject).length !== 0 ? (
           <div className="invoice-wrapper">
             <div className="invoice">
               <div className="invoice-top">
@@ -60,10 +62,7 @@ function Invoice(props) {
               </div>
 
               <div className="invoice-button">
-                <button
-                  className="btn"
-                  onClick={() => this.props.navigate("/")}
-                >
+                <button className="btn" onClick={() => props.navigate("/")}>
                   Página principal
                 </button>
               </div>
@@ -82,4 +81,4 @@ function Invoice(props) {
   );
 }
 
-export default Invoice;
+export default navigateHook(Invoice);
