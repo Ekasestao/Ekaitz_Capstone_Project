@@ -52,8 +52,8 @@ function Invoice(props) {
                 {invoiceObject.total ? (
                   <div className="invoice-total">
                     <span>
-                      Precio Total:
-                      {parseFloat(invoiceObject.total).toFixed(2)}€
+                      Precio Total: {"  "}
+                      {parseFloat(invoiceObject.total).toFixed(2)} €
                     </span>
                   </div>
                 ) : null}
