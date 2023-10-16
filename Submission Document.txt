@@ -1,0 +1,7 @@
+Ekaitz's Capstone Project
+
+API URL => "ekasestao.pythonanywhere.com"
+
+APP URL => ""
+
+Mi aplicación es una eCommerce donde sin registrarse se puede acceder las páginas "Home", "Productos", "Blog" y "Sobre Nosotros". Al acceder a la página "Carro" o intentar añadir un producto al carro nos pedirá que iniciemos sesión. También dispone de un buscador con el cual puedes buscar productos y acceder a sus detalles directamente. En la página "Productos" podremos elegir el orden en el que queramos que se muestren los productos, ya sean ordenados por nombre o por precio.

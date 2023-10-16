@@ -119,7 +119,7 @@ class Blog extends Component {
           </div>
 
           <div className="blogs">
-            {blogRecords.length == 0 && this.state.isLoading == false ? (
+            {blogRecords.length === 0 && this.state.isLoading === false ? (
               <span>No hay blogs</span>
             ) : (
               blogRecords
