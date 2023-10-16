@@ -99,6 +99,8 @@ class BlogForm extends Component {
             img_url:
               "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.png?alt=media&token=0a408421-4e47-4d8b-8ab4-3b4ce112692f",
           });
+
+          window.location.reload();
         })
         .catch((error) => {
           console.log("blog handleSubmit error", error);

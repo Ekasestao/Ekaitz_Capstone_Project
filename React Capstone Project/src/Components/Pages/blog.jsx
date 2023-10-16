@@ -23,6 +23,26 @@ class Blog extends Component {
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleSuccessfullNewBlogSubmission =
       this.handleSuccessfullNewBlogSubmission.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+  }
+
+  handleDeleteClick(blog) {
+    axios
+      .delete(`http://ekasestao.pythonanywhere.com/blog/${blog.blogs_id}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        this.setState({
+          blogItems: this.state.blogItems.filter((item) => {
+            return item.blogs_id !== blog.blogs_id;
+          }),
+        });
+
+        return response.data;
+      })
+      .catch((error) => {
+        console.log("handleDeleteClick error", error);
+      });
   }
 
   handleSuccessfullNewBlogSubmission(blog) {
@@ -98,7 +118,13 @@ class Blog extends Component {
 
   render() {
     const blogRecords = this.state.blogItems.map((blogItem) => {
-      return <BlogItem key={blogItem.blogs_id} blogItem={blogItem} />;
+      return (
+        <BlogItem
+          key={blogItem.blogs_id}
+          blogItem={blogItem}
+          handleDelete={this.handleDeleteClick}
+        />
+      );
     });
 
     return (

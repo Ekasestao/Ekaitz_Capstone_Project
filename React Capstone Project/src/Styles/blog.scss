@@ -45,7 +45,19 @@
       }
 
       .blog-content {
+        display: flex;
+        justify-content: space-between;
         padding-top: 15px;
+
+        .delete-blog {
+          margin-right: 30px;
+          cursor: pointer;
+          transition: 0.2s all ease-in-out;
+
+          &:hover {
+            color: $delete;
+          }
+        }
       }
     }
   }
