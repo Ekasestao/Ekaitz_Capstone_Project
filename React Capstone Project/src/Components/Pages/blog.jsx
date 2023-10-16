@@ -28,7 +28,7 @@ class Blog extends Component {
 
   handleDeleteClick(blog) {
     axios
-      .delete(`http://ekasestao.pythonanywhere.com/blog/${blog.blogs_id}`, {
+      .delete(`https://ekasestao.pythonanywhere.com/blog/${blog.blogs_id}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -76,10 +76,20 @@ class Blog extends Component {
       return;
     }
 
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
+    const windowHeight =
+      "ontouchstart" in window
+        ? window.innerHeight
+        : document.documentElement.clientHeight;
+    const documentHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    const scrollTop =
+      "ontouchstart" in window
+        ? window.scrollY
+        : document.documentElement.scrollTop || document.body.scrollTop;
+
+    if (documentHeight - (windowHeight + scrollTop) < 100) {
       this.getBlogItems();
     }
   }
@@ -91,7 +101,7 @@ class Blog extends Component {
 
     axios
       .get(
-        `http://ekasestao.pythonanywhere.com/blog?page=${this.state.currentPage}`,
+        `https://ekasestao.pythonanywhere.com/blog?page=${this.state.currentPage}`,
         {
           withCredentials: true,
         }

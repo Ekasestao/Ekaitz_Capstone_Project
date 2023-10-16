@@ -25,7 +25,9 @@ class PaypalPayment extends Component {
   }
 
   componentDidMount() {
-    this.setState({ page: JSON.parse(localStorage.getItem("paypalPage")) });
+    this.setState({
+      page: JSON.parse(localStorage.getItem("paypalPage")) || "login",
+    });
   }
 
   render() {

@@ -25,7 +25,7 @@ class Login extends Component {
   handleSubmit(event) {
     axios
       .post(
-        "http://ekasestao.pythonanywhere.com/login",
+        "https://ekasestao.pythonanywhere.com/login",
         {
           login_credential: this.state.loginCredential,
           password: this.state.password,

@@ -18,7 +18,7 @@ class BlogDetail extends Component {
 
   handleDeleteClick(blog) {
     axios
-      .delete(`http://ekasestao.pythonanywhere.com/blog/${blog.blogs_id}`, {
+      .delete(`https://ekasestao.pythonanywhere.com/blog/${blog.blogs_id}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -33,7 +33,7 @@ class BlogDetail extends Component {
 
   getBlogItem() {
     axios
-      .get(`http://ekasestao.pythonanywhere.com/blog/${this.props.slug_id}`)
+      .get(`https://ekasestao.pythonanywhere.com/blog/${this.props.slug_id}`)
       .then((response) => {
         this.setState({
           blogItem: response.data,

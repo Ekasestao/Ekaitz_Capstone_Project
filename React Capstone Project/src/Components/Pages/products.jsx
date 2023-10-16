@@ -13,8 +13,8 @@ class Products extends Component {
       totalCount: 0,
       currentPage: 1,
       isLoading: true,
-      order: "name",
-      direction: "asc",
+      order: JSON.parse(localStorage.getItem("order")) || "name",
+      direction: JSON.parse(localStorage.getItem("direction")) || "asc",
     };
 
     this.order = this.order.bind(this);
@@ -26,17 +26,11 @@ class Products extends Component {
 
   order(event) {
     localStorage.setItem("order", JSON.stringify(event.target.value));
-    this.setState({
-      order: JSON.parse(localStorage.getItem("order")),
-    });
     window.location.reload();
   }
 
   direction(event) {
     localStorage.setItem("direction", JSON.stringify(event.target.value));
-    this.setState({
-      direction: JSON.parse(localStorage.getItem("direction")),
-    });
     window.location.reload();
   }
 
@@ -48,10 +42,20 @@ class Products extends Component {
       return;
     }
 
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
+    const windowHeight =
+      "ontouchstart" in window
+        ? window.innerHeight
+        : document.documentElement.clientHeight;
+    const documentHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    const scrollTop =
+      "ontouchstart" in window
+        ? window.scrollY
+        : document.documentElement.scrollTop || document.body.scrollTop;
+
+    if (documentHeight - (windowHeight + scrollTop) < 100) {
       this.getProducts();
     }
   }
@@ -62,13 +66,12 @@ class Products extends Component {
       isLoading: true,
     });
 
+    const order = JSON.parse(localStorage.getItem("order")) || "name";
+    const direction = JSON.parse(localStorage.getItem("direction")) || "asc";
+
     axios
       .get(
-        `http://ekasestao.pythonanywhere.com/products?order_by=${JSON.parse(
-          localStorage.getItem("order")
-        )}&direction=${JSON.parse(localStorage.getItem("direction"))}&page=${
-          this.state.currentPage
-        }`,
+        `https://ekasestao.pythonanywhere.com/products?order_by=${order}&direction=${direction}&page=${this.state.currentPage}`,
         {
           withCredentials: true,
         }
@@ -87,10 +90,6 @@ class Products extends Component {
 
   componentDidMount() {
     this.getProducts();
-    this.setState({
-      order: JSON.parse(localStorage.getItem("order")),
-      direction: JSON.parse(localStorage.getItem("direction")),
-    });
   }
 
   componentWillUnmount() {

@@ -16,7 +16,7 @@ class SearchBar extends Component {
 
   fetchData(value) {
     axios
-      .get("http://ekasestao.pythonanywhere.com/products/search", {
+      .get("https://ekasestao.pythonanywhere.com/products/search", {
         withCredentials: true,
       })
       .then((response) => {

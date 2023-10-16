@@ -44,10 +44,10 @@ class App extends Component {
   }
 
   getInvoice() {
-    const invoiceId = JSON.parse(localStorage.getItem("invoiceId"));
+    const invoiceId = JSON.parse(localStorage.getItem("invoiceId")) || 0;
 
     axios
-      .get(`http://ekasestao.pythonanywhere.com/invoice/${invoiceId}`, {
+      .get(`https://ekasestao.pythonanywhere.com/invoice/${invoiceId}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -70,7 +70,7 @@ class App extends Component {
 
     axios
       .post(
-        "http://ekasestao.pythonanywhere.com/invoice",
+        "https://ekasestao.pythonanywhere.com/invoice",
         {
           invoices_name: this.state.loggedUser.name,
           invoices_lastname: this.state.loggedUser.lastname,
@@ -153,6 +153,7 @@ class App extends Component {
   handleSuccessfulLogout(user) {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("loggedInStatus", JSON.stringify(false));
+    localStorage.getItem("invoiceId", JSON.stringify(0));
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
     });
@@ -161,7 +162,7 @@ class App extends Component {
 
   connectApi() {
     axios
-      .get("http://ekasestao.pythonanywhere.com/")
+      .get("https://ekasestao.pythonanywhere.com/")
       .then((response) => {
         console.log(response.data.message);
       })
@@ -200,13 +201,21 @@ class App extends Component {
   }
 
   componentDidMount() {
+    if (localStorage.getItem("user") === null) {
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ logged_in: false, admin: false })
+      );
+    }
+
     this.connectApi();
     this.checkLoginStatus();
     this.getInvoice();
+
     const loggedInStatus = JSON.parse(localStorage.getItem("loggedInStatus"));
     const loggedUser = JSON.parse(localStorage.getItem("user"));
 
-    if (loggedInStatus === true && loggedUser) {
+    if (loggedInStatus && loggedUser) {
       const userCart = JSON.parse(
         localStorage.getItem(`userCart_${loggedUser.id}`)
       );

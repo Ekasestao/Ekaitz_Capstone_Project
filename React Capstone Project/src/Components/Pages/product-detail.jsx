@@ -18,7 +18,7 @@ class ProductDetail extends Component {
   getProduct() {
     axios
       .get(
-        `http://ekasestao.pythonanywhere.com/products/${this.props.slug_id}`,
+        `https://ekasestao.pythonanywhere.com/products/${this.props.slug_id}`,
         {
           withCredentials: true,
         }

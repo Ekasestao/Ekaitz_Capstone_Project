@@ -30,9 +30,12 @@ class BlogForm extends Component {
 
   deleteImage() {
     axios
-      .delete(`http://ekasestao.pythonanywhere.com/blog/img/${this.state.id}`, {
-        withCredentials: true,
-      })
+      .delete(
+        `https://ekasestao.pythonanywhere.com/blog/img/${this.state.id}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then(() => {
         this.setState({
           img_url: "",
@@ -53,7 +56,7 @@ class BlogForm extends Component {
     return {
       iconFiletypes: [".jpg", ".png"],
       showFiletypeIcon: true,
-      postUrl: "http://ekasestao.pythonanywhere.com/dropzone",
+      postUrl: "https://ekasestao.pythonanywhere.com/dropzone",
     };
   }
 
@@ -80,7 +83,7 @@ class BlogForm extends Component {
 
       await axios
         .post(
-          "http://ekasestao.pythonanywhere.com/blog",
+          "https://ekasestao.pythonanywhere.com/blog",
           {
             blogs_title: this.state.title,
             blogs_content: this.state.content,

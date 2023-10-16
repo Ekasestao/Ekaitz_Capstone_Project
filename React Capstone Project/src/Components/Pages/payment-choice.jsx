@@ -5,19 +5,6 @@ import Paypal from "../../Images/Payment/paypal.png";
 import CreditCard from "../../Images/Payment/tarjetadecredito.png";
 
 function PaymentChoice() {
-  const createInvoice = () => {
-    axios
-      .post(
-        "http://ekasestao.pythonanywhere.com/invoice",
-        {
-          invoices_name: JSON.parse(localStorage["user"]).name,
-          invoices_lastname: JSON.parse(localStorage["user"]).lastname,
-        },
-        { withCredentials: true }
-      )
-      .then((response) => {});
-  };
-
   return (
     <div className="content-wrapper">
       <div className="payment-choice">

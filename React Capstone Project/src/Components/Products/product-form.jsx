@@ -19,7 +19,7 @@ class ProductForm extends Component {
       img_url:
         "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.png?alt=media&token=0a408421-4e47-4d8b-8ab4-3b4ce112692f",
       editMode: false,
-      apiUrl: "http://ekasestao.pythonanywhere.com/products",
+      apiUrl: "https://ekasestao.pythonanywhere.com/products",
       apiAction: "post",
     };
 
@@ -36,7 +36,7 @@ class ProductForm extends Component {
   deleteImage() {
     axios
       .delete(
-        `http://ekasestao.pythonanywhere.com/products/img/${this.state.id}`,
+        `https://ekasestao.pythonanywhere.com/products/img/${this.state.id}`,
         { withCredentials: true }
       )
       .then(() => {
@@ -68,7 +68,7 @@ class ProductForm extends Component {
         description: products_description || "",
         price: products_price || "",
         editMode: true,
-        apiUrl: `http://ekasestao.pythonanywhere.com/products/${products_id}`,
+        apiUrl: `https://ekasestao.pythonanywhere.com/products/${products_id}`,
         apiAction: "patch",
         img_url:
           products_img_url ||
@@ -87,7 +87,7 @@ class ProductForm extends Component {
     return {
       iconFiletypes: [".jpg", ".png"],
       showFiletypeIcon: true,
-      postUrl: "http://ekasestao.pythonanywhere.com/dropzone",
+      postUrl: "https://ekasestao.pythonanywhere.com/dropzone",
     };
   }
 
@@ -145,7 +145,7 @@ class ProductForm extends Component {
             img_url:
               "https://firebasestorage.googleapis.com/v0/b/capstone-project-react-fd52b.appspot.com/o/no-photo.png?alt=media&token=0a408421-4e47-4d8b-8ab4-3b4ce112692f",
             editMode: false,
-            apiUrl: "http://ekasestao.pythonanywhere.com/products",
+            apiUrl: "https://ekasestao.pythonanywhere.com/products",
             apiAction: "post",
           });
 

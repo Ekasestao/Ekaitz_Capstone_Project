@@ -45,15 +45,13 @@ class Auth extends Component {
 
   componentDidMount() {
     this.setState({
-      loginOrRegister: JSON.parse(localStorage.getItem("loginRegister")),
+      loginOrRegister:
+        JSON.parse(localStorage.getItem("loginRegister")) || "login",
     });
   }
 
   componentWillUnmount() {
     localStorage.setItem("loginRegister", JSON.stringify("login"));
-    this.setState({
-      loginOrRegister: JSON.parse(localStorage.getItem("loginRegister")),
-    });
   }
 
   render() {

@@ -61,7 +61,7 @@ class ManageCart extends Component {
             <FaShoppingCart /> {this.state.productInCart}
           </Link>
         ) : (
-          <Link to="/auth" className={`${this.state.className}`}>
+          <Link to="/autenticación" className={`${this.state.className}`}>
             <FaShoppingCart /> {this.state.productInCart}
           </Link>
         )}

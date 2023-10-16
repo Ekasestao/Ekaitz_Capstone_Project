@@ -25,7 +25,9 @@ class CreditCardPayment extends Component {
   }
 
   componentDidMount() {
-    this.setState({ page: JSON.parse(localStorage.getItem("creditCardPage")) });
+    this.setState({
+      page: JSON.parse(localStorage.getItem("creditCardPage")) || "add",
+    });
   }
 
   render() {

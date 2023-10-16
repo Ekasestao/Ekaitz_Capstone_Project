@@ -37,7 +37,7 @@ class ProductManager extends Component {
   handleDeleteClick(product) {
     axios
       .delete(
-        `http://ekasestao.pythonanywhere.com/products/${product.products_id}`,
+        `https://ekasestao.pythonanywhere.com/products/${product.products_id}`,
         {
           withCredentials: true,
         }

@@ -37,7 +37,7 @@ class Navbar extends Component {
 
   handleSignOut() {
     axios
-      .get("http://ekasestao.pythonanywhere.com/logout")
+      .get("https://ekasestao.pythonanywhere.com/logout")
       .then((response) => {
         if (response.data.status === 200) {
           this.props.navigate("/");
@@ -114,10 +114,12 @@ class Navbar extends Component {
               {this.dynamicLink("/sobre-nosotros", "sobre nosotros")}
             </div>
 
-            {JSON.parse(localStorage.getItem("user")).admin ? (
-              <div className="nav-links-wrapper">
-                {this.dynamicLink("/product-manager", "product manager")}
-              </div>
+            {localStorage.getItem("user") !== null ? (
+              JSON.parse(localStorage.getItem("user")).admin ? (
+                <div className="nav-links-wrapper">
+                  {this.dynamicLink("/product-manager", "product manager")}
+                </div>
+              ) : null
             ) : null}
           </div>
         </div>
