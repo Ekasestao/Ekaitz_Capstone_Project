@@ -51,9 +51,13 @@ class App extends Component {
         withCredentials: true,
       })
       .then((response) => {
-        this.setState({
-          invoice: response.data,
-        });
+        if (response.data.status === 404) {
+          localStorage.setItem("invoiceId", 0);
+        } else {
+          this.setState({
+            invoice: response.data,
+          });
+        }
       })
       .catch((error) => {
         console.log("Error getInvoice", error);
