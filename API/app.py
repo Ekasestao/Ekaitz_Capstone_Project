@@ -1,19 +1,22 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func
 from flask_marshmallow import Marshmallow
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_cors import CORS
 from secretKey import secret_key
 import json
+from datetime import datetime, timedelta, timezone
 
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = secret_key
 app.config[
     "SQLALCHEMY_DATABASE_URI"
-] = "mysql+pymysql://root:Ekaitz22765332r,?@localhost/capstoneproject"
+] = "mysql+pymysql://Ekasestao:Ekaitz1000!@Ekasestao.mysql.pythonanywhere-services.com/Ekasestao$capstoneproject"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SESSION_COOKIE_SECURE"] = True
+CORS(app, supports_credentials=True)
 
+madrid_offset = timezone(timedelta(hours=2))
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -121,17 +124,21 @@ class Invoice(db.Model):
     invoices_lastname = db.Column(db.String(50), nullable=False)
     invoices_products = db.Column(db.String(100), nullable=False)
     invoices_total = db.Column(db.Float, nullable=False)
-    invoices_date = db.Column(
-        db.TIMESTAMP, nullable=False, default=func.current_timestamp()
-    )
+    invoices_date = db.Column(db.TIMESTAMP, nullable=False)
 
     def __init__(
-        self, invoices_name, invoices_lastname, invoices_products, invoices_total
+        self,
+        invoices_name,
+        invoices_lastname,
+        invoices_products,
+        invoices_total,
+        invoices_date,
     ):
         self.invoices_name = invoices_name
         self.invoices_lastname = invoices_lastname
         self.invoices_products = invoices_products
         self.invoices_total = invoices_total
+        self.invoices_date = invoices_date
 
 
 class InvoiceSchema(ma.Schema):
@@ -530,20 +537,29 @@ def dropzone_img():
 
 @app.route("/invoice", methods=["POST"])
 def invoice():
-    name = request.json["invoices_name"]
-    lastname = request.json["invoices_lastname"]
-    products = request.json["invoices_products"]
-    total = request.json["invoices_total"]
+    current_time_in_madrid = datetime.now(madrid_offset)
 
-    new_invoice = Invoice(name, lastname, products, total)
+    data = request.get_json()
+
+    name = data["invoices_name"]
+    lastname = data["invoices_lastname"]
+    products = data["invoices_products"]
+    json_products = json.dumps(products)
+    total = data["invoices_total"]
+    date = current_time_in_madrid
+
+    new_invoice = Invoice(name, lastname, json_products, total, date)
     db.session.add(new_invoice)
     db.session.commit()
 
-    return invoice_schema.jsonify(new_invoice)
+    return jsonify({"invoices_id": new_invoice.invoices_id})
 
 
 @app.route("/invoice/<int:invoice_id>")
 def get_invoice(invoice_id):
+    if invoice_id == 0:
+        return {}
+
     invoice = Invoice.query.get(invoice_id)
 
     if not invoice:
@@ -553,7 +569,7 @@ def get_invoice(invoice_id):
 
     products = Product.query.filter(Product.products_id.in_(product_ids)).all()
 
-    formatted_date = invoice.invoices_date.strftime("%d-%m-%Y %T")
+    formatted_date = invoice.invoices_date.strftime("%d-%m-%Y")
 
     product_data = []
     for product in products:
@@ -561,7 +577,6 @@ def get_invoice(invoice_id):
             {
                 "products_id": product.products_id,
                 "products_name": product.products_name,
-                "products_description": product.products_description,
                 "products_price": product.products_price,
             }
         )
@@ -576,8 +591,3 @@ def get_invoice(invoice_id):
             "date": formatted_date,
         }
     )
-
-
-if __name__ == "__main__":
-    app.secret_key = secret_key
-    app.run(debug=True)
