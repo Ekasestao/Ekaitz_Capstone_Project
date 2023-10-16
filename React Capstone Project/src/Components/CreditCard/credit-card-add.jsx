@@ -276,6 +276,8 @@ class CreditCardAdd extends Component {
                     id="cardNumber"
                     ref={this.cardNumber}
                     value={this.state.cardNumber}
+                    inputMode="numeric"
+                    pattern="[0-9 ]*"
                     onInput={(e) => {
                       const value = e.target.value.replace(/\D/g, "");
                       const formattedValue = value.replace(/(\d{4})/g, "$1 ");
