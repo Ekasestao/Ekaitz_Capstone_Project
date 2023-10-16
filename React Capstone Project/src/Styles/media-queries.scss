@@ -1,65 +1,94 @@
 @media screen and (max-width: 1500px) {
   .app-wrapper {
-    font-size: 0.6em;
+    font-size: 0.7em;
 
-    .cart-wrapper {
-      font-size: 0.9em;
+    .content-wrapper {
+      .cart-wrapper {
+        font-size: 0.9em;
 
-      .logged-cart-products {
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        height: 100%;
-
-        .cart-products {
-          justify-content: space-evenly;
-          padding-left: 0;
-          order: 2;
+        .logged-cart-products {
+          display: flex;
+          flex-direction: column;
+          margin: 0;
           height: 100%;
 
-          .product {
-            padding-right: 0;
-            margin-bottom: 25px;
-            gap: 20px;
-            width: 700px;
-            height: 120px;
-            font-size: 0.9em;
+          .cart-products {
+            justify-content: space-evenly;
+            padding-left: 0;
+            order: 2;
+            height: 100%;
 
-            .product-img {
-              height: 100%;
+            .product {
+              padding-right: 0;
+              margin-bottom: 25px;
+              gap: 20px;
+              width: 700px;
+              height: 120px;
+              font-size: 0.9em;
+
+              .product-img {
+                height: 100%;
+              }
+              .product-text {
+                width: 75%;
+              }
             }
-            .product-text {
-              width: 75%;
+          }
+
+          .cart-details-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0px;
+            height: 350px;
+
+            .cart-details {
+              order: 1;
+              padding: 15px;
+              height: 100%;
+              width: 30%;
+              margin-left: 0;
+
+              .cart-choice {
+                margin-top: 20px;
+              }
+
+              .cart-button {
+                button {
+                  border-radius: 5px;
+
+                  a {
+                    .icon-arrow-right {
+                      padding-top: 2px;
+                      padding-left: 2px;
+                    }
+                  }
+                }
+              }
             }
           }
         }
+      }
 
-        .cart-details-wrapper {
-          display: flex;
-          justify-content: center;
-          margin: 25px 0px;
-          height: 350px;
+      .payment-invoice {
+        .invoice-button-wrapper {
+          .invoice-wrapper {
+            .invoice-background {
+              width: 40%;
+              .invoice {
+                .invoice-top {
+                  .invoice-id-date {
+                    .invoice-id {
+                      font-size: 1.3em;
+                    }
 
-          .cart-details {
-            order: 1;
-            padding: 15px;
-            height: 100%;
-            width: 30%;
-            margin-left: 0;
-
-            .cart-choice {
-              margin-top: 20px;
-            }
-
-            .cart-button {
-              button {
-                border-radius: 5px;
-
-                a {
-                  .icon-arrow-right {
-                    padding-top: 2px;
-                    padding-left: 2px;
+                    .invoice-date {
+                      font-size: 1.3em;
+                    }
                   }
+                }
+
+                .invoice-total {
+                  font-size: 1.3em;
                 }
               }
             }
@@ -406,26 +435,6 @@
         }
       }
 
-      .payment-invoice {
-        .invoice-wrapper {
-          padding: 10px;
-          margin: 20px;
-          width: 70%;
-          min-height: 80%;
-
-          .invoice {
-            .invoice-fullname {
-              font-size: 1.1em;
-            }
-            .invoice-bottom {
-              .invoice-products {
-                font-size: 1em;
-              }
-            }
-          }
-        }
-      }
-
       .credit-card-wrapper {
         .credit-card-resume {
           padding: 50px 0px;
@@ -434,6 +443,36 @@
             font-size: 1.2em;
             width: 60%;
             padding: 20px;
+          }
+        }
+      }
+
+      .payment-invoice {
+        .invoice-button-wrapper {
+          .invoice-wrapper {
+            .invoice-background {
+              padding: 10px;
+              margin: 20px;
+              width: 70%;
+              min-height: 80%;
+
+              .invoice {
+                .invoice-fullname {
+                  font-size: 1.1em;
+                }
+                .invoice-bottom {
+                  .invoice-products {
+                    font-size: 1em;
+                  }
+                }
+              }
+            }
+          }
+
+          .invoice-button {
+            button {
+              width: 40%;
+            }
           }
         }
       }
@@ -467,6 +506,30 @@
   .app-wrapper {
     .nav-wrapper {
       font-size: 0.9em;
+    }
+
+    .content-wrapper {
+      .payment-invoice {
+        .invoice-wrapper {
+          .invoice {
+            .invoice-top {
+              .invoice-id-date {
+                .invoice-id {
+                  font-size: 1.3em;
+                }
+
+                .invoice-date {
+                  font-size: 1.3em;
+                }
+              }
+            }
+
+            .invoice-total {
+              font-size: 1.3em;
+            }
+          }
+        }
+      }
     }
   }
 }
