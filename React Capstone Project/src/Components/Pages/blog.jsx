@@ -154,13 +154,13 @@ class Blog extends Component {
             ) : null}
           </div>
 
-          <div className="blogs">
-            {blogRecords.length === 0 && this.state.isLoading === false ? (
+          {blogRecords.length === 0 && this.state.isLoading === false ? (
+            <div className="no-blog-wrapper">
               <span>No hay blogs</span>
-            ) : (
-              blogRecords
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="blogs">{blogRecords}</div>
+          )}
 
           {this.state.isLoading ? (
             <div className="content-loader">

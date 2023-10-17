@@ -61,4 +61,15 @@
       }
     }
   }
+
+  .no-blog-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    span {
+      font-size: 2em;
+    }
+  }
 }
